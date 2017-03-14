@@ -1,141 +1,91 @@
 <!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
+<!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <meta charset="utf-8" />
+    <title>Estradando | Início</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.min.css" rel="stylesheet" />
+    <link href="assets/css/style.min.css" rel="stylesheet" />
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="assets/plugins/jquery-jvectormap/jquery-jvectormap.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    
+    <!-- ================== BEGIN PAGE CSS ================== -->
+    <link href="assets/plugins/bootstrap-social/bootstrap-social.css" rel="stylesheet" />
+    <!-- ================== END PAGE CSS ================== -->
+    
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="assets/plugins/pace/pace.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    <!--<div id="fb-root"></div>-->
-                    <li>
-                        <a href='#' onclick="FacebookInviteFriends();"> 
-                            Facebook Invite Friends Link
-                        </a>
-                    </li>    
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>                        
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+<body>
+    <!-- begin #page-loader -->
+    <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+    <!-- end #page-loader -->
+    
+    @include('layouts.header')    
     @yield('content')
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- test facebook invite friends -->
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+    </div>
+    <!-- end page container -->
+    
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="assets/crossbrowserjs/html5shiv.js"></script>
+        <script src="assets/crossbrowserjs/respond.min.js"></script>
+        <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="assets/plugins/gritter/js/jquery.gritter.js"></script>
+    <script src="assets/plugins/flot/jquery.flot.min.js"></script>
+    <script src="assets/plugins/flot/jquery.flot.time.min.js"></script>
+    <script src="assets/plugins/flot/jquery.flot.resize.min.js"></script>
+    <script src="assets/plugins/flot/jquery.flot.pie.min.js"></script>
+    <script src="assets/plugins/sparkline/jquery.sparkline.js"></script>
+    <script src="assets/plugins/jquery-jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="assets/js/dashboard.min.js"></script>
+    <script src="assets/js/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
+    <!-- ================== BEGIN ESTRADANDO JS ================== -->    
     <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <script src="assets/js/facebook.js"></script>    
+    <!-- ================== END ESTRADANDO JS ================== -->    
     <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '135642750273727',
-                xfbml      : true,
-                cookie     : true,
-                status     : true,
-                version    : 'v2.8'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));    
-        
-        function requestCallback(response) {
-            var ids = response["to"];
-            console.log(response);
-            for (var i = 0; i < ids.length; ++i) {
-                //"ids[i]" is what you want.              
-            }
-        }
-        /*
-        FB.init({
-            appId:'135642750273727',            
-            cookie:true,
-            status:true,
-            xfbml:true
+        $(document).ready(function() {
+            App.init();
+            Dashboard.init();
+            Facebook.init();
         });
-        */
-        function FacebookInviteFriends() {
-            FB.ui({
-                method: 'apprequests',
-                message: 'Nova solicitação de Estradando',
-                redirect_uri: 'localhost:8000/soy_de_gremio',
-                title: "Seleção de amigos",
-                new_style_message: true
-            }, requestCallback);
-        }
     </script>
-    <script type='text/javascript'>
-        if (top.location!= self.location) {
-            top.location = self.location
-        }
-    </script>
-
-
-    <!--#-->
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

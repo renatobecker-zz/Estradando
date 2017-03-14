@@ -8,8 +8,6 @@ use App\SocialAccount;
 class SocialAccountService {
 
     public function createOrGetUser(ProviderUser $providerUser) {
-        print_r($providerUser); exit;    
-
         $account = SocialAccount::whereProvider('facebook')
             ->whereProviderUserId($providerUser->getId())
             ->first();
@@ -30,6 +28,7 @@ class SocialAccountService {
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
+                    'avatar' => $providerUser->getAvatar(),
                 ]);
             }
             $account->user()->associate($user);
