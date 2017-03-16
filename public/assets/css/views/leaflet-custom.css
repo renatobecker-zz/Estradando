@@ -1,0 +1,118 @@
+.info-leaflet {
+    padding: 6px 6px;
+    /*font: 12px/16px Arial, Helvetica, sans-serif;*/
+    font: 13px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;;
+}
+.info-leaflet h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.legend {
+    line-height: 16px;
+    color: #555;
+}
+.legend i {
+
+    width: 16px;
+    height: 14px;
+    float: left;
+    margin-right: 4px;
+    opacity: 0.7;
+}
+
+.legend img {
+
+    width: 16px;
+    height: 14px;
+    float: left;
+    margin-right: 4px;
+    opacity: 0.7;
+}
+
+.legend input {
+    width: 16px;
+    height: 16px;    
+    margin: 0;
+}
+
+.leaflet-container img { max-width:none!important; }
+
+/*combo para seleÃ§Ã£o*/
+.menu-ui {
+  position:absolute;
+  top:25px;
+  right:30px;
+  width: 200px
+  }
+
+.label {
+    color: black;
+    /*font-weight: 400;*/
+    /*text-transform: uppercase;*/    
+    text-align: center;
+    margin-top: -1em;
+    /*white-space: nowrap;*/
+    /*word-wrap: break-word;*/
+    /*line-height: 10px;*/
+  }
+
+.label div {
+    position: relative;
+    left: -50%;
+    /*text-shadow: 0px 2px 1px rgba(255,255,255,0.85);*/
+}
+
+.label.label-small{
+    
+    font-family: Arial;
+    font-size: 6px;
+    font-style: normal;
+    font-variant: normal;    
+    line-height: 6px;    
+    font-weight: bold;
+    white-space: normal;    
+}
+
+.label.label-normal{
+    
+    font-family: Arial;
+    font-size: 7px;
+    font-style: normal;
+    font-variant: normal;    
+    line-height: 7px;    
+    font-weight: bold;
+    white-space: normal;    
+}
+
+.label.label-medium{
+
+    font-family: Arial;
+    font-size: 10px;
+    font-style: normal;
+    font-variant: normal;    
+    line-height: 10px;    
+    font-weight: bold;
+    white-space: normal;
+}
+
+.label.label-large{
+ 
+    font-family: Arial;
+    font-size: 15px;
+    font-style: normal;
+    font-variant: normal;    
+    line-height: 15px;    
+    font-weight: bold;
+    white-space: normal;     
+}
+
+/* Do a fancy data transition for browsers that support it */
+path {
+  -webkit-transition:fill 200ms;
+          transition:fill 200ms;
+  }

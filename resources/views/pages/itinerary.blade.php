@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('css')  
     <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
-    <link rel="stylesheet" href="assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
+    <link href="assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
 @endsection        
 @section('content')
 <!-- begin #content -->
@@ -26,6 +26,7 @@
 @endsection        
 
 @section('javascript')  
+    <script src="assets/plugins/underscore/underscore-1.8.3-min.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
     <script src="assets/plugins/leaflet/leaflet.js"></script>
     <script src="assets/js/view-helper.js"></script>
@@ -33,7 +34,9 @@
     <script>
         $(document).ready(function() {
             View.init();
-            LeafletPlugin.init();
+            LeafletPlugin.init({
+            });
+            
         });
     </script>
 @endsection        

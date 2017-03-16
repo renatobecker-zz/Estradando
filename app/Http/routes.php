@@ -14,3 +14,7 @@ Route::auth();
 Route::get('/home'     , 'HomeController@index');
 Route::get('/itinerary', 'ItineraryController@index');
 
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('/search'   , 'FacebookController@search');
+});
+

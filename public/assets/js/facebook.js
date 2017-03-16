@@ -29,7 +29,7 @@ var facebookInviteFriends = function() {
         FB.ui({
             method: 'apprequests',
             message: 'Nova solicitação de Estradando',
-            redirect_uri: 'localhost:8000/soy_de_gremio',
+            redirect_uri: 'localhost:8000/itinerary',
             title: "Seleção de amigos",
             new_style_message: true
         }, requestCallback);

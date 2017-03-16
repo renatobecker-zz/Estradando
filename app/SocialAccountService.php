@@ -4,10 +4,14 @@ namespace App;
 
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use App\SocialAccount;
+use Session;
 
 class SocialAccountService {
 
     public function createOrGetUser(ProviderUser $providerUser) {
+        Session::set('user_token', $providerUser->token);
+        //Session::get('user_token');
+
         $account = SocialAccount::whereProvider('facebook')
             ->whereProviderUserId($providerUser->getId())
             ->first();
