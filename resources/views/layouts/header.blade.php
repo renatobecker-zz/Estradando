@@ -15,6 +15,7 @@
                 
                 <!-- begin header navigation right -->
                 <ul class="nav navbar-nav navbar-right">
+                    <!--
                     <li>
                         <form class="navbar-form full-width">
                             <div class="form-group">
@@ -23,6 +24,7 @@
                             </div>
                         </form>
                     </li>
+                    -->
                     <li>
                         <a href="javascript:;" class="dropdown-toggle f-s-14">
                             <i class="fa fa-commenting-o fa-fw"></i>
@@ -35,7 +37,7 @@
                             <span class="label">5</span>
                         </a>
                         <ul class="dropdown-menu media-list pull-right animated fadeInDown">
-                        <li class="dropdown-header">Notifications (5)</li>
+                            <li class="dropdown-header">Notifications (5)</li>
                             <li class="media">
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
@@ -90,10 +92,10 @@
                     </li>                                        
                     @if (Auth::guest())
 
-                        <a href="{{ url('/login/facebook') }}" class="btn btn-social btn-sm btn-facebook m-r-5">
-                            <i class="fa fa-facebook"></i>
-                            Login com Facebook
-                        </a>
+                    <a href="{{ url('/login/facebook') }}" class="btn btn-social btn-sm btn-facebook m-r-5">
+                        <i class="fa fa-facebook"></i>
+                        Login com Facebook
+                    </a>
 
                     @else                
                     <li class="dropdown navbar-user">        

@@ -30,7 +30,7 @@
     <!-- ================== BEGIN PAGE CSS ================== -->
     <link href="assets/plugins/bootstrap-social/bootstrap-social.css" rel="stylesheet" />
     <!-- ================== END PAGE CSS ================== -->
-    
+    @yield('css')    
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
@@ -39,12 +39,10 @@
     <!-- begin #page-loader -->
     <div id="page-loader" class="fade in"><span class="spinner"></span></div>
     <!-- end #page-loader -->
-    
-    @include('layouts.header')    
-    @yield('content')
-
     <!-- begin #page-container -->
-    <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+    <div id="page-container" class="fade page-without-sidebar page-header-fixed"> <!-- page-content-full-height">-->
+        @include('layouts.header')    
+        @yield('content')
     </div>
     <!-- end page container -->
     
@@ -53,11 +51,6 @@
     <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
     <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <!--[if lt IE 9]>
-        <script src="assets/crossbrowserjs/html5shiv.js"></script>
-        <script src="assets/crossbrowserjs/respond.min.js"></script>
-        <script src="assets/crossbrowserjs/excanvas.min.js"></script>
-    <![endif]-->
     <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
     <!-- ================== END BASE JS ================== -->
@@ -83,9 +76,10 @@
     <script>
         $(document).ready(function() {
             App.init();
-            Dashboard.init();
+            //Dashboard.init();
             Facebook.init();
         });
     </script>
+    @yield('javascript')    
 </body>
 </html>
