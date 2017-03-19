@@ -12,14 +12,23 @@ var initMap = function(lat, lng) {
 }
 
 var addMarker = function(options) {
-    L.marker([options.location.latitude, options.location.longitude]).addTo(map)
+    //Using Leaflet.ExtraMarkers plugin
+    var redMarker = L.ExtraMarkers.icon({
+        icon: 'fa-cutlery',
+        markerColor: 'blue',
+        shape: 'square',
+        prefix: 'fa'
+    });
+    console.log("adsa");
+    L.marker([options.location.latitude, options.location.longitude], {icon: redMarker})
+    .addTo(map)
     .bindPopup(options.name);
-    //.openPopup();    
+        //.openPopup();    
 }
 
-function getLocation() {
+function getLocation(callback) {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(setPosition);
+        navigator.geolocation.getCurrentPosition(callback);        
     } else {
         alert("Geolocation is not supported by this browser.");
     }
@@ -27,17 +36,17 @@ function getLocation() {
 
 function setPosition(position) {
     initMap(position.coords.latitude, position.coords.longitude);
-    //addMarker(position.coords.latitude, position.coords.longitude);
+    loadMarkers(position);
 }
 
-var loadMarkers = function() {
+var loadMarkers = function(position) {
     $.ajax({
         type: 'GET',
         url: '/search',
-        //dataType: 'json',
+        dataType: 'json',
         success: function(result) {
             let data = result.data;            
-            _.map(data, function(item) {
+            _.map(data, function(item) {                
                 if (item.location) {                        
                     addMarker(item);
                 }                    
@@ -50,8 +59,7 @@ var loadMarkers = function() {
 }
 
 var handleInit = function() {
-    getLocation();
-    loadMarkers();
+    getLocation(setPosition);
 };
 
 var LeafletPlugin = function () {

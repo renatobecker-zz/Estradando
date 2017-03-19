@@ -2,6 +2,8 @@
 @section('css')  
     <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
     <link href="assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
+    <link href="assets/plugins/Leaflet.ExtraMarkers-master/dist/css/leaflet.extra-markers.min.css" rel="stylesheet" />
+
 @endsection        
 @section('content')
 <!-- begin #content -->
@@ -29,6 +31,7 @@
     <script src="assets/plugins/underscore/underscore-1.8.3-min.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
     <script src="assets/plugins/leaflet/leaflet.js"></script>
+    <script src="assets/plugins/Leaflet.ExtraMarkers-master/dist/js/leaflet.extra-markers.min.js"></script>
     <script src="assets/js/view-helper.js"></script>
     <script src="assets/js/leaflet.js"></script>
     <script>

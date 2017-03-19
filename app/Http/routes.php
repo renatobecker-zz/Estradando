@@ -11,10 +11,14 @@ Route::get('login/facebook', 'SocialAuthController@redirect');
 Route::get('login/facebook/callback', 'SocialAuthController@callback');
 Route::auth();
 
-Route::get('/home'     , 'HomeController@index');
-Route::get('/itinerary', 'ItineraryController@index');
+Route::get('/home'           , 'HomeController@index');
+Route::get('/itinerary'      , 'ItineraryController@index');
+Route::get('/itinerary/icons', 'ItineraryController@icons');
+
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/search'   , 'FacebookController@search');
+	Route::get('/search'     , 'FacebookController@search');
+    Route::get('/categories' , 'FacebookController@categories');
+    Route::get('/graph/{id}' , 'FacebookController@graph');
 });
 

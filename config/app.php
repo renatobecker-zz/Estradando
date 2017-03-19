@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -158,7 +158,7 @@ return [
 
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,        
     ],
 
     /*

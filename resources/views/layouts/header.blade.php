@@ -106,6 +106,11 @@
                         <ul class="dropdown-menu animated fadeInLeft">
                             <li class="arrow"></li>
                             <li><a href="javascript:;">Novo Roteiro</a></li>
+                            <li><a href='#' onclick="facebookInviteFriends();">
+                                Convidar amigos do Facebook
+                                </a>
+                            </li>    
+
                             <!--<li><a href="javascript:;">Edit Profile</a></li>
                             <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
                             <li><a href="javascript:;">Calendar</a></li>
