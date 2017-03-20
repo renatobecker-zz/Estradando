@@ -48,7 +48,7 @@ var Facebook = function () {
     return {
         //main function
         init: function () {
-            handleInit();
+            //handleInit();
         }
     };
 }();

@@ -19,7 +19,7 @@ var addMarker = function(options) {
         shape: 'square',
         prefix: 'fa'
     });
-    console.log("adsa");
+    
     L.marker([options.location.latitude, options.location.longitude], {icon: redMarker})
     .addTo(map)
     .bindPopup(options.name);
@@ -42,7 +42,7 @@ function setPosition(position) {
 var loadMarkers = function(position) {
     $.ajax({
         type: 'GET',
-        url: '/search',
+        url: '/api/search',
         dataType: 'json',
         success: function(result) {
             let data = result.data;            

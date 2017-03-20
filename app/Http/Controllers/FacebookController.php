@@ -44,7 +44,8 @@ class FacebookController extends Controller
     public function search() {                
         //$q = ['q' => 'igrejinha/rs'];
         //$q = ['q' => ''];
-        $center = ['center' => '-29.57,-50.79'];
+        //$center = ['center' => '-29.57,-50.79'];
+        $center = ['center' => '-29.3746,-50.8764'];
         $config = array_merge($center, config('facebook.graph.search.uri'));        
         $uri = $this->searchUrl . http_build_query($config);
     	$response = Facebook::get($uri, $this->getToken())->getDecodedBody();

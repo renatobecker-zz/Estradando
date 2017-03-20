@@ -4,7 +4,7 @@ var handleFullHeightContent = function() {
         var targetTop = targetOffset.top;
         var targetWindowHeight = $(window).height();
 
-        var finalHeight = targetWindowHeight - targetTop - 50;
+        var finalHeight = targetWindowHeight - targetTop - 30;
 
         if (finalHeight <= 300) {
             // set your min height here;
