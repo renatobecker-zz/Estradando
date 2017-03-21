@@ -17,8 +17,10 @@ Route::get('/itinerary/icons', 'ItineraryController@icons');
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/api/search'     , 'FacebookController@search');
-    Route::get('/api/categories' , 'FacebookController@categories');
-    Route::get('/api/graph/{id}' , 'FacebookController@graph');
+	Route::get('/api/search'     		  , 'FacebookController@search');
+    Route::get('/api/categories' 	 	  , 'FacebookController@categories');
+    Route::get('/api/graph/{id}' 	 	  , 'FacebookController@graph');
+    Route::get('/api/cities/find_by_name' , 'CityController@findByName');
 });
 
+ 	

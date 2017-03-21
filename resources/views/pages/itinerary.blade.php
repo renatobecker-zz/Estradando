@@ -2,7 +2,33 @@
 @section('css')  
 <link href="assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
 <link href="assets/plugins/Leaflet.ExtraMarkers-master/dist/css/leaflet.extra-markers.min.css" rel="stylesheet" />
-<link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+<link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+assets\plugins\select2\dist\css
+<style>
+    .control-form-full {
+        width: 100% !important;
+    }    
+    .control-padding-right {
+        padding-right: 15px !important;
+    }
+    .row-fluid{
+        white-space: nowrap;
+    }
+    .row-fluid .col-md-2 .col-md-3 .col-md-4 {
+        display: inline-block;
+    }    
+    /*Margin Bottom for mobile only*/
+    @media (max-width: 978px) {
+        .xs-margin {
+            margin-bottom: 0px;
+        }    
+
+        .control-padding-right {            
+            padding-right: 5px !important;
+        }    
+    }    
+
+</style>
 @endsection        
 @section('content')
 <!-- begin #content -->
@@ -11,31 +37,22 @@
     <!--<h1 class="page-header">Aqui vai o nome do Itinerário <small>header small text goes here...</small></h1>-->
     <!-- end page-header -->
     <div class="row" id="row-filter">
-        <div class="col-md-12">
-            <div class="tab-content">
-                <div class="tab-pane fade active in">
-                    <!--<div class="panel-body"> -->                    
+        <div class="col-md-12 p-0 m-l-5 m-r-5">                    
                     <form id="form-search" class="form-inline"> 
                         <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                        <div class="form-group col-md-3">
-                            <div class="p-2">
-                                <input type="text" class="form-control" id="input-term" placeholder="Pesquisar" />
-                            </div>
+                        <div class="form-group col-md-4 p-5 xs-margin">
+                            <input type="text" class="form-control control-form-full" id="input-term" placeholder="Pesquisar" />
                         </div>
-                        <div class="form-group col-md-3">
-                            <div class="p-2">
-                                <select id="select-city" class="default-select2 form-control"></select>
-                            </div>
+                        <div class="form-group col-md-3 p-5 xs-margin">
+                            <select id="select-city" name="select-city" multiple="multiple" class="form-control control-form-full"></select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <div class="p-2">
-                                <select id="select-category" class="default-select2 form-control"></select>
-                            </div>
-                        </div>                      
-                    </form>
-                    <!--</div>-->
-                </div>
-            </div>
+                        <div class="form-group col-md-3 p-5 xs-margin">
+                            <select id="select-category" name="select-category" class="form-control control-form-full"></select>
+                        </div>     
+                        <div class="form-group col-md-2 p-5 xs-margin control-padding-right">
+                            <button type="submit" class="btn btn-primary control-form-full">Pesquisar</button>       
+                        </div>    
+                    </form>                    
         </div>
         <!-- end col-12 -->
     </div>
@@ -70,7 +87,8 @@
 <script src="assets/js/leaflet.js"></script>
 <script src="assets/js/view-helper.js"></script>
 <script src="assets/js/views/itinerary.js"></script>
-<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="assets/plugins/select2/dist/js/select2.min.js"></script>
+<script src="assets/plugins/select2/dist/js/i18n/pt-BR.js"></script>
 <script>
     $(document).ready(function() {        
         LeafletPlugin.init();             

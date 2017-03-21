@@ -312,7 +312,7 @@ var handlePanelAction = function() {
     $(document).on('hover', '[data-click=panel-expand]', function(e) {
         if (!$(this).attr('data-init')) {
             $(this).tooltip({
-                title: 'Expand / Compress',
+                title: 'Expandir / Comprimir',
                 placement: 'bottom',
                 trigger: 'hover',
                 container: 'body'

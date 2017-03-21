@@ -47,13 +47,13 @@ class FacebookController extends Controller
         $center = [];
         $q      = [];
 
-        $center = ['center' => '-29.6846,-51.1419'];            
-        /*
+        //$center = ['center' => '-29.6846,-51.1419'];            
+        
         if (Request::ajax()) {   
             $geolocation = Request::input('geolocation');
             $center = ['center' => $geolocation['lat'] . ',' . $geolocation['lng']];
         } 
-        */   
+          
         //$q = ['q' => ''];
         $config = array_merge($q, $center, config('facebook.graph.search.uri'));        
         $uri = $this->searchUrl . http_build_query($config);
