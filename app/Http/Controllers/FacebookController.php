@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Input;
 use Session;
 use Facebook;
 use Response;
@@ -41,12 +42,20 @@ class FacebookController extends Controller
         return Response::json(array('success'=>true,'data'=>$response['data'])); 
     }
 
-    public function search() {                
-        //$q = ['q' => 'igrejinha/rs'];
+    public function search() {  
+        
+        $center = [];
+        $q      = [];
+
+        $center = ['center' => '-29.6846,-51.1419'];            
+        /*
+        if (Request::ajax()) {   
+            $geolocation = Request::input('geolocation');
+            $center = ['center' => $geolocation['lat'] . ',' . $geolocation['lng']];
+        } 
+        */   
         //$q = ['q' => ''];
-        //$center = ['center' => '-29.57,-50.79'];
-        $center = ['center' => '-29.3746,-50.8764'];
-        $config = array_merge($center, config('facebook.graph.search.uri'));        
+        $config = array_merge($q, $center, config('facebook.graph.search.uri'));        
         $uri = $this->searchUrl . http_build_query($config);
     	$response = Facebook::get($uri, $this->getToken())->getDecodedBody();
     	return Response::json(array('success'=>true,'data'=>$response['data'])); 

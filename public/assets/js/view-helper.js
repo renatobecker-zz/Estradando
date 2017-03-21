@@ -14,21 +14,11 @@ var handleFullHeightContent = function() {
     });
 };
 
-var handleInit = function() {
-    $(window).resize(function(){
-        handleFullHeightContent();
-    });
 
-    $(document).ready(function() {
-        handleFullHeightContent();
-    });
-};
-var View = function () {
-    "use strict";
-    return {
-        //main function
-        init: function () {
-            handleInit();
-        }
-    };
-}();
+$(window).resize(function(){
+    handleFullHeightContent();
+});
+
+$(document).ready(function() {
+    handleFullHeightContent();
+});

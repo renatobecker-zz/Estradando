@@ -1,5 +1,5 @@
-var map = new L.Map('map');
-//Melhorar a leitura dos parâmetros como var name = '{{ env('NAME') }}';
+var map = L.map('map');
+
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
@@ -8,7 +8,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(map);
 
 var initMap = function(lat, lng) {
-    map.setView([lat, lng], 13);
+    map.setView([lat, lng], 15);
 }
 
 var addMarker = function(options) {
@@ -44,6 +44,12 @@ var loadMarkers = function(position) {
         type: 'GET',
         url: '/api/search',
         dataType: 'json',
+        data: {
+            geolocation: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+        },
         success: function(result) {
             let data = result.data;            
             _.map(data, function(item) {                
