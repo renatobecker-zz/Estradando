@@ -62,20 +62,10 @@ function getLocation(callback) {
 function setPosition(position) {
     currentPosition = position;
     initMap(position.coords.latitude, position.coords.longitude);
-    //loadMarkers(position);
+    loadMarkers(position);
 }
 
-var loadMarkers = function(position, callback) {
-    var pos = position || currentPosition;
-    console.log(pos);
-    if (!pos) {
-        //alert("Local não definido, melhor esta mensagem!");
-        if (callback) {
-            callback();
-        }
-        return;
-    }
-
+var loadMarkers = function(position) {
     $.ajax({
         type: 'GET',
         url: '/api/search',
@@ -93,10 +83,6 @@ var loadMarkers = function(position, callback) {
                     addMarker(item);
                 }                    
             });
-
-            if (callback) {
-                callback();
-            }           
         },
         error: function() {
             //
