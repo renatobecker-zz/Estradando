@@ -62,20 +62,46 @@ function getLocation(callback) {
 function setPosition(position) {
     currentPosition = position;
     initMap(position.coords.latitude, position.coords.longitude);
-    loadMarkers(position);
+    loadData(position);
 }
 
-var loadMarkers = function(position) {
+var loadData = function(position) {
+
     $.ajax({
         type: 'GET',
-        url: '/api/search',
+        url: '/api/categories',
         dataType: 'json',
-        data: {
+        success: function(result) {
+            let data = result.data;            
+            _.each(data, function(item) {                
+                loadMarkers(position, item.name);
+            });
+        },
+        error: function() {
+            //
+        }                
+    });
+  
+};
+
+var loadMarkers = function(position, query) {
+
+    params = {
             geolocation: {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             }
-        },
+        };    
+
+    if (query) {
+        params['query'] = query;
+    }    
+
+    $.ajax({
+        type: 'GET',
+        url: '/api/places',
+        dataType: 'json',
+        data: params,
         success: function(result) {
             let data = result.data;            
             _.each(data, function(item) {                
