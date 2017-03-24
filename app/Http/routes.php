@@ -17,12 +17,12 @@ Route::get('/itinerary/icons', 'ItineraryController@icons');
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/api/places'    		  , 'FacebookController@places');
-	Route::get('/api/events'    		  , 'FacebookController@events');
-    Route::get('/api/categories' 	 	  , 'FacebookController@categories');
-    Route::get('/api/category/{id}'	 	  , 'FacebookController@category');
-    Route::get('/api/graph/{id}' 	 	  , 'FacebookController@graph');
-    Route::get('/api/cities/find_by_name' , 'CityController@findByName');
+	Route::get('/api/places'    		         , 'FacebookController@places');
+	Route::get('/api/events'    		         , 'FacebookController@events');
+    Route::get('/api/categories/{topic_filter?}' , 'FacebookController@categories');
+    Route::get('/api/category/{id}'	 	         , 'FacebookController@category');
+    Route::get('/api/graph/{id}' 	 	         , 'FacebookController@graph');
+    Route::get('/api/cities/find_by_name'        , 'CityController@findByName');
 });
 
  	

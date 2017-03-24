@@ -21,11 +21,16 @@ return [
                 'type' => 'placetopic',
                 'topic_filter'=> 'all',
                 'limit' => 50000,
-                'fields' => 'name,has_children,parent_ids,top_subtopic_names,icon_url,plural_name,count',
+                'fields' => 'name,has_children,top_subtopic_names', //parent_ids,plural_name,count',
+                'locale'=> ENV('APP_LOCALE')
+            ]    
+        ],
+        'category' => [
+            'uri' => [
+                'fields' => 'name,has_children,top_subtopic_names,icon_url,plural_name',
                 'locale'=> ENV('APP_LOCALE'),
                 'icon_size' => 24
             ]    
-        ],
-    
+        ],    
     ],
 ];
