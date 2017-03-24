@@ -12,11 +12,10 @@ Route::get('login/facebook/callback', 'SocialAuthController@callback');
 Route::auth();
 
 Route::get('/home'           , 'HomeController@index');
-Route::get('/itinerary'      , 'ItineraryController@index');
-Route::get('/itinerary/icons', 'ItineraryController@icons');
-
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/itinerary'      				 , 'ItineraryController@index');
+	Route::get('/itinerary/icons'				 , 'ItineraryController@icons');
 	Route::get('/api/places'    		         , 'FacebookController@places');
 	Route::get('/api/events'    		         , 'FacebookController@events');
     Route::get('/api/categories/{topic_filter?}' , 'FacebookController@categories');

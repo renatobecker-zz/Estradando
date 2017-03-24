@@ -28,9 +28,14 @@
 	<script src="front/plugins/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
     <style>
+        /*
         .img-full-screen {
             height: 100%;
             width: 100%;
+        }*/
+        .content-bg img {
+            width: 100%;
+            height: 100%;
         }
 
         #facebook-btn-style {
@@ -52,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand">
+                    <a href="#home" class="navbar-brand">
                         <span class="brand-logo"></span>
                         <span class="brand-text">
                             E<span class="text-theme">s</span>tradando
@@ -96,14 +101,14 @@
         <div id="home" class="content has-bg home">
             <!-- begin content-bg -->
             <div class="content-bg">
-                <img class="img-full-screen" src="front/img/map-location-pin.jpg" alt="Home" />
+                <img src="front/img/map-location-pin.jpg" alt="Home" />
             </div>
             <!-- end content-bg -->
             <!-- begin container -->
             <div class="container home-content">
                 <h1>Bem-vindo ao Estradando</h1>
                 <h4>Uma nova maneira de criar roteiros para viagens e passeios</h4>
-                <a href="#" class="btn btn-social btn-facebook"><i id="facebook-btn-style" class="fa fa-facebook"></i> Login com Facebook</a>
+                <a href="{{ url('/login/facebook') }}" class="btn btn-social btn-facebook"><i id="facebook-btn-style" class="fa fa-facebook"></i> Login com Facebook</a>
                 <br />
                 <br />
                 Faça login com sua conta do Facebook para ter uma melhor experiência no Estradando
