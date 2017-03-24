@@ -35,15 +35,18 @@ class FacebookController extends Controller
         return Response::json(array('success'=>true,'data'=>$response['data'])); 
     }
 
-    public function categories() {
+    public function categories($topic_filter=null) {
         $config = config('facebook.graph.categories.uri');
+        if ($topic_filter) {
+            $config['topic_filter'] = $topic_filter;
+        }
         $uri = $this->searchUrl . http_build_query($config);
         $response = Facebook::get($uri, $this->getToken())->getDecodedBody();        
         return Response::json(array('success'=>true,'data'=>$response['data'])); 
     }
 
     public function category($id) {
-        $config = config('facebook.graph.categories.uri');
+        $config = config('facebook.graph.category.uri');
         $uri = '/' . $id . '?' . http_build_query($config);
         $response = Facebook::get($uri, $this->getToken())->getDecodedBody();        
         return Response::json(array('success'=>true,'data'=>$response)); 
