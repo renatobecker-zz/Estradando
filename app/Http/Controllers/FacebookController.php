@@ -71,11 +71,11 @@ class FacebookController extends Controller
         $data   = [];
         $center = [];
         $q      = [];        
-        //$center = ['center' => '-29.6846,-51.1419'];   
-        $center = ['center' => '-23.5505,-46.6333'];               
+        //$center = ['center' => '-29.5698,-50.7924'];   
+        //$center = ['center' => '-23.5505,-46.6333'];               
         if (Request::ajax()) {   
             $geolocation = Request::input('geolocation');
-            $center = ['center' => $geolocation['lat'] . ',' . $geolocation['lng']];
+            $center = ['center' => $geolocation['latitude'] . ',' . $geolocation['longitude']];
             
             $query  = Request::input('query');
             if ($query) {

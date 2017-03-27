@@ -1,4 +1,5 @@
 var handleSelects = function() {
+    /*
     $('#select-city').select2({
         placeholder: "Onde?",
         language: "pt-BR",      
@@ -32,12 +33,11 @@ var handleSelects = function() {
         placeholder: "Tipo",
         language: "pt-BR",      
     });
+    */
 }
 
 $( "#form-search" ).submit(function( event ) {
-    loadMarkers(null, function(){
-      event.preventDefault();    
-    });    
+    
 });
 
 var Itinerary = function () {

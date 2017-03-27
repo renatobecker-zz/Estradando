@@ -2,8 +2,8 @@
 @section('css')  
 <link href="assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
 <link href="assets/plugins/Leaflet.ExtraMarkers-master/dist/css/leaflet.extra-markers.min.css" rel="stylesheet" />
+<link href="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet" />
 <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
-assets\plugins\select2\dist\css
 <style>
     .control-form-full {
         width: 100% !important;
@@ -41,11 +41,16 @@ assets\plugins\select2\dist\css
                     <form id="form-search" class="form-inline"> 
                         <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                         <div class="form-group col-md-4 p-5 xs-margin">
-                            <input type="text" class="form-control control-form-full" id="input-term" placeholder="Pesquisar" />
+                            <input type="text" class="form-control control-form-full" id="input-location" placeholder="Onde ir?" />
                         </div>
                         <div class="form-group col-md-3 p-5 xs-margin">
-                            <select id="select-city" name="select-city" multiple="multiple" class="form-control control-form-full"></select>
+                            <input type="text" class="form-control control-form-full" id="input-term" placeholder="Pesquisar" />
                         </div>
+                        <!--
+                        <div class="form-group col-md-3 p-5 xs-margin">
+                            <select id="select-city" name="select-city" class="form-control control-form-full"></select>
+                        </div>
+                        -->
                         <div class="form-group col-md-3 p-5 xs-margin">
                             <select id="select-category" name="select-category" class="form-control control-form-full"></select>
                         </div>     
@@ -84,11 +89,37 @@ assets\plugins\select2\dist\css
 <script src="assets/plugins/underscore/underscore-1.8.3-min.js"></script>
 <script src="assets/plugins/leaflet/leaflet.js"></script>
 <script src="assets/plugins/Leaflet.ExtraMarkers-master/dist/js/leaflet.extra-markers.min.js"></script>
+<script src="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 <script src="assets/js/leaflet.js"></script>
 <script src="assets/js/view-helper.js"></script>
 <script src="assets/js/views/itinerary.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/select2/dist/js/i18n/pt-BR.js"></script>
+<script>
+
+function initAutocomplete() {
+    var input = document.getElementById('input-location');
+    var searchBox = new google.maps.places.SearchBox(input);
+
+    searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();        
+        if (places.length == 0) {
+            return;
+        }
+        if (places.length == 1) {
+            console.log(places);
+            var position = places[0].geometry.location;
+
+            setPosition({coords : {
+                    latitude: position.lat(),
+                    longitude: position.lng()
+                }
+            });
+        }            
+    });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADvJvC_tbot0jWdVF6yKijrjXPicN3EFY&libraries=places&callback=initAutocomplete" async defer></script>
 <script>
     $(document).ready(function() {        
         LeafletPlugin.init();             
