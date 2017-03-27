@@ -71,7 +71,7 @@ class FacebookController extends Controller
         $data   = [];
         $center = [];
         $q      = [];        
-        //$center = ['center' => '-29.5698,-50.7924'];   
+        $center = ['center' => '-29.5698,-50.7924'];   
         //$center = ['center' => '-23.5505,-46.6333'];               
         if (Request::ajax()) {   
             $geolocation = Request::input('geolocation');
@@ -84,7 +84,6 @@ class FacebookController extends Controller
         } 
 
         $config = array_merge($q, $center, config('facebook.graph.places.uri'));        
-        $config['fields'] = 'id,name,location'; //temporário        
         $response = $this->search($config);        
         return Response::json(array('success'=>true,'data'=>$response['data'])); 
     }

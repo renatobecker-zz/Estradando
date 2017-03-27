@@ -158,7 +158,8 @@ return [
 
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,        
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,   
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,    
     ],
 
     /*

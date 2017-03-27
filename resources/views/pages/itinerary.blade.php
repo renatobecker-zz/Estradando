@@ -2,7 +2,8 @@
 @section('css')  
 <link href="assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
 <link href="assets/plugins/Leaflet.ExtraMarkers-master/dist/css/leaflet.extra-markers.min.css" rel="stylesheet" />
-<link href="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet" />
+<link href="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet"/>
+<link href="assets/css/views/leaflet-custom-popup.css" rel="stylesheet"/>
 <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     .control-form-full {

@@ -1,4 +1,5 @@
 var currentPosition;
+var defaultIcon = 'fa-map-marker';
 var mapMarkers = [];
 var markers = new L.FeatureGroup();
 
@@ -61,16 +62,57 @@ var addLocation = function(coords) {
     .bindPopup("Sua localização atual");  
 }
 
+var getIcon = function(category) {
+    var icon = _.find(data.icons, function(icon) { 
+        //console.log(category);
+        return (icon.filter) ? icon.filter.indexOf(category.toLowerCase()) !== -1 : false;
+    });
+
+    return icon ? 'fa-' + icon.id : defaultIcon;
+};
+
+var getMarkerPopup = function(options) {        
+    var content = "";
+    content += '<strong>' + options.name + '</strong><br>';        
+    /*
+    content += '<strong>Grupo</strong>: ' + ((cliente.cliente_codigo_grupo > 0) ? cliente.cliente_codigo_grupo + ' - ' + cliente.cliente_nome_grupo : '') + '<br>';   
+    content += '<strong>Bairro</strong>: ' + ((cliente.cliente_bairro) ? cliente.cliente_bairro : '') + '<br>';                                                 
+    content += '<strong>Cidade/Estado</strong>: ' + cliente.cliente_cidade_nome + "/" + cliente.cliente_cidade_uf + '<br>';
+    content += '<strong>Endereço</strong>: ' + cliente.cliente_endereco + '<br>';                      
+    content += '<strong>Telefone</strong>: ' + cliente.cliente_telefone + '<br>';                      
+    content += '<strong>Segmento</strong>: ' + cliente.cliente_segmento + '<br>';                              
+    content += '<strong>Status Loja</strong>: ' + cliente.cliente_status_loja + '<br>';                              
+    content += '<strong>Status Contato</strong>: ' + cliente.cliente_status_contato + '<br>';                                      
+    content += '<strong>Dias Atraso</strong>: ' + $.number( cliente.cobranca_dias_atraso, 0, ",", "." )  + '<br>';              
+    content += '<strong>Valor Atraso</strong>: R$ ' + $.number( cliente.cobranca_valor_atraso, 2, ",", "." )  + '<br>';      
+    content += '<strong>Limite Crédito</strong>: R$ ' + $.number( cliente.cliente_limite_credito, 2, ",", "." )  + '<br>';              
+    */                
+    if ((options.cover) && (options.cover.source)) {
+        var slideshowContent = '<br><div class="image active">' +
+                           '<img src="' + options.cover.source + '"/>' +
+                           '</div>';        
+
+        content +=  '<div id="' + options._id + '" class="popup">' +                            
+                    '<div class="slideshow">' +
+                        slideshowContent +
+                    '</div>' +
+                '</div>';    
+ 
+    }   
+    
+    return content;                    
+}
+
 var addMarker = function(options) {
     var iconMarker = L.ExtraMarkers.icon({
-        icon: 'fa-cutlery',
+        icon: getIcon(options.category),// 'fa-cutlery',
         markerColor: 'blue',
         shape: 'square',
         prefix: 'fa'
     });
     
     var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker});
-    marker.bindPopup(options.name);
+    marker.bindPopup( getMarkerPopup(options) ) ;
     markers.addLayer(marker);
     //.openPopup();    
 }
