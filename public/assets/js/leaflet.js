@@ -106,7 +106,7 @@ var getMarkerPopup = function(options) {
 var addMarker = function(options) {
     var iconMarker = L.ExtraMarkers.icon({
         //icon: getIcon(options.category),// 'fa-cutlery',
-        icon: 'fa-cutlery',
+        icon: defaultIcon,
         markerColor: 'blue',
         shape: 'square',
         prefix: 'fa'
@@ -158,6 +158,7 @@ var loadData = function() {
         dataType: 'json',
         data: params,
         success: function(result) {
+            console.log(result);
             let data = result.data;            
             _.each(data, function(item) {                
                 //loadMarkers(position, item.name);
@@ -190,7 +191,7 @@ var loadMarkers = function(position, query) {
         url: '/api/places',
         dataType: 'json',
         data: params,
-        success: function(result) {
+        success: function(result) {            
             let data = result.data;            
             _.each(data, function(item) {                
                 if (item.location) {                        
@@ -205,7 +206,7 @@ var loadMarkers = function(position, query) {
 }
 
 var handleRouting = function() {
-
+    /*
     var routing = new L.Routing.control({
         position: 'bottomleft',
         router: L.Routing.mapbox(map_token),
@@ -227,7 +228,8 @@ var handleRouting = function() {
 
     routing.on('routesfound', function(e) {
         routes_info = e.routes;
-    });        
+    });   
+    */     
 }
 
 var handleInit = function() {
