@@ -12,7 +12,7 @@ return [
         ],
         'search' => [
             'uri' => [
-                'distance'=> 5000,
+                'distance'=> 15000,
                 'limit' => 20,
                 'type' => 'place',                
                 'fields' => 'id,name,location,category'

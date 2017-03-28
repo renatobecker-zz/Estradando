@@ -5,7 +5,7 @@
 <link href="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet"/>
 <link href="assets/css/views/leaflet-custom-popup.css" rel="stylesheet"/>
 <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
-<link href="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.css" rel="stylesheet"/>
+<!--<link href="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.css" rel="stylesheet"/>-->
 <style>
     .control-form-full {
         width: 100% !important;
@@ -98,7 +98,7 @@
 <script src="assets/js/views/itinerary.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/select2/dist/js/i18n/pt-BR.js"></script>
-<script src="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+<!--<script src="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>-->
 <script>
 
 function initAutocomplete() {

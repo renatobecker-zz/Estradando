@@ -64,7 +64,7 @@ class FacebookController extends Controller
         $q      = ['q' => $location];        
         $config = array_merge($q, config('facebook.graph.events.uri'));                
         $response = $this->search($config);
-        return Response::json(array('success'=>true,'data'=>$response['data'])); 
+        return Response::json(array('success'=>true,'data'=>$response)); 
     }
 
     public function places() {
@@ -85,21 +85,20 @@ class FacebookController extends Controller
 
         $config = array_merge($q, $center, config('facebook.graph.search.uri'));        
         $response = $this->search($config);     
-        return $response;   
-        return Response::json(array('success'=>true,'data'=>$response['data'])); 
+        return Response::json(array('success'=>true,'data'=>$response)); 
     }
 
     private function search($params) {          
-        //$center = [];
-        //$q      = [];                        
-        $data = [];
+        $data = array();
         $uri = $this->searchUrl . http_build_query($params);
     	$response = Facebook::get($uri, $this->getToken())->getGraphEdge();// ->getDecodedBody();
-        while ($next = Facebook::next($response)) {        
-            $data = array_merge($data, $next);
+        $data = $response->asArray();
+        //Pagination                    
+        while ($next = Facebook::next($response)) {
+            $data = array_merge($data, $next->asArray());        
+            $response = $next;            
         }
+            
         return $data;
-        //NECESSÁRIO TRATAR PAGINAÇÃO!!!
-    	return $response;
     }
 }
