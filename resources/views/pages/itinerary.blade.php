@@ -5,6 +5,7 @@
 <link href="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet"/>
 <link href="assets/css/views/leaflet-custom-popup.css" rel="stylesheet"/>
 <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+<link href="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.css" rel="stylesheet"/>
 <style>
     .control-form-full {
         width: 100% !important;
@@ -41,20 +42,21 @@
         <div class="col-md-12 p-0 m-l-5 m-r-5">                    
                     <form id="form-search" class="form-inline"> 
                         <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                        <div class="form-group col-md-4 p-5 xs-margin">
+                        <div class="form-group col-md-5 p-5 xs-margin">
                             <input type="text" class="form-control control-form-full" id="input-location" placeholder="Onde ir?" />
                         </div>
-                        <div class="form-group col-md-3 p-5 xs-margin">
+                        <div class="form-group col-md-5 p-5 xs-margin">
                             <input type="text" class="form-control control-form-full" id="input-term" placeholder="Pesquisar" />
                         </div>
                         <!--
                         <div class="form-group col-md-3 p-5 xs-margin">
                             <select id="select-city" name="select-city" class="form-control control-form-full"></select>
                         </div>
-                        -->
+                        
                         <div class="form-group col-md-3 p-5 xs-margin">
                             <select id="select-category" name="select-category" class="form-control control-form-full"></select>
                         </div>     
+                        -->
                         <div class="form-group col-md-2 p-5 xs-margin control-padding-right">
                             <button type="submit" class="btn btn-primary control-form-full">Pesquisar</button>       
                         </div>    
@@ -96,6 +98,7 @@
 <script src="assets/js/views/itinerary.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/select2/dist/js/i18n/pt-BR.js"></script>
+<script src="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
 <script>
 
 function initAutocomplete() {

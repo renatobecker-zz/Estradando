@@ -41,9 +41,10 @@ L.control.zoom({
     position:'topleft'
 }).addTo(map);
 
-L.control.locate({
-    flyTo: true
-}).addTo(map);
+// create control and add to map
+var lc = L.control.locate({flyTo: true}).addTo(map);
+// request location update and set location
+lc.start();
 
 var initMap = function(lat, lng) {
     map.setView([lat, lng], 14);
@@ -63,8 +64,7 @@ var addLocation = function(coords) {
 }
 
 var getIcon = function(category) {
-    var icon = _.find(data.icons, function(icon) { 
-        //console.log(category);
+    var icon = _.find(data.icons, function(icon) {         
         return (icon.filter) ? icon.filter.indexOf(category.toLowerCase()) !== -1 : false;
     });
 
@@ -89,15 +89,15 @@ var getMarkerPopup = function(options) {
     */                
     if ((options.cover) && (options.cover.source)) {
         var slideshowContent = '<br><div class="image active">' +
-                           '<img src="' + options.cover.source + '"/>' +
-                           '</div>';        
+        '<img src="' + options.cover.source + '"/>' +
+        '</div>';        
 
         content +=  '<div id="' + options._id + '" class="popup">' +                            
-                    '<div class="slideshow">' +
-                        slideshowContent +
-                    '</div>' +
-                '</div>';    
- 
+        '<div class="slideshow">' +
+        slideshowContent +
+        '</div>' +
+        '</div>';    
+
     }   
     
     return content;                    
@@ -105,14 +105,16 @@ var getMarkerPopup = function(options) {
 
 var addMarker = function(options) {
     var iconMarker = L.ExtraMarkers.icon({
-        icon: getIcon(options.category),// 'fa-cutlery',
+        //icon: getIcon(options.category),// 'fa-cutlery',
+        icon: 'fa-cutlery',
         markerColor: 'blue',
         shape: 'square',
         prefix: 'fa'
     });
     
     var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker});
-    marker.bindPopup( getMarkerPopup(options) ) ;
+    //marker.bindPopup( getMarkerPopup(options) ) ;
+    marker.bindPopup(options.name);
     markers.addLayer(marker);
     //.openPopup();    
 }
@@ -129,7 +131,7 @@ function setPosition(position) {
     currentPosition = position;
     initMap(position.coords.latitude, position.coords.longitude);
     //addLocation(position.coords);
-    loadData(position);
+    loadData();
 }
 
 var clearMarkers = function() {
@@ -137,15 +139,24 @@ var clearMarkers = function() {
     markers.clearLayers();
 }
 
-var loadData = function(position) {
+var loadData = function() {
 
     clearMarkers();
+    
+    var params = {
+        geolocation: currentPosition.coords,        
+    };
+
+    var term = $("#input-term").val();
+    if (term) {
+        params['query'] = term;
+    }
 
     $.ajax({
         type: 'GET',
         url: '/api/places',
         dataType: 'json',
-        data: {geolocation: position.coords},
+        data: params,
         success: function(result) {
             let data = result.data;            
             _.each(data, function(item) {                
@@ -158,17 +169,17 @@ var loadData = function(position) {
             //
         }                
     });
-  
+
 };
 
 var loadMarkers = function(position, query) {
 
     params = {
-            geolocation: {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            }
-        };    
+        geolocation: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }
+    };    
 
     if (query) {
         params['query'] = query;
@@ -193,6 +204,32 @@ var loadMarkers = function(position, query) {
     });
 }
 
+var handleRouting = function() {
+
+    var routing = new L.Routing.control({
+        position: 'bottomleft',
+        router: L.Routing.mapbox(map_token),
+        createMarker: function() { return null; },
+        draggableWaypoints: false,
+        showAlternatives: true,
+        language: 'pt',
+        waypoints: [],
+    });
+
+    map.addControl(routing);
+
+    routing.on('routeselected', function(e) {
+        var coord = e.route.coordinates;
+        var instr = e.route.instructions;
+        var instruction = getInstrGeoJson(instr,coord);
+        route_object = instruction;
+    });        
+
+    routing.on('routesfound', function(e) {
+        routes_info = e.routes;
+    });        
+}
+
 var handleInit = function() {
     getLocation(setPosition);
 };
@@ -202,7 +239,8 @@ var LeafletPlugin = function () {
     return {
         //main function
         init: function () {
-            handleInit();            
+            handleInit();  
+            handleRouting();          
         }
     };
 }();

@@ -28,8 +28,8 @@ class ItineraryController extends Controller
      */
     public function index()
     {
-        $icons = $this->icons();
-        JavaScript::put(['icons' => $icons]);
+        //$icons = $this->icons();
+        //JavaScript::put(['icons' => $icons]);
         return view('pages.itinerary');
     }
 

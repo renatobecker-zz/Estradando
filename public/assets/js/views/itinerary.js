@@ -36,9 +36,13 @@ var handleSelects = function() {
     */
 }
 
-$( "#form-search" ).submit(function( event ) {
-    
-});
+var handleItinerary = function() {
+
+    $( "#form-search" ).submit(function( event ) {
+        loadData();
+        event.preventDefault();        
+    });
+}
 
 var Itinerary = function () {
     "use strict";
@@ -46,7 +50,7 @@ var Itinerary = function () {
         //main function
         init: function () {
             handleSelects();
-            //handleInit();
+            handleItinerary();
         }
     };
 }();

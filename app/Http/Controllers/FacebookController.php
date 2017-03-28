@@ -83,17 +83,22 @@ class FacebookController extends Controller
             }
         } 
 
-        $config = array_merge($q, $center, config('facebook.graph.places.uri'));        
-        $response = $this->search($config);        
+        $config = array_merge($q, $center, config('facebook.graph.search.uri'));        
+        $response = $this->search($config);     
+        return $response;   
         return Response::json(array('success'=>true,'data'=>$response['data'])); 
     }
 
     private function search($params) {          
         //$center = [];
         //$q      = [];                        
+        $data = [];
         $uri = $this->searchUrl . http_build_query($params);
-        //$params['limit'] = 10;
-    	$response = Facebook::get($uri, $this->getToken())->getDecodedBody();
+    	$response = Facebook::get($uri, $this->getToken())->getGraphEdge();// ->getDecodedBody();
+        while ($next = Facebook::next($response)) {        
+            $data = array_merge($data, $next);
+        }
+        return $data;
         //NECESSÁRIO TRATAR PAGINAÇÃO!!!
     	return $response;
     }
