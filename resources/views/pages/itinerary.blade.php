@@ -3,6 +3,7 @@
 <link href="assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
 <link href="assets/plugins/Leaflet.ExtraMarkers-master/dist/css/leaflet.extra-markers.min.css" rel="stylesheet" />
 <link href="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet"/>
+<link href="assets/plugins/leaflet-sidebar-v2/css/leaflet-sidebar.min.css" rel="stylesheet"/>
 <link href="assets/css/views/leaflet-custom-popup.css" rel="stylesheet"/>
 <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
 <!--<link href="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.css" rel="stylesheet"/>-->
@@ -29,6 +30,10 @@
             padding-right: 5px !important;
         }    
     }    
+
+    .map-container {
+        margin-bottom: 0 !important;
+    }
 
 </style>
 @endsection        
@@ -69,7 +74,7 @@
     <div class="row" id="row-map">
         <!-- begin col-12 -->
         <div class="col-md-12">
-            <div class="panel panel-inverse">
+            <div class="panel panel-inverse map-container">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -78,6 +83,7 @@
                 </div>        
                 <div class="panel-body p-0" data-full-height="true">
                     <div id="map" class="height-full width-full" style="z-index: 7">
+                        @include('includes.sidebar-map')
                     </div>
                 </div>    
             </div>
@@ -94,6 +100,7 @@
 <script src="assets/plugins/leaflet/leaflet.js"></script>
 <script src="assets/plugins/Leaflet.ExtraMarkers-master/dist/js/leaflet.extra-markers.min.js"></script>
 <script src="assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+<script src="assets/plugins/leaflet-sidebar-v2/js/leaflet-sidebar.min.js"></script>
 <script src="assets/js/leaflet.js"></script>
 <script src="assets/js/view-helper.js"></script>
 <script src="assets/js/views/itinerary.js"></script>

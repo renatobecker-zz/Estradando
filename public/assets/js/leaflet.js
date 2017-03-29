@@ -35,19 +35,21 @@ var baseLayers = {
     
 L.control.layers(baseLayers, null, {position: 'topleft'}).addTo(map);
 map.addLayer(streets);//Default
-*/
+
 //add zoom control with your options
 L.control.zoom({
     position:'topleft'
 }).addTo(map);
+*/
 
+var sidebarMebnu = L.control.sidebar('sidebar').addTo(map);
 // create control and add to map
-var lc = L.control.locate({flyTo: true}).addTo(map);
+var lc = L.control.locate({position: 'bottomright', flyTo: true}).addTo(map);
 // request location update and set location
 lc.start();
 
 var initMap = function(lat, lng) {
-    map.setView([lat, lng], 14);
+    map.setView([lat, lng], 17);
 }
 
 var addLocation = function(coords) {
@@ -234,6 +236,15 @@ var handleRouting = function() {
 
 var handleInit = function() {
     getLocation(setPosition);
+
+    $(window).resize(function(){
+        map._onResize();
+    });
+
+    $(document).ready(function() {
+        map._onResize();
+    });
+
 };
 
 var LeafletPlugin = function () {
