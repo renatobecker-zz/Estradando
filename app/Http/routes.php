@@ -2,16 +2,13 @@
 
 Route::get('/', function () {
     return view('welcome');
-    //$users = DB::collection('users')->get();
-    //$users = User::all();
-    //return $users;
 });
 
 Route::get('login/facebook', 'SocialAuthController@redirect');
 Route::get('login/facebook/callback', 'SocialAuthController@callback');
 Route::auth();
 
-Route::get('/home'           , 'HomeController@index');
+//Route::get('/home'           , 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/itinerary'      				 , 'ItineraryController@index');

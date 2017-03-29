@@ -131,7 +131,7 @@ function setPosition(position) {
     currentPosition = position;
     initMap(position.coords.latitude, position.coords.longitude);
     //addLocation(position.coords);
-    loadData();
+    //loadData();
 }
 
 var clearMarkers = function() {

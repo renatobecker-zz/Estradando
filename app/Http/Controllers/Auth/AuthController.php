@@ -69,4 +69,19 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    //Override methods - ESTRADANDO
+    public function showRegistrationForm() {
+        return redirect('/');
+    }
+
+    public function register() {
+
+    }    
+
+    public function showLoginForm() {
+        return redirect('/');
+    }
 }
+
+

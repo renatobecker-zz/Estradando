@@ -36,12 +36,21 @@ var handleSelects = function() {
     */
 }
 
+/*
 var handleItinerary = function() {
-
+  
     $( "#form-search" ).submit(function( event ) {
         loadData();
         event.preventDefault();        
     });
+}
+*/
+
+function submitForm(e) {
+    if (e.keyCode == 13) {
+        loadData();
+        event.preventDefault();        
+    }
 }
 
 var Itinerary = function () {
@@ -50,7 +59,7 @@ var Itinerary = function () {
         //main function
         init: function () {
             handleSelects();
-            handleItinerary();
+            //handleItinerary();
         }
     };
 }();

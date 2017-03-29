@@ -41,8 +41,14 @@ class FacebookController extends Controller
             $config['topic_filter'] = $topic_filter;
         }
         $uri = $this->searchUrl . http_build_query($config);
-        $response = Facebook::get($uri, $this->getToken())->getDecodedBody();        
-        return Response::json(array('success'=>true,'data'=>$response['data'])); 
+        $response = Facebook::get($uri, $this->getToken())->getDecodedBody();   
+        $data = $response['data'];
+
+        $results = array_values(array_sort($data, function ($value) {
+            return $value['name'];
+        }));
+
+        return Response::json(array('success'=>true,'data'=>$results)); 
     }
 
     public function category($id) {

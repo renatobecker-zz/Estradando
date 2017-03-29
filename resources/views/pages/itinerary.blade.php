@@ -42,11 +42,11 @@
         <div class="col-md-12 p-0 m-l-5 m-r-5">                    
                     <form id="form-search" class="form-inline"> 
                         <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                        <div class="form-group col-md-5 p-5 xs-margin">
+                        <div class="form-group col-md-6 p-5 xs-margin">
                             <input type="text" class="form-control control-form-full" id="input-location" placeholder="Onde ir?" />
                         </div>
-                        <div class="form-group col-md-5 p-5 xs-margin">
-                            <input type="text" class="form-control control-form-full" id="input-term" placeholder="Pesquisar" />
+                        <div class="form-group col-md-6 p-5 xs-margin control-padding-right">
+                            <input type="text" class="form-control control-form-full" id="input-term" placeholder="O que você procura?" onkeypress="return submitForm(event)"/>
                         </div>
                         <!--
                         <div class="form-group col-md-3 p-5 xs-margin">
@@ -56,10 +56,11 @@
                         <div class="form-group col-md-3 p-5 xs-margin">
                             <select id="select-category" name="select-category" class="form-control control-form-full"></select>
                         </div>     
-                        -->
+                        
                         <div class="form-group col-md-2 p-5 xs-margin control-padding-right">
                             <button type="submit" class="btn btn-primary control-form-full">Pesquisar</button>       
                         </div>    
+                        -->
                     </form>                    
         </div>
         <!-- end col-12 -->
