@@ -11,11 +11,11 @@ return [
     | stdClass object; however, you may desire to retrieve records in an
     | array format for simplicity. Here you can tweak the fetch style.
     |
-    */
+    
 
     'fetch' => PDO::FETCH_CLASS,
 
-    /*
+    
     |--------------------------------------------------------------------------
     | Default Database Connection Name
     |--------------------------------------------------------------------------

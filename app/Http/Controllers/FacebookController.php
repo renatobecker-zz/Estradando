@@ -59,22 +59,26 @@ class FacebookController extends Controller
     }
 
     public function events() {
-        /*
-        É interessante também fazer merge com os eventos criados pelos places da 
-        Geolocalização escolhida
-        */
-        $location = 'igrejinha/rs'; //Parâmetro
+        $center = [];
+        $q      = [];        
+        //$center = ['center' => '-29.5698,-50.7924'];   
+        $center = ['center' => '-23.5505,-46.6333'];               
         if (Request::ajax()) {   
-            $location = Request::input('location');
+            $geolocation = Request::input('geolocation');
+            $center = ['center' => $geolocation['latitude'] . ',' . $geolocation['longitude']];
+            
+            $query  = Request::input('query');
+            if ($query) {
+                $q = array('q' => $query);
+            }
         } 
-        $q      = ['q' => $location];        
-        $config = array_merge($q, config('facebook.graph.events.uri'));                
+        $config = array_merge($q,$center, config('facebook.graph.events.uri'));
+
         $response = $this->search($config);
         return Response::json(array('success'=>true,'data'=>$response)); 
     }
 
     public function places() {
-        $data   = [];
         $center = [];
         $q      = [];        
         $center = ['center' => '-29.5698,-50.7924'];   

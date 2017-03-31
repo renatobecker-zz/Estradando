@@ -31,6 +31,10 @@
         }    
     }    
 
+    #row-map {
+        margin: 0;
+    }
+
     .map-container {
         margin-bottom: 0 !important;
     }
@@ -73,21 +77,13 @@
     <!-- end row -->
     <div class="row" id="row-map">
         <!-- begin col-12 -->
-        <div class="col-md-12">
-            <div class="panel panel-inverse map-container">
-                <div class="panel-heading">
-                    <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                    </div>
-                    <h4 class="panel-title">Visualização no Mapa</h4>
-                </div>        
-                <div class="panel-body p-0" data-full-height="true">
-                    <div id="map" class="height-full width-full" style="z-index: 7">
-                        @include('includes.sidebar-map')
-                    </div>
-                </div>    
-            </div>
-        </div>    
+        <!--<div class="col-md-12">-->
+            <div class="p-0 map-container" data-full-height="true">
+                <div id="map" class="height-full width-full" style="z-index: 7">
+                    @include('includes.sidebar-map')
+                </div>
+            </div>    
+        <!--</div>    -->
         <!-- end col-12 -->
     </div>
     <!-- end row -->

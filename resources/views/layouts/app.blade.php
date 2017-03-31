@@ -7,8 +7,9 @@
     <meta charset="utf-8" />
     <title>Estradando | Início</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta name="description" content="Criação e planejamento de Roteiros e Viagens" />
+    <meta name="author" content="Renato Becker"  />
+    <meta name="keywords" content="Viagens, Passeios, Roteiros, Trip, Travel">
     
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />

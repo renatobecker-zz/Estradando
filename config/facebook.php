@@ -21,9 +21,13 @@ return [
             ],                                    
         ],        
         'events' => [
-            'uri' => [                
+            'uri' => [    
+               ' distance'=> 5000,            
                 'limit' => 50000,
-                'type' => 'event',
+                'type' => 'place',                
+                'fields' => 'events',
+                'locale'=> ENV('APP_LOCALE')
+
             ],                                    
         ],
         'categories' => [

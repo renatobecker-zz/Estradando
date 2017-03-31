@@ -44,6 +44,7 @@ L.control.zoom({
 
 var sidebarMebnu = L.control.sidebar('sidebar').addTo(map);
 // create control and add to map
+
 var lc = L.control.locate({position: 'bottomright', flyTo: true}).addTo(map);
 // request location update and set location
 lc.start();
