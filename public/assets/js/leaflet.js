@@ -109,9 +109,9 @@ var getMarkerPopup = function(options) {
 var addMarker = function(options) {
     var iconMarker = L.ExtraMarkers.icon({
         //icon: getIcon(options.category),// 'fa-cutlery',
-        icon: defaultIcon,
-        markerColor: 'blue',
-        shape: 'square',
+        icon: options.marker.icon,
+        markerColor: options.marker.color,
+        shape: options.marker.shape,
         prefix: 'fa'
     });
     

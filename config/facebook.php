@@ -1,7 +1,21 @@
 <?php
 
 return [
-    'graph' => [        
+    'graph' => [  
+        'config' => [
+            'markers' => [
+                "places" => [
+                    'icon' => "fa-map-marker",
+                    'color' => "#000000",
+                    'shape' => 'square'
+                ],
+                "events" => [
+                    //'icon' => "fa-map-marker",
+                    //'color' => "#000000",
+                    //'shape' => 'square'
+                ]                
+            ]
+        ],      
         'places' => [
             'uri' => [
                 'distance'=> 5000,

@@ -12,7 +12,7 @@ Route::auth();
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/itinerary'      				 , 'ItineraryController@index');
-	Route::get('/itinerary/icons'				 , 'ItineraryController@icons');
+	Route::get('/api/markers'	  				 , 'FacebookController@markers');
 	Route::get('/api/places'    		         , 'FacebookController@places');
 	Route::get('/api/events'    		         , 'FacebookController@events');
     Route::get('/api/categories/{topic_filter?}' , 'FacebookController@categories');
