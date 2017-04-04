@@ -13,12 +13,6 @@ use App\Models\Config\Markers as Markers;
 
 class FacebookController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     private $searchUrl = '/search?';    
 
     public function index()
@@ -101,11 +95,6 @@ class FacebookController extends Controller
 
     public function markers() {
         $markers = Markers::all();    
-
-        if (Request::ajax()) {   
-            return Response::json(array('success'=>true,'data'=>$markers));        
-        }    
-
         return $markers;
     }
 
@@ -123,34 +112,64 @@ class FacebookController extends Controller
         return $data;
     }
 
+    public function parent_categories() {
+        $parent_categories = Session::get('parent_categories');
+        if ($parent_categories) {
+            return $parent_categories;
+        }
+        $config  = config('facebook.graph.parent_categories.uri');   
+        $uri = $this->searchUrl . http_build_query($config);
+        $parent_categories = Facebook::get($uri, $this->getToken())->getDecodedBody();   
+        $result  = collect($parent_categories['data']);
+        Session::set('parent_categories', $result);
+        return $result;
+    }
+
+    private function find_marker_category($categories, $markers, $default) {
+        $marker_category = null;        
+        foreach ($categories as $category) {
+            $search = is_array($category) ? $category['id'] : $category;                
+            foreach ($markers as $marker) {                        
+                $list = $marker['parent_ids'];                    
+                if (in_array($search, $list)) {
+                    $marker_category = array(
+                        'icon' => $marker["icon"],
+                        'color' => $marker["color"],
+                        'shape' => $default["shape"]
+                        );
+                    break;
+                }
+            }
+            if ($marker_category) break;               
+        }
+        return $marker_category;
+    }
+
     private function add_markers($data) {
         $result  = [];
         $config  = config('facebook.graph.config.markers');   
         $markers = $this->markers();
         $default = $config['places'];
+        $catalog = $this->parent_categories();
         foreach ($data as $obj) {
-            $category_list = $obj['category_list'];
-            $marker_category = null;
-            foreach ($category_list as $category) {
-                $search = $category['id'];
-                
-                foreach ($markers as $marker) {    
-                    
-                    $dados = $marker->parent_ids;
-                    /*
-                    if (in_array($search, $list)) {
-                        $marker_category = array(
-                            'icon' => $marker["icon"],
-                            'color' => $marker["color"],
-                            'shape' => $default["shape"]
-                        );
-                        break;
-                    }*/
+            $categories = $obj['category_list'];
+            $marker_category = $this->find_marker_category($categories, $markers, $default);
+            if (!$marker_category) {      
+                foreach ($categories as $category) {
+                    $ctg = $catalog->first(function ($key, $value) use ($category) {
+                        return $value["id"] == $category["id"];
+                    });  
+                    if ($ctg) {
+                        if (array_key_exists('parent_ids', $ctg)) {
+                            $categories = $ctg['parent_ids'];
+                            $marker_category = $this->find_marker_category($categories, $markers, $default);
+                        }
+                    }              
+                    if ($marker_category) break;               
                 }
-                if ($marker_category) break;               
-            }
-            if (!$marker_category) {
-                $marker_category = $default;
+            }    
+            if (!$marker_category) {        
+                $marker_category = $default;                    
             }            
             $obj["marker"] = $marker_category;                       
             $result[] = $obj;

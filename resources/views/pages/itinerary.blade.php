@@ -80,7 +80,7 @@
         <!--<div class="col-md-12">-->
             <div class="p-0 map-container" data-full-height="true">
                 <div id="map" class="height-full width-full" style="z-index: 7">
-                    @include('includes.sidebar-map')
+                <!-- Aqui adicionar include da sidebar-->
                 </div>
             </div>    
         <!--</div>    -->

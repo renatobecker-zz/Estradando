@@ -6,7 +6,7 @@ return [
             'markers' => [
                 "places" => [
                     'icon' => "fa-map-marker",
-                    'color' => "#000000",
+                    'color' => "green",
                     'shape' => 'square'
                 ],
                 "events" => [
@@ -59,6 +59,15 @@ return [
                 'locale'=> ENV('APP_LOCALE'),
                 'icon_size' => 24
             ]    
-        ],    
+        ], 
+        'parent_categories' => [
+            'uri' => [
+                'type' => 'placetopic',
+                'topic_filter'=> 'all',
+                'limit' => 50000,
+                'fields' => 'parent_ids',
+                'locale'=> ENV('APP_LOCALE')
+            ]    
+        ],           
     ],
 ];

@@ -1,5 +1,4 @@
 var currentPosition;
-var defaultIcon = 'fa-map-marker';
 var mapMarkers = [];
 var markers = new L.FeatureGroup();
 
@@ -42,12 +41,12 @@ L.control.zoom({
 }).addTo(map);
 */
 
-var sidebarMebnu = L.control.sidebar('sidebar').addTo(map);
+//var sidebarMebnu = L.control.sidebar('sidebar').addTo(map);
 // create control and add to map
 
-var lc = L.control.locate({position: 'bottomright', flyTo: true}).addTo(map);
+//var lc = L.control.locate({position: 'bottomright', flyTo: true}).addTo(map);
 // request location update and set location
-lc.start();
+//lc.start();
 
 var initMap = function(lat, lng) {
     map.setView([lat, lng], 17);
@@ -65,14 +64,6 @@ var addLocation = function(coords) {
     .addTo(map)
     .bindPopup("Sua localização atual");  
 }
-
-var getIcon = function(category) {
-    var icon = _.find(data.icons, function(icon) {         
-        return (icon.filter) ? icon.filter.indexOf(category.toLowerCase()) !== -1 : false;
-    });
-
-    return icon ? 'fa-' + icon.id : defaultIcon;
-};
 
 var getMarkerPopup = function(options) {        
     var content = "";
