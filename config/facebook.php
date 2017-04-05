@@ -6,13 +6,13 @@ return [
             'markers' => [
                 "places" => [
                     'icon' => "fa-map-marker",
-                    'color' => "green",
+                    'color' => "blue-dark",
                     'shape' => 'square'
                 ],
                 "events" => [
-                    //'icon' => "fa-map-marker",
-                    //'color' => "#000000",
-                    //'shape' => 'square'
+                    'icon' => "fa-calendar",
+                    'color' => "orange",
+                    'shape' => 'star'
                 ]                
             ]
         ],      
@@ -39,7 +39,7 @@ return [
                ' distance'=> 5000,            
                 'limit' => 50000,
                 'type' => 'place',                
-                'fields' => 'events',
+                'fields' => 'id,name,events,location',
                 'locale'=> ENV('APP_LOCALE')
 
             ],                                    

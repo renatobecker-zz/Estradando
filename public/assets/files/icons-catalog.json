@@ -1,7 +1,6 @@
 [
 	{
 		"icon": "fa-graduation-cap",
-		"color": "blue-dark",
 		"parent_ids": [
 			"151676848220295",
 			"144971758897076",
@@ -14,7 +13,6 @@
 	},
 	{
 		"icon": "fa-money",
-		"color": "green",
 		"parent_ids": [
 			"161516070564222",
 			"139976092733827",
@@ -31,7 +29,6 @@
 	},
 	{
 		"icon": "fa-user-md",
-		"color": "violet",
 		"parent_ids": [
 			"145118935550090",
 			"174187662626299",
@@ -46,7 +43,6 @@
 	},
 	{
 		"icon": "fa-paw",
-		"color": "cyan",
 		"parent_ids": [
 			"144982405562750",
 			"201128353243142",
@@ -59,7 +55,6 @@
 	},
 	{
 		"icon": "fa-home",
-		"color": "yellow",
 		"parent_ids": [
 			"139460309451166",
 			"192134360811676",
@@ -68,7 +63,6 @@
 	},
 	{
 		"icon": "fa-home",
-		"color": "purple",
 		"parent_ids": [
 			"192049437499122",
 			"181216025249367",
@@ -81,7 +75,6 @@
 	},
 	{
 		"icon": "fa-cutlery",
-		"color": "orange",
 		"parent_ids": [
 			"273819889375819",
 			"192242714144170",
@@ -90,14 +83,12 @@
 			"176960322351733",
 			"132852590115660",
 			"138756772860047",
-			"187153754656815",
 			"167954166588517",
 			"224426430990363"
 		]
 	},
 	{
 		"icon": "fa-video-camera",
-		"color": "green-dark",
 		"parent_ids": [
 			"133436743388217",
 			"10103602278686431",
@@ -106,7 +97,6 @@
 	},
 	{
 		"icon": "fa-university",
-		"color": "green-light",
 		"parent_ids": [
 			"197817313562497",
 			"203246076360322",
@@ -115,7 +105,6 @@
 	},
 	{
 		"icon": "fa-truck",
-		"color": "red",
 		"parent_ids": [
 			"180410821995109",
 			"184395321600410"
@@ -123,7 +112,6 @@
 	},
 	{
 		"icon": "fa-bus",
-		"color": "blue-dark",
 		"parent_ids": [
 			"128232937246338",
 			"10103602278706391",
@@ -133,10 +121,8 @@
 	},
 	{
 		"icon": "fa-shopping-cart",
-		"color": "blue",
 		"parent_ids": [
 			"150108431712141",
-			"200600219953504",
 			"153635828025130",
 			"187827497907070",
 			"181564868547915",
@@ -149,14 +135,12 @@
 	},
 	{
 		"icon": "fa-television",
-		"color": "orange-dark",
 		"parent_ids": [
 			"129417183848258"
 		]
 	},
 	{
 		"icon": "fa-picture-o",
-		"color": "cyan",
 		"parent_ids": [
 			"124861974254366",
 			"152248208162513"
@@ -164,7 +148,6 @@
 	},
 	{
 		"icon": "fa-plane",
-		"color": "blue-dark",
 		"parent_ids": [
 			"110192549061839",
 			"180428515332153",
@@ -177,14 +160,12 @@
 	},
 	{
 		"icon": "fa-ambulance",
-		"color": "red",
 		"parent_ids": [
 			"163102447071743"
 		]
 	},
 	{
 		"icon": "fa-gamepad",
-		"color": "purple",
 		"parent_ids": [
 			"164409566941435",
 			"211579738882707"
@@ -192,7 +173,6 @@
 	},
 	{
 		"icon": "fa-music",
-		"color": "green",
 		"parent_ids": [
 			"180164648685982",
 			"176139629103647",
@@ -204,7 +184,6 @@
 	},
 	{
 		"icon": "fa-h-square",
-		"color": "green-dark",
 		"parent_ids": [
 			"164243073639257",
 			"505091123022329"
@@ -212,7 +191,6 @@
 	},	
 	{
 		"icon": "fa-beer",
-		"color": "blue-dark",
 		"parent_ids": [
 			"203743122984241",
 			"144535972273084"
@@ -220,7 +198,6 @@
 	},		
 	{
 		"icon": "fa-coffee",
-		"color": "cyan",
 		"parent_ids": [
 			"197871390225897",
 			"127892053948220",
@@ -229,7 +206,6 @@
 	},		
 	{
 		"icon": "fa-credit-card",
-		"color": "orange",
 		"parent_ids": [
 			"162758110442965",
 			"187724814583579"
@@ -237,7 +213,6 @@
 	},		
 	{
 		"icon": "fa-glass",
-		"color": "violet",
 		"parent_ids": [
 			"110290705711626",
 			"209630435729071"
@@ -245,7 +220,6 @@
 	},	
 	{
 		"icon": "fa-fire-extinguisher",
-		"color": "red",
 		"parent_ids": [
 			"150681761655205",
 			"197796476897760"
@@ -253,7 +227,6 @@
 	},
 	{
 		"icon": "fa-car",
-		"color": "purple",
 		"parent_ids": [
 			"1223524174334504",
 			"10103602278711381"
@@ -261,21 +234,12 @@
 	},
 	{
 		"icon": "fa-car",
-		"color": "black",
 		"parent_ids": [
 			"139272729470823"
 		]
 	},
 	{
-		"icon": "fa-spoon",
-		"color": "blue-dark",
-		"parent_ids": [
-			"187153754656815"
-		]
-	},	
-	{
 		"icon": "fa-tree",
-		"color": "green-light",
 		"parent_ids": [
 			"115090141929327",
 			"220626791295805"
@@ -283,30 +247,38 @@
 	},		
 	{
 		"icon": "fa-trophy",
-		"color": "cyan",
 		"parent_ids": [
 			"109976259083543"
 		]
 	},			
 	{
 		"icon": "fa-train",
-		"color": "orange",
 		"parent_ids": [
 			"145887745471348"
 		]
 	},	
 	{
 		"icon": "fa-taxi",
-		"color": "yellow",
 		"parent_ids": [
 			"210561295621365"
 		]		
 	},
 	{
 		"icon": "fa-ticket",
-		"color": "cyan",
 		"parent_ids": [
 			"166975666684060"
 		]		
-	}
+	},
+    {
+        "icon": "fa-credit-card-alt",
+        "parent_ids": [
+            "200600219953504"
+        ]               
+    },
+    {
+        "icon": "fa-spoon",
+        "parent_ids": [
+            "187153754656815"
+        ]                       
+    }
 ]

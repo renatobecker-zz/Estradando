@@ -99,14 +99,13 @@ var getMarkerPopup = function(options) {
 
 var addMarker = function(options) {
     var iconMarker = L.ExtraMarkers.icon({
-        //icon: getIcon(options.category),// 'fa-cutlery',
         icon: options.marker.icon,
         markerColor: options.marker.color,
         shape: options.marker.shape,
         prefix: 'fa'
     });
-    
-    var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker});
+    var location = (options.type == "event") ? options.place.location : options.location;
+    var marker = L.marker([location.latitude, location.longitude], {icon: iconMarker});
     //marker.bindPopup( getMarkerPopup(options) ) ;
     marker.bindPopup(options.name);
     markers.addLayer(marker);
@@ -145,17 +144,19 @@ var loadData = function() {
     if (term) {
         params['query'] = term;
     }
+    loadPlaces(params);
+    loadEvents(params);
+};
 
+var loadPlaces = function(params) {
     $.ajax({
         type: 'GET',
         url: '/api/places',
         dataType: 'json',
         data: params,
         success: function(result) {
-            console.log(result);
             let data = result.data;            
             _.each(data, function(item) {                
-                //loadMarkers(position, item.name);
                 addMarker(item);
             });
             map.addLayer(markers);
@@ -164,34 +165,21 @@ var loadData = function() {
             //
         }                
     });
+}
 
-};
-
-var loadMarkers = function(position, query) {
-
-    params = {
-        geolocation: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        }
-    };    
-
-    if (query) {
-        params['query'] = query;
-    }    
-
+var loadEvents = function(params) {
     $.ajax({
         type: 'GET',
-        url: '/api/places',
+        url: '/api/events',
         dataType: 'json',
         data: params,
-        success: function(result) {            
+        success: function(result) {
             let data = result.data;            
             _.each(data, function(item) {                
-                if (item.location) {                        
-                    addMarker(item);
-                }                    
+                console.log(item);
+                addMarker(item);
             });
+            map.addLayer(markers);
         },
         error: function() {
             //

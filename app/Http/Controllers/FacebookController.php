@@ -58,7 +58,7 @@ class FacebookController extends Controller
         $center = [];
         $q      = [];        
         //$center = ['center' => '-29.5698,-50.7924'];   
-        $center = ['center' => '-23.5505,-46.6333'];               
+        $center = ['center' => '-29.5698,-50.7924'];   
         if (Request::ajax()) {   
             $geolocation = Request::input('geolocation');
             $center = ['center' => $geolocation['latitude'] . ',' . $geolocation['longitude']];
@@ -69,9 +69,9 @@ class FacebookController extends Controller
             }
         } 
         $config = array_merge($q,$center, config('facebook.graph.events.uri'));
-
         $response = $this->search($config);
-        return Response::json(array('success'=>true,'data'=>$response)); 
+        $data = $this->add_event_marker($response);        
+        return Response::json(array('success'=>true,'data'=>$data)); 
     }
 
     public function places() {
@@ -89,8 +89,9 @@ class FacebookController extends Controller
             }
         } 
         $config = array_merge($q, $center, config('facebook.graph.search.uri'));        
-        $response = $this->search($config);     
-        return Response::json(array('success'=>true,'data'=>$response)); 
+        $response = $this->search($config); 
+        $data = $this->add_place_marker($response);        
+        return Response::json(array('success'=>true,'data'=>$data)); 
     }
 
     public function markers() {
@@ -108,7 +109,6 @@ class FacebookController extends Controller
             $data = array_merge($data, $next->asArray());        
             $response = $next;            
         }
-        $data = $this->add_markers($data);    
         return $data;
     }
 
@@ -133,8 +133,9 @@ class FacebookController extends Controller
                 $list = $marker['parent_ids'];                    
                 if (in_array($search, $list)) {
                     $marker_category = array(
+                        "marker_category" => $search,
                         'icon' => $marker["icon"],
-                        'color' => $marker["color"],
+                        'color' => $default["color"],
                         'shape' => $default["shape"]
                         );
                     break;
@@ -145,11 +146,33 @@ class FacebookController extends Controller
         return $marker_category;
     }
 
-    private function add_markers($data) {
+    private function add_event_marker($data) {
         $result  = [];
         $config  = config('facebook.graph.config.markers');   
-        $markers = $this->markers();
+        $default = $config['events'];
+        foreach ($data as $obj) {
+            if (array_key_exists("events", $obj)) {
+                $events = $obj["events"];
+                foreach ($events as $event) {
+                    if (!array_key_exists("place", $event)) {
+                        $event["place"]["id"] = $obj["id"];
+                        $event["place"]["location"] = $obj["location"];
+                        $event["place"]["name"] = $obj["name"];
+                    }
+                    $event["marker"] = $default;  
+                    $event["type"] = "event";                     
+                    $result[] = $event;
+                }
+            }
+        }
+        return $result;        
+    }
+
+    private function add_place_marker($data) {
+        $result  = [];
+        $config  = config('facebook.graph.config.markers');   
         $default = $config['places'];
+        $markers = $this->markers();
         $catalog = $this->parent_categories();
         foreach ($data as $obj) {
             $categories = $obj['category_list'];
@@ -171,7 +194,8 @@ class FacebookController extends Controller
             if (!$marker_category) {        
                 $marker_category = $default;                    
             }            
-            $obj["marker"] = $marker_category;                       
+            $obj["marker"] = $marker_category;  
+            $obj["type"] = "place";                     
             $result[] = $obj;
         }
         return $result;    
