@@ -41,16 +41,14 @@ L.control.zoom({
 }).addTo(map);
 */
 
-//var sidebarMebnu = L.control.sidebar('sidebar').addTo(map);
-// create control and add to map
-
-//var lc = L.control.locate({position: 'bottomright', flyTo: true}).addTo(map);
-// request location update and set location
-//lc.start();
+var sidebar = L.control.sidebar('sidebar', {
+            closeButton: true,
+            position: 'left'
+        }).addTo(map);
 
 var initMap = function(position) {
     currentPosition = position;
-    map.setView([position.coords.latitude, position.coords.longitude], 17);
+    map.setView([position.coords.latitude, position.coords.longitude], 13);
 }
 
 var addLocation = function(coords) {
@@ -127,13 +125,9 @@ function setPosition(position) {
     map.flyTo(
         [position.coords.latitude, position.coords.longitude]
     );
-    //initMap(position.coords.latitude, position.coords.longitude);
-    //addLocation(position.coords);
-    //loadData();
 }
 
 var clearMarkers = function() {
-    //remover marcadores, menos os adicionados no roteiro
     markers.clearLayers();
 }
 
@@ -155,18 +149,16 @@ var loadData = function() {
     }
 
     facebookSearch(params, loadPlaces);
-    /*
-    loadPlaces(params);
-    loadEvents(params);
-    */
 };
 
 var loadPlaces = function(response) {
+    sidebar.hide();
     console.log(response);
     _.each(response.data, function(place) {                
         addMarker(place);
     });
     map.addLayer(markers);
+    sidebar.show();
 }    
 /*
 var loadPlaces = function(params) {
@@ -188,27 +180,6 @@ var loadPlaces = function(params) {
     });
 }
 */
-
-var loadEvents = function(params) {
-    $.ajax({
-        type: 'GET',
-        url: '/api/events',
-        dataType: 'json',
-        data: params,
-        success: function(result) {
-            let data = result.data;            
-            _.each(data, function(item) {                
-                console.log(item);
-                addMarker(item);
-            });
-            map.addLayer(markers);
-        },
-        error: function() {
-            //
-        }                
-    });
-}
-
 var handleRouting = function() {
     /*
     var routing = new L.Routing.control({

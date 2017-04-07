@@ -1,3 +1,6 @@
+var handleItinerary = function() {
+ 
+}
 
 function submitForm(e) {
     if (e.keyCode == 13) {
@@ -11,7 +14,7 @@ var Itinerary = function () {
     return {
         //main function
         init: function () {
-            //handleItinerary();
+            handleItinerary();
         }
     };
 }();

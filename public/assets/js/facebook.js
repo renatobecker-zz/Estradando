@@ -59,7 +59,7 @@ var facebookSearch = function(params, callback) {
         "center": center,
         "q": (params.query ? params.query : "*"),
         "type": "place",                
-        "fields": "id,name,location,category,category_list,events",
+        "fields": "id,name,location,overall_rating,hours,about,category,category_list,contact_address,cover,current_location,description,fan_count,food_styles,general_info,is_always_open,is_permanently_closed,likes,link,name_with_location_descriptor,overall_star_rating,parking,payment_options,phone,place_topic,price_range,rating_count,restaurant_services,restaurant_specialties,single_line_address,website,were_here_count,checkins",
         "locale": "pt_BR"
     }
     
