@@ -151,35 +151,18 @@ var loadData = function() {
     facebookSearch(params, loadPlaces);
 };
 
-var loadPlaces = function(response) {
+var loadPlaces = function(response) {    
     sidebar.hide();
     console.log(response);
     _.each(response.data, function(place) {                
         addMarker(place);
     });
     map.addLayer(markers);
-    sidebar.show();
+    if (!response.paging) {        
+        sidebar.show();
+    }
 }    
-/*
-var loadPlaces = function(params) {
-    $.ajax({
-        type: 'GET',
-        url: '/api/places',
-        dataType: 'json',
-        data: params,
-        success: function(result) {
-            let data = result.data;            
-            _.each(data, function(item) {                
-                addMarker(item);
-            });
-            map.addLayer(markers);
-        },
-        error: function() {
-            //
-        }                
-    });
-}
-*/
+
 var handleRouting = function() {
     /*
     var routing = new L.Routing.control({
