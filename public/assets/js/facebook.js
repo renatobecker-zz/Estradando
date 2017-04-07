@@ -33,6 +33,39 @@ var requestCallback = function(response) {
     }
 }
 
+var facebookGraph = function(url, p, callback) {
+    FB.api(
+        url,
+        p,
+        function (response) {
+            if (response && !response.error) {
+                if (callback) {
+                    callback(response);
+                }
+
+                if (response.paging) {
+                    facebookGraph(response.paging.next, p, callback);
+                }
+            }
+        }
+    );    
+}
+
+var facebookSearch = function(params, callback) {
+    var center = params.geolocation.latitude + "," + params.geolocation.longitude;
+    var p = {
+        "distance": 5000,
+        "limit": 50000,
+        "center": center,
+        "q": (params.query ? params.query : "*"),
+        "type": "place",                
+        "fields": "id,name,location,category,category_list,events",
+        "locale": "pt_BR"
+    }
+    
+    facebookGraph("/search", p, callback);
+}
+
 var facebookInviteFriends = function() {
         FB.ui({
             method: 'apprequests',

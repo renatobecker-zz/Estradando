@@ -48,8 +48,9 @@ L.control.zoom({
 // request location update and set location
 //lc.start();
 
-var initMap = function(lat, lng) {
-    map.setView([lat, lng], 17);
+var initMap = function(position) {
+    currentPosition = position;
+    map.setView([position.coords.latitude, position.coords.longitude], 17);
 }
 
 var addLocation = function(coords) {
@@ -99,15 +100,15 @@ var getMarkerPopup = function(options) {
 
 var addMarker = function(options) {
     var iconMarker = L.ExtraMarkers.icon({
-        icon: options.marker.icon,
-        markerColor: options.marker.color,
-        shape: options.marker.shape,
+        icon: "fa-location-arrow", //options.marker.icon,
+        markerColor: 'green', //options.marker.color,
+        //shape: options.marker.shape,
         prefix: 'fa'
     });
-    var location = (options.type == "event") ? options.place.location : options.location;
-    var marker = L.marker([location.latitude, location.longitude], {icon: iconMarker});
+    //var location = (options.type == "event") ? options.place.location : options.location;
+    var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker});
     //marker.bindPopup( getMarkerPopup(options) ) ;
-    marker.bindPopup(options.name);
+    marker.bindPopup(options.name).on('click', clickZoom);
     markers.addLayer(marker);
     //.openPopup();    
 }
@@ -122,7 +123,11 @@ function getLocation(callback) {
 
 function setPosition(position) {
     currentPosition = position;
-    initMap(position.coords.latitude, position.coords.longitude);
+
+    map.flyTo(
+        [position.coords.latitude, position.coords.longitude]
+    );
+    //initMap(position.coords.latitude, position.coords.longitude);
     //addLocation(position.coords);
     //loadData();
 }
@@ -130,6 +135,10 @@ function setPosition(position) {
 var clearMarkers = function() {
     //remover marcadores, menos os adicionados no roteiro
     markers.clearLayers();
+}
+
+function clickZoom(e) {
+    map.flyTo(e.target.getLatLng());
 }
 
 var loadData = function() {
@@ -144,10 +153,22 @@ var loadData = function() {
     if (term) {
         params['query'] = term;
     }
+
+    facebookSearch(params, loadPlaces);
+    /*
     loadPlaces(params);
     loadEvents(params);
+    */
 };
 
+var loadPlaces = function(response) {
+    console.log(response);
+    _.each(response.data, function(place) {                
+        addMarker(place);
+    });
+    map.addLayer(markers);
+}    
+/*
 var loadPlaces = function(params) {
     $.ajax({
         type: 'GET',
@@ -166,6 +187,7 @@ var loadPlaces = function(params) {
         }                
     });
 }
+*/
 
 var loadEvents = function(params) {
     $.ajax({
@@ -215,7 +237,7 @@ var handleRouting = function() {
 }
 
 var handleInit = function() {
-    getLocation(setPosition);
+    getLocation(initMap);
 
     $(window).resize(function(){
         map._onResize();
