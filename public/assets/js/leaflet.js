@@ -96,7 +96,7 @@ var getMarkerPopup = function(options) {
     return content;                    
 }
 
-var addMarker = function(options) {
+var addMarker = function(options, callback) {
     var iconMarker = L.ExtraMarkers.icon({
         icon: "fa-location-arrow", //options.marker.icon,
         markerColor: 'green', //options.marker.color,
@@ -105,8 +105,11 @@ var addMarker = function(options) {
     });
     //var location = (options.type == "event") ? options.place.location : options.location;
     var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker});
+    marker.on('click', clickZoom);
+    if (callback) {
+        marker.on('click', callback);
+    }
     //marker.bindPopup( getMarkerPopup(options) ) ;
-    marker.bindPopup(options.name).on('click', clickZoom);
     markers.addLayer(marker);
     //.openPopup();    
 }
@@ -135,7 +138,7 @@ function clickZoom(e) {
     map.flyTo(e.target.getLatLng());
 }
 
-var loadData = function() {
+var loadData = function(callback) {
 
     clearMarkers();
     
@@ -148,20 +151,8 @@ var loadData = function() {
         params['query'] = term;
     }
 
-    facebookSearch(params, loadPlaces);
+    facebookSearch(params, callback);
 };
-
-var loadPlaces = function(response) {    
-    sidebar.hide();
-    console.log(response);
-    _.each(response.data, function(place) {                
-        addMarker(place);
-    });
-    map.addLayer(markers);
-    if (!response.paging) {        
-        sidebar.show();
-    }
-}    
 
 var handleRouting = function() {
     /*

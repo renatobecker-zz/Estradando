@@ -1,59 +1,210 @@
 var handleItinerary = function() {
-
+    map.on('click', function () {
+        sidebar.hide();
+    })
 }
 
-var renderHtmlPlaceDetail = function(place) {
-	var html;
-	html +='<li>';
-	html +='<div class="result-image">';
-	html +='		<a href="javascript:;"><img src="assets/img/gallery/gallery-7.jpg" alt=""></a>';
-	html +='	</div>';
-	html +='	<div class="result-info">';
-	html +='		<h4 class="title"><a href="javascript:;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>';
-	html +='		<p class="location">United State, BY 10089</p>';
-	html +='		<p class="desc">';
-	html +='			Nunc et ornare ligula. Aenean commodo lectus turpis, eu laoreet risus lobortis quis. Suspendisse vehicula mollis magna vel aliquet. Donec ac tempor neque, convallis euismod mauris. Integer dictum dictum ipsum quis viverra.';
-	html +='		</p>';
-	html +='		<div class="btn-row">';
-	html +='			<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Analytics" data-original-title="" title=""><i class="fa fa-fw fa-bar-chart-o"></i></a>';
-	html +='			<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Tasks" data-original-title="" title=""><i class="fa fa-fw fa-tasks"></i></a>';
-	html +='			<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Configuration" data-original-title="" title=""><i class="fa fa-fw fa-cog"></i></a>';
-	html +='			<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Performance" data-original-title="" title=""><i class="fa fa-fw fa-tachometer"></i></a>';
-	html +='			<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Users" data-original-title="" title=""><i class="fa fa-fw fa-user"></i></a>';
-	html +='		</div>';
+var renderRating = function(place) {
+    var html ='<div class="rating">';
+        for (var i = 1; i <= 5; i++) {
+            var activeClass = (i > place.overall_star_rating) ? "" : " active";
+            html +='<span class="star' + activeClass + '"></span>';            
+        }
+        html +='</div>';
+    return html;
+}
+
+var renderCards = function(place) {
+    var cards = [];
+    
+    if ((_.isObject(place.parking)) && 
+        ((place.parking.lot == 1) || (place.parking.street == 1) || (place.parking.valet == 1))) {
+        cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Parking" data-original-title="" title=""><i class="fa fa-fw fa-car"></i></a>');
+    }
+
+    if (_.isObject(place.payment_options)) {
+        if ((place.payment_options.amex == 1) || (place.payment_options.mastercard == 1) || (place.payment_options.visa == 1)) {
+            cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Credit Card" data-original-title="" title=""><i class="fa fa-fw fa-credit-card"></i></a>');        
+        }        
+        if (place.payment_options.cash_only == 1) {
+            cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Cash" data-original-title="" title=""><i class="fa fa-fw fa-money"></i></a>');        
+        }        
+    }
+    
+    return cards;
+}
+
+var renderHtmlPlaceItem = function(place) {
+    var src      = (_.isObject(place.cover)) ? place.cover.source : null;
+    var category = ((place.category_list) && (place.category_list.length > 0)) ? place.category_list[0].name : '';	
+	var html ='<li>';
+    /*
+    if (src) {
+        html +='<div class="result-image">';
+        html +='        <a href="javascript:;"><img src="' + src +'" alt=""></a>';
+        html +='</div>';        
+    }
+    */
+    html +='<div class="gallery">';
+    html +='<div class="image-info">';
+	html +='<div class="result-info">';
+	html +='<h3 class="title">' + place.name + '</h3>';
+    if (place.about) {
+        html +='<p class="desc">' + place.about + '</p>';
+    }
+    if (place.price_range) {
+        //html += '<div class="pull-right"><a href="javascript:;">' + place.price_range + '</a></div>';        
+    }
+    html += renderRating(parseInt(place));    
+    html +='<p class="location"><i class="fa fa-map-marker"></i> ' + place.location.city + '</p>';
+    /*
+    html +='    <p class="location">' + category + '</p>';
+    */
+
+    var cardsList = renderCards(place);
+    if ((cardsList) && (cardsList.length > 0)) {
+        html +='<div class="btn-row">';    
+            _.each(cardsList, function(card) {                
+                html += card;
+            });    
+        html +='</div>';    
+    }
+
+    html +='</div>';
+    html +='</div>';
 	html +='</div>';
+    /*
 	html +='	<!--';
 	html +='	<div class="result-price">';
 	html +='		$102,232 <small>PER MONTH</small>';
 	html +='		<a href="javascript:;" class="btn btn-inverse btn-block">View Details</a>';
 	html +='	</div>';
 	html +='	-->';
+    */
 	html +='</li>';
 	return html;
 }
 
-var renderHtmlPlacesResult = function(places) {
-	var html;
-	html +='<div class="row">';
-	html +='<div class="result-container">';
-	html +='<ul class="result-list">';
-	_.each(places, function(place) {                
-		html += renderHtmlPlaceDetail(place);
-	});
-	html +='</ul>';
-	html +='</div>';
-	html +='</div>';
-	return html;
+var renderHtmlPlacesResult = function(places, callback) {
+	var html ='<div class="row">';
+	    html +='<div class="result-container">';
+	    html +='<ul class="result-list">';
+	    _.each(places, function(place) {                
+		    html += renderHtmlPlaceItem(place);
+	    });
+        html +='</ul>';
+        html +='</div>';
+        html +='</div>';
+        if (callback) {
+            callback(html)
+        } else
+	       return html;
+}
+
+var renderHtmlPlaceDetail = function(place) {
+    var src      = (_.isObject(place.cover)) ? place.cover.source : null;
+    var category = ((place.category_list) && (place.category_list.length > 0)) ? place.category_list[0].name : '';  
+    
+    /*
+    if (src) {
+        html +='<div class="result-image">';
+        html +='        <a href="javascript:;"><img src="' + src +'" alt=""></a>';
+        html +='</div>';        
+    }*/
+    var html =  '<div class="image gallery-group-1">';
+        html += '<div class="image-inner">';
+        html += '<a href="assets/img/gallery/gallery-1.jpg" data-lightbox="gallery-group-1">';
+        html += '<img src="assets/img/gallery/gallery-1.jpg" alt="" />';
+        html += '</a>';
+        html += '<p class="image-caption">';
+        html += '#1382 - 3D Arch';
+        html += '</p>';
+        html += '</div>';
+        html += '<div class="image-info">';
+        html += '<h5 class="title">Lorem ipsum dolor sit amet</h5>';
+        html += '<div class="pull-right">';
+        html += '<small>by</small> <a href="javascript:;">Sean Ngu</a>';
+        html += '</div>';
+        html += '<div class="rating">';
+        html += '<span class="star active"></span>';
+        html += '<span class="star active"></span>';
+        html += '<span class="star active"></span>';
+        html += '<span class="star"></span>';
+        html += '<span class="star"></span>';
+        html += '</div>';
+        html += '<div class="desc">';
+        html += 'Nunc velit urna, aliquam at interdum sit amet, lacinia sit amet ligula. Quisque et erat eros. Aenean auctor metus in tortor placerat, non luctus justo blandit.';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+        /*
+    if (place.about) {
+        html +='<p class="desc">' + place.about + '</p>';
+    }
+    if (place.price_range) {
+        //html += '<div class="pull-right"><a href="javascript:;">' + place.price_range + '</a></div>';        
+    }
+    html += renderRating(parseInt(place));    
+    html +='<p class="location"><i class="fa fa-map-marker"></i> ' + place.location.city + '</p>';
+    
+    html +='    <p class="location">' + category + '</p>';
+    
+
+    var cardsList = renderCards(place);
+    if ((cardsList) && (cardsList.length > 0)) {
+        html +='<div class="btn-row">';    
+            _.each(cardsList, function(card) {                
+                html += card;
+            });    
+        html +='</div>';    
+    }
+
+    html +='</div>';
+    html +='</div>';
+    html +='</div>';
+    /*
+    html +='    <!--';
+    html +='    <div class="result-price">';
+    html +='        $102,232 <small>PER MONTH</small>';
+    html +='        <a href="javascript:;" class="btn btn-inverse btn-block">View Details</a>';
+    html +='    </div>';
+    html +='    -->';
+    
+    html +='</li>';*/
+    return html;
 }
 
 function submitForm(e) {
 	if (e.keyCode == 13) {
-		loadData(fuction(data) {
-			
-		});
+        sidebar.hide();
+	    loadData(loadPlaces);
 		event.preventDefault();        
 	}
 }
+
+var loadPlaces = function(response) {    
+    sidebar.hide();
+    _.each(response.data, function(place) {                
+        addMarker(place);
+    });
+    map.addLayer(markers);
+    if (!response.paging) {  
+        console.log(response.data);
+        renderHtmlPlacesResult(response.data, function(html){
+            sidebar.setContent(html);
+            sidebar.show();    
+        })
+    }
+}    
+
+var handleDateRangePicker = function() {
+    $('.input-daterange').datepicker({
+        todayHighlight: true,
+        format: 'dd/mm/yyyy',                
+        language: 'pt-BR',
+        autoclose: true       
+    });
+};
 
 var Itinerary = function () {
 	"use strict";
@@ -61,6 +212,7 @@ var Itinerary = function () {
         //main function
         init: function () {
         	handleItinerary();
+            handleDateRangePicker();
         }
     };
 }();
