@@ -9,7 +9,8 @@ use Session;
 use Facebook;
 use Response;
 use App;
-use App\Models\Config\Markers as Markers;
+use App\Models\Config\CatalogCategory as CatalogCategory;
+use App\Models\Config\Category as Category;
 
 class FacebookController extends Controller
 {
@@ -45,8 +46,12 @@ class FacebookController extends Controller
         */
 
         return Response::json(array('success'=>true,'data'=>$data)); 
+        /*        
+        $categories = Category::all();    
+        return Response::json(array('success'=>true,'data'=>$categories));
+        */
     }
-
+    /*
     public function category($id) {
         $config = config('facebook.graph.category.uri');
         $uri = '/' . $id . '?' . http_build_query($config);
@@ -73,7 +78,7 @@ class FacebookController extends Controller
         $data = $this->add_event_marker($response);        
         return Response::json(array('success'=>true,'data'=>$data)); 
     }
-
+    */
     public function places() {
         $center = [];
         $q      = [];        
@@ -94,9 +99,9 @@ class FacebookController extends Controller
         return Response::json(array('success'=>true,'data'=>$data)); 
     }
 
-    public function markers() {
-        $markers = Markers::all();    
-        return $markers;
+    public function catalog_categories() {
+        $catalog_categories = CatalogCategory::all();    
+        return Response::json(array('success'=>true,'data'=>$catalog_categories)); 
     }
 
     private function search($params) {          
@@ -111,7 +116,7 @@ class FacebookController extends Controller
         }
         return $data;
     }
-
+    /*
     public function parent_categories() {
         $parent_categories = Session::get('parent_categories');
         if ($parent_categories) {
@@ -124,7 +129,7 @@ class FacebookController extends Controller
         Session::set('parent_categories', $result);
         return $result;
     }
-
+    */
     private function find_marker_category($categories, $markers, $default) {
         $marker_category = null;        
         foreach ($categories as $category) {

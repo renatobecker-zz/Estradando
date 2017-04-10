@@ -1,0 +1,3379 @@
+[
+	{
+		"name": "Educação",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Educação",
+		"count": 671020,
+		"id": "151676848220295"
+	},
+	{
+		"name": "Medicina e saúde",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Médico",
+			"Centro médico",
+			"Dentista"
+		],
+		"plural_name": "Medicina e Saúde",
+		"count": 7406707,
+		"id": "145118935550090"
+	},
+	{
+		"name": "Centro religioso",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Centros religiosos",
+		"count": 2352583,
+		"id": "139460309451166"
+	},
+	{
+		"name": "Restaurante",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante Fast-food",
+			"Restaurante americano",
+			"Pizzaria"
+		],
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Restaurantes",
+		"count": 16691554,
+		"id": "273819889375819"
+	},
+	{
+		"name": "Artes e entretenimento",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Artista",
+			"Ponto de referência e local histórico",
+			"Cinema"
+		],
+		"plural_name": "Artes e entretenimento",
+		"count": 9511988,
+		"id": "133436743388217"
+	},
+	{
+		"name": "Mercado",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Mercado selecionado",
+			"Loja de alimentos naturais",
+			"Quitanda"
+		],
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Alimentação e mercearia",
+		"count": 5331250,
+		"id": "150108431712141"
+	},
+	{
+		"name": "Entretenimento",
+		"has_children": false,
+		"parent_ids": [
+			"369730359717478"
+		],
+		"plural_name": "Just For Fun",
+		"count": 15543055,
+		"id": "129417183848258"
+	},
+	{
+		"name": "Compras e varejo",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Farmácia/Drogaria",
+			"Shopping center",
+			"Empresa de varejo"
+		],
+		"plural_name": "Compras e varejo",
+		"count": 20745255,
+		"id": "200600219953504"
+	},
+	{
+		"name": "Atividades ao ar livre, recreação e fitness",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Parque",
+			"Loja de artigos esportivos",
+			"Esportes"
+		],
+		"plural_name": "Sports & Recreation",
+		"count": 7587622,
+		"id": "186982054657561"
+	},
+	{
+		"name": "Agência de turismo",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Agência de turismo ecológico",
+			"Guia turístico",
+			"Agência de passeios de barco"
+		],
+		"parent_ids": [
+			"169581916792003"
+		],
+		"plural_name": "Passeios e pontos turísticos",
+		"count": 1835459,
+		"id": "124861974254366"
+	},
+	{
+		"name": "Viagem e transporte",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Automóvel, aeronave e embarcação",
+			"Serviço de transporte",
+			"Agência de viagens"
+		],
+		"plural_name": "Viagem e transporte",
+		"count": 4301715,
+		"id": "128232937246338"
+	},
+	{
+		"name": "Loja de acessórios",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Joalheria e relojoaria",
+			"Ótica",
+			"Loja de bolsas e malas"
+		],
+		"parent_ids": [
+			"1086422341396773"
+		],
+		"plural_name": "Lojas de acessórios",
+		"count": 442538,
+		"id": "185127444860544"
+	},
+	{
+		"name": "Serviço de entretenimento adulto",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Adult Entertainment",
+		"count": 413740,
+		"id": "187623434605561"
+	},
+	{
+		"name": "Restaurante afegão",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes afegãos",
+		"count": 21284,
+		"id": "121058704635534"
+	},
+	{
+		"name": "Igreja Metodista Episcopal Africana",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Metodistas Episcopais Africanas",
+		"count": 20980,
+		"id": "141538499244285"
+	},
+	{
+		"name": "Restaurante africano",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante etíope",
+			"Restaurante sul-africano",
+			"Restaurante nigeriano"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes africanos",
+		"count": 26905,
+		"id": "171226896258682"
+	},
+	{
+		"name": "Terminal do aeroporto",
+		"has_children": false,
+		"parent_ids": [
+			"520917194785584"
+		],
+		"plural_name": "Terminal do aeroporto",
+		"count": 242768,
+		"id": "177950465654024"
+	},
+	{
+		"name": "Serviço de saúde alternativo e holístico",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Nutricionista",
+			"Acupunturista",
+			"Spa médico"
+		],
+		"parent_ids": [
+			"1154837367920704"
+		],
+		"plural_name": "Saúde holística e alternativa",
+		"count": 372605,
+		"id": "357645644269220"
+	},
+	{
+		"name": "Serviço de resgate de emergência",
+		"has_children": false,
+		"parent_ids": [
+			"1154837367920704"
+		],
+		"plural_name": "Ambulância e Resgate",
+		"count": 162973,
+		"id": "163102447071743"
+	},
+	{
+		"name": "Restaurante americano",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes americanos",
+		"count": 4360246,
+		"id": "149803325077018"
+	},
+	{
+		"name": "Parque temático e de diversões",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Parque aquático"
+		],
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Amusement Park Rides",
+		"count": 337186,
+		"id": "220626791295805"
+	},
+	{
+		"name": "Igreja Anglicana",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Anglicanas",
+		"count": 37623,
+		"id": "139801652749645"
+	},
+	{
+		"name": "Loja de antiguidades",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Lojas de antiguidades",
+		"count": 136784,
+		"id": "150732438316813"
+	},
+	{
+		"name": "Igreja Apostólica",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Apostólicas",
+		"count": 34820,
+		"id": "199448423406078"
+	},
+	{
+		"name": "Fliperama",
+		"has_children": false,
+		"parent_ids": [
+			"1178379612225588"
+		],
+		"plural_name": "Fliperamas",
+		"count": 151053,
+		"id": "164409566941435"
+	},
+	{
+		"name": "Restaurante argentino",
+		"has_children": false,
+		"parent_ids": [
+			"192242714144170"
+		],
+		"plural_name": "Restaurantes argentinos",
+		"count": 39612,
+		"id": "205735146122517"
+	},
+	{
+		"name": "Galeria de arte",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Galerias de arte",
+		"count": 753404,
+		"id": "197384240287028"
+	},
+	{
+		"name": "Museu de arte",
+		"has_children": false,
+		"parent_ids": [
+			"197817313562497"
+		],
+		"plural_name": "Museu de arte",
+		"count": 107868,
+		"id": "384382644921530"
+	},
+	{
+		"name": "Escola de arte",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278676451"
+		],
+		"plural_name": "Escolas de arte",
+		"count": 101879,
+		"id": "164288046954643"
+	},
+	{
+		"name": "Loja de artesanato",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Arts & Crafts Supply Stores",
+		"count": 405556,
+		"id": "153635828025130"
+	},
+	{
+		"name": "Restaurantes de fusão asiática",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes de fusão asiática",
+		"count": 146627,
+		"id": "174201535963762"
+	},
+	{
+		"name": "Restaurante asiático",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes asiáticos",
+		"count": 883395,
+		"id": "185855984789970"
+	},
+	{
+		"name": "Assembleia de Deus",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Assembleias de Deus",
+		"count": 81113,
+		"id": "186312161401260"
+	},
+	{
+		"name": "Loja de peças automotivas",
+		"has_children": false,
+		"parent_ids": [
+			"1628617144122365"
+		],
+		"plural_name": "Peças e acessórios automotivos",
+		"count": 1185036,
+		"id": "139492049448901"
+	},
+	{
+		"name": "Oficina automotiva",
+		"has_children": false,
+		"parent_ids": [
+			"1223524174334504"
+		],
+		"plural_name": "Reparo automotivo",
+		"count": 3965273,
+		"id": "149998721725634"
+	},
+	{
+		"name": "Padaria",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Padaria atacadista"
+		],
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Bakeries",
+		"count": 1838450,
+		"id": "187827497907070"
+	},
+	{
+		"name": "Músico/banda",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Músicos e bandas",
+		"count": 13987362,
+		"id": "180164648685982"
+	},
+	{
+		"name": "Banco",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Banco",
+			"Banco de varejo",
+			"Cooperativa de crédito"
+		],
+		"parent_ids": [
+			"1022050661163852"
+		],
+		"plural_name": "Banks",
+		"count": 817773,
+		"id": "133576170041936"
+	},
+	{
+		"name": "Igreja Batista",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Batistas",
+		"count": 566442,
+		"id": "199819723365845"
+	},
+	{
+		"name": "Bar e Churrascaria",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Bares e Churrascarias",
+		"count": 835610,
+		"id": "233804719972590"
+	},
+	{
+		"name": "Churrascaria",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Churrascarias",
+		"count": 828632,
+		"id": "150534008338515"
+	},
+	{
+		"name": "Restaurante basco",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes bascos",
+		"count": 9073,
+		"id": "191373750905077"
+	},
+	{
+		"name": "Praia",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278716371"
+		],
+		"plural_name": "Praias",
+		"count": 1468874,
+		"id": "199165013440146"
+	},
+	{
+		"name": "Resort na praia",
+		"has_children": false,
+		"parent_ids": [
+			"164243073639257"
+		],
+		"plural_name": "Resorts na praia",
+		"count": 144651,
+		"id": "199734546726648"
+	},
+	{
+		"name": "Hospedagem com café da manhã",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Hospedagens com café da manhã",
+		"count": 462360,
+		"id": "110321355709642"
+	},
+	{
+		"name": "Bar ao ar livre",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Beer Gardens",
+		"count": 507258,
+		"id": "203743122984241"
+	},
+	{
+		"name": "Restaurante Belga",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes belgas",
+		"count": 16162,
+		"id": "113581542055311"
+	},
+	{
+		"name": "Superloja varejista",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Big Box Retailers",
+		"count": 194266,
+		"id": "209535879087405"
+	},
+	{
+		"name": "Bingo",
+		"has_children": false,
+		"parent_ids": [
+			"917138848432787"
+		],
+		"plural_name": "Bingos",
+		"count": 36962,
+		"id": "121321524611296"
+	},
+	{
+		"name": "Distribuidora de livros e revistas",
+		"has_children": false,
+		"parent_ids": [
+			"979978068761972"
+		],
+		"plural_name": "Distribuição de livros e revistas",
+		"count": 80711,
+		"id": "161467220570897"
+	},
+	{
+		"name": "Boliche",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Boliches",
+		"count": 168245,
+		"id": "182582091788254"
+	},
+	{
+		"name": "Restaurante brasileiro",
+		"has_children": false,
+		"parent_ids": [
+			"192242714144170"
+		],
+		"plural_name": "Restaurantes brasileiros",
+		"count": 84411,
+		"id": "185459711490789"
+	},
+	{
+		"name": "Restaurante especializado em café da manhã e brunch",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes de café-da-manhã e brunch",
+		"count": 290429,
+		"id": "192108214153222"
+	},
+	{
+		"name": "Cervejaria",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Cervejarias",
+		"count": 422861,
+		"id": "144535972273084"
+	},
+	{
+		"name": "Ponte",
+		"has_children": false,
+		"parent_ids": [
+			"1713595685546855"
+		],
+		"plural_name": "Pontes",
+		"count": 208410,
+		"id": "151969488199865"
+	},
+	{
+		"name": "Restaurante britânico",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes britânicos",
+		"count": 426117,
+		"id": "137670789632630"
+	},
+	{
+		"name": "Templo budista",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Buddhist Temples",
+		"count": 385055,
+		"id": "201230299890531"
+	},
+	{
+		"name": "Restaurante/Buffet",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Buffets",
+		"count": 295139,
+		"id": "176007949109829"
+	},
+	{
+		"name": "Hamburgueria",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Lanchonetes",
+		"count": 1597777,
+		"id": "187425207958280"
+	},
+	{
+		"name": "Restaurante birmanes",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes birmaneses",
+		"count": 5442,
+		"id": "135761909830871"
+	},
+	{
+		"name": "Linha de ônibus",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278706391"
+		],
+		"plural_name": "Linhas de ônibus",
+		"count": 303427,
+		"id": "138456929557798"
+	},
+	{
+		"name": "Ponto de ônibus",
+		"has_children": false,
+		"parent_ids": [
+			"520917194785584"
+		],
+		"plural_name": "Pontos de ônibus",
+		"count": 274958,
+		"id": "144386572288836"
+	},
+	{
+		"name": "Açougue",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Açougueiros",
+		"count": 139027,
+		"id": "181564868547915"
+	},
+	{
+		"name": "Cabana",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Cabanas",
+		"count": 100374,
+		"id": "213629078651577"
+	},
+	{
+		"name": "Café",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Cafeteria",
+			"Deli",
+			"Casa de chá"
+		],
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Cafés",
+		"count": 3490808,
+		"id": "197871390225897"
+	},
+	{
+		"name": "Lanchonete",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Cafeterias",
+		"count": 771166,
+		"id": "127892053948220"
+	},
+	{
+		"name": "Restaurante cajun e creole",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes Cajun e Creole",
+		"count": 73974,
+		"id": "154669644591265"
+	},
+	{
+		"name": "Restaurante cambojano",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes cambojanos",
+		"count": 7706,
+		"id": "191232370912538"
+	},
+	{
+		"name": "Área para acampamento",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Acampamentos",
+		"count": 194706,
+		"id": "187004854667366"
+	},
+	{
+		"name": "Restaurante canadense",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes canadenses",
+		"count": 9765,
+		"id": "202010786573294"
+	},
+	{
+		"name": "Loja de doces",
+		"has_children": false,
+		"parent_ids": [
+			"187153754656815"
+		],
+		"plural_name": "Lojas de doces",
+		"count": 313180,
+		"id": "414430838570027"
+	},
+	{
+		"name": "Restaurante cantonês",
+		"has_children": false,
+		"parent_ids": [
+			"174483852595760"
+		],
+		"plural_name": "Restaurantes cantoneses",
+		"count": 144761,
+		"id": "214976388519648"
+	},
+	{
+		"name": "Restaurante caribenho",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante jamaicano",
+			"Restaurante dominicano",
+			"Restaurante haitiano"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes caribenhos",
+		"count": 51624,
+		"id": "191765907520539"
+	},
+	{
+		"name": "Casino",
+		"has_children": false,
+		"parent_ids": [
+			"917138848432787"
+		],
+		"plural_name": "Cassinos",
+		"count": 250775,
+		"id": "187724814583579"
+	},
+	{
+		"name": "Serviço de buffet",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Caterers",
+		"count": 390128,
+		"id": "139433292785470"
+	},
+	{
+		"name": "Igreja Católica",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Católicas",
+		"count": 723168,
+		"id": "175647552480085"
+	},
+	{
+		"name": "Igreja Carismática",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Carismáticas",
+		"count": 11153,
+		"id": "181531718550494"
+	},
+	{
+		"name": "Frango frito",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Galeterias",
+		"count": 224518,
+		"id": "110113695730808"
+	},
+	{
+		"name": "Asas de frango",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Asas de frango",
+		"count": 15,
+		"id": "197767133603296"
+	},
+	{
+		"name": "Loja de roupas infantis",
+		"has_children": false,
+		"parent_ids": [
+			"186230924744328"
+		],
+		"plural_name": "Lojas de roupa infantil",
+		"count": 443002,
+		"id": "192614304101075"
+	},
+	{
+		"name": "Restaurante chinês",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante cantonês",
+			"Restaurante Dim Sum",
+			"Restaurante especializado em hot pot"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes chineses",
+		"count": 1252096,
+		"id": "174483852595760"
+	},
+	{
+		"name": "Igreja Cristã",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Cristãs",
+		"count": 359889,
+		"id": "184266718279692"
+	},
+	{
+		"name": "Igreja da Ciência Cristã",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas da Ciência Cristã",
+		"count": 2554,
+		"id": "121659614574801"
+	},
+	{
+		"name": "Igreja",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Igreja Católica",
+			"Igreja Batista",
+			"Igreja Cristã"
+		],
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Igrejas",
+		"count": 1643337,
+		"id": "192134360811676"
+	},
+	{
+		"name": "Igreja de Cristo",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas de Cristo",
+		"count": 97030,
+		"id": "190152457675521"
+	},
+	{
+		"name": "Igreja de Deus",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas de Deus",
+		"count": 85899,
+		"id": "170386086340798"
+	},
+	{
+		"name": "Igreja de Jesus Cristo dos Santos dos Últimos Dias",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igreja de Jesus Cristo dos Santos dos Últimos Dias",
+		"count": 43460,
+		"id": "109597022449687"
+	},
+	{
+		"name": "Circo",
+		"has_children": false,
+		"parent_ids": [
+			"179943432047564"
+		],
+		"plural_name": "Circos",
+		"count": 147934,
+		"id": "213019495381691"
+	},
+	{
+		"name": "Prefeitura",
+		"has_children": false,
+		"parent_ids": [
+			"1032965636792826"
+		],
+		"plural_name": "Prefeituras",
+		"count": 327317,
+		"id": "436168419731123"
+	},
+	{
+		"name": "Loja de roupas",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Loja de roupa feminina",
+			"Loja de calçados",
+			"Loja de roupas infantis"
+		],
+		"parent_ids": [
+			"1086422341396773"
+		],
+		"plural_name": "Lojas de roupa",
+		"count": 2967613,
+		"id": "186230924744328"
+	},
+	{
+		"name": "Distribuidor de itens de vestuário",
+		"has_children": false,
+		"parent_ids": [
+			"1086422341396773"
+		],
+		"plural_name": "Clothing Supply & Distribution",
+		"count": 91844,
+		"id": "214668188548441"
+	},
+	{
+		"name": "Country club",
+		"has_children": false,
+		"parent_ids": [
+			"170968163319233"
+		],
+		"plural_name": "Clubhouses",
+		"count": 255194,
+		"id": "186004504854452"
+	},
+	{
+		"name": "Cafeteria",
+		"has_children": false,
+		"parent_ids": [
+			"197871390225897"
+		],
+		"plural_name": "Cafeterias",
+		"count": 3849000,
+		"id": "128673187201735"
+	},
+	{
+		"name": "Loja de artigos para colecionadores",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Collectibles Stores",
+		"count": 115094,
+		"id": "187679647929203"
+	},
+	{
+		"name": "Faculdade e universidade",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Faculdades e universidades",
+		"count": 1118239,
+		"id": "108051929285833"
+	},
+	{
+		"name": "Club de comédia",
+		"has_children": false,
+		"parent_ids": [
+			"179943432047564"
+		],
+		"plural_name": "Clubes de comédia",
+		"count": 126360,
+		"id": "110186619064706"
+	},
+	{
+		"name": "Loja de revistas em quadrinhos",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Lojas de revistas em quadrinhos",
+		"count": 29322,
+		"id": "133510666716809"
+	},
+	{
+		"name": "Banco",
+		"has_children": false,
+		"parent_ids": [
+			"133576170041936"
+		],
+		"plural_name": "Bancos comerciais",
+		"count": 1733436,
+		"id": "163090273743732"
+	},
+	{
+		"name": "Igreja Congregacional",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Congregacionais",
+		"count": 11480,
+		"id": "200157403331937"
+	},
+	{
+		"name": "Restaurante continental",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes europeus",
+		"count": 34219,
+		"id": "197227066968500"
+	},
+	{
+		"name": "Loja de conveniência",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Lojas de conveniência",
+		"count": 1840085,
+		"id": "200253979990258"
+	},
+	{
+		"name": "Convento e mosteiro",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Convents & Monasteries",
+		"count": 73476,
+		"id": "139438332785466"
+	},
+	{
+		"name": "Centro de convenções",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Centros de convenção",
+		"count": 128951,
+		"id": "134015953331113"
+	},
+	{
+		"name": "Escola de gastronomia",
+		"has_children": false,
+		"parent_ids": [
+			"144971758897076"
+		],
+		"plural_name": "Aulas de culinária",
+		"count": 22865,
+		"id": "182269951819423"
+	},
+	{
+		"name": "Chalé",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Cottages",
+		"count": 136169,
+		"id": "189006297788323"
+	},
+	{
+		"name": "Creperia",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Creperias",
+		"count": 51297,
+		"id": "138756772860047"
+	},
+	{
+		"name": "Restaurante Cubano",
+		"has_children": false,
+		"parent_ids": [
+			"192242714144170"
+		],
+		"plural_name": "Restaurantes cubanos",
+		"count": 12118,
+		"id": "192804194073047"
+	},
+	{
+		"name": "Escola de culinária",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278676451"
+		],
+		"plural_name": "Escolas de culinária",
+		"count": 13803,
+		"id": "124744617598250"
+	},
+	{
+		"name": "Loja de presentes culturais",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Cultural Gifts Stores",
+		"count": 61290,
+		"id": "180816211956170"
+	},
+	{
+		"name": "Loja de cupcake",
+		"has_children": false,
+		"parent_ids": [
+			"187153754656815"
+		],
+		"plural_name": "Lojas de cupcake",
+		"count": 302722,
+		"id": "325310894151007"
+	},
+	{
+		"name": "Casa de câmbio",
+		"has_children": false,
+		"parent_ids": [
+			"161516070564222"
+		],
+		"plural_name": "Taxas de câmbio",
+		"count": 58340,
+		"id": "189172844438073"
+	},
+	{
+		"name": "Cyber café",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Cyber cafés",
+		"count": 1877,
+		"id": "170353509678476"
+	},
+	{
+		"name": "Danceteria",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Baladas",
+		"count": 3799,
+		"id": "176139629103647"
+	},
+	{
+		"name": "Estúdio de dança",
+		"has_children": false,
+		"parent_ids": [
+			"186982054657561"
+		],
+		"plural_name": "Dance Instruction",
+		"count": 121530,
+		"id": "203916779633178"
+	},
+	{
+		"name": "Day Spa",
+		"has_children": false,
+		"parent_ids": [
+			"200814353265561"
+		],
+		"plural_name": "Day Spas",
+		"count": 88633,
+		"id": "205950169432461"
+	},
+	{
+		"name": "Doceria",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Sorveteria",
+			"Loja de doces",
+			"Loja de cupcake"
+		],
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Dessert Places",
+		"count": 1294534,
+		"id": "187153754656815"
+	},
+	{
+		"name": "Restaurante Dim Sum",
+		"has_children": false,
+		"parent_ids": [
+			"174483852595760"
+		],
+		"plural_name": "Dim Sum",
+		"count": 54532,
+		"id": "194588013912896"
+	},
+	{
+		"name": "Lanchonete",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Lanchonetes",
+		"count": 847796,
+		"id": "167954166588517"
+	},
+	{
+		"name": "Dive Bar",
+		"has_children": false,
+		"parent_ids": [
+			"110290705711626"
+		],
+		"plural_name": "Dive Bars",
+		"count": 204298,
+		"id": "162480900474637"
+	},
+	{
+		"name": "DJ",
+		"has_children": false,
+		"parent_ids": [
+			"1758092431143387"
+		],
+		"plural_name": "DJs",
+		"count": 93238,
+		"id": "166419966738430"
+	},
+	{
+		"name": "Dormitório",
+		"has_children": false,
+		"parent_ids": [
+			"192049437499122"
+		],
+		"plural_name": "Dormitório",
+		"count": 1296692,
+		"id": "165665860162999"
+	},
+	{
+		"name": "Restaurante drive-in",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes com drive-in",
+		"count": 42960,
+		"id": "188684981153971"
+	},
+	{
+		"name": "Área para prática de golfe",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Aréas para prática de golfe",
+		"count": 46901,
+		"id": "177734062274696"
+	},
+	{
+		"name": "Igreja Ortodoxa Oriental",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Ortodoxas Orientais",
+		"count": 29177,
+		"id": "201201106561123"
+	},
+	{
+		"name": "Agência de turismo ecológico",
+		"has_children": false,
+		"parent_ids": [
+			"124861974254366"
+		],
+		"plural_name": "Passeios ecológicos",
+		"count": 115114,
+		"id": "214416301907154"
+	},
+	{
+		"name": "Acampamento acadêmico",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278666471"
+		],
+		"plural_name": "Educational Camps",
+		"count": 42103,
+		"id": "152248208162513"
+	},
+	{
+		"name": "Serviço de emergência na estrada",
+		"has_children": false,
+		"parent_ids": [
+			"1223524174334504"
+		],
+		"plural_name": "Serviços de emergência em acostamentos",
+		"count": 49355,
+		"id": "154067984646918"
+	},
+	{
+		"name": "Igreja Episcopal",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Episcopais",
+		"count": 28594,
+		"id": "170721982973337"
+	},
+	{
+		"name": "Restaurante etíope",
+		"has_children": false,
+		"parent_ids": [
+			"171226896258682"
+		],
+		"plural_name": "Restaurante etíope",
+		"count": 6669,
+		"id": "205689066126145"
+	},
+	{
+		"name": "Mercado de produtos étnicos",
+		"has_children": false,
+		"parent_ids": [
+			"150108431712141"
+		],
+		"plural_name": "Mercado de produtos étnicos",
+		"count": 34030,
+		"id": "144815382251809"
+	},
+	{
+		"name": "Igreja evangélica",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Evangélicas",
+		"count": 69312,
+		"id": "108447855899758"
+	},
+	{
+		"name": "Parque de diversões",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Fairgrounds",
+		"count": 169015,
+		"id": "162648480454674"
+	},
+	{
+		"name": "Médico de família",
+		"has_children": false,
+		"parent_ids": [
+			"188234584533149"
+		],
+		"plural_name": "Médicos de família",
+		"count": 174938,
+		"id": "113914582020990"
+	},
+	{
+		"name": "Restaurante caseiro",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes caseiros",
+		"count": 519439,
+		"id": "192831537402299"
+	},
+	{
+		"name": "Fazenda",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Fazenda urbana",
+			"Fazenda de laticínios",
+			"Viveiro de peixes"
+		],
+		"parent_ids": [
+			"1574325646194878"
+		],
+		"plural_name": "Fazendas",
+		"count": 986827,
+		"id": "150815208309028"
+	},
+	{
+		"name": "Feira livre",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Farmers Markets",
+		"count": 222053,
+		"id": "176527262444235"
+	},
+	{
+		"name": "Restaurante Fast-food",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Fast-food",
+		"count": 10458789,
+		"id": "192803624072087"
+	},
+	{
+		"name": "Restaurante filipino",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes filipinos",
+		"count": 48594,
+		"id": "107287559351594"
+	},
+	{
+		"name": "Serviço de auxílio financeiro",
+		"has_children": false,
+		"parent_ids": [
+			"161516070564222"
+		],
+		"plural_name": "Ajudas financeiras",
+		"count": 15603,
+		"id": "114047665342448"
+	},
+	{
+		"name": "Restaurante de Fish and Chips",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurante de peixe com fritas",
+		"count": 45516,
+		"id": "167608369957681"
+	},
+	{
+		"name": "Restaurante de Fondue",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Foundue",
+		"count": 86704,
+		"id": "167116956674095"
+	},
+	{
+		"name": "Barraca de comida",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Food Stands",
+		"count": 729685,
+		"id": "144362285623268"
+	},
+	{
+		"name": "Food Truck",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Food Trucks",
+		"count": 342878,
+		"id": "224426430990363"
+	},
+	{
+		"name": "Restaurante francês",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes franceses",
+		"count": 242597,
+		"id": "168976549819329"
+	},
+	{
+		"name": "Loja de Frozen Yogurt",
+		"has_children": false,
+		"parent_ids": [
+			"187153754656815"
+		],
+		"plural_name": "Lojas de Frozen Yogurt",
+		"count": 119547,
+		"id": "215290398491661"
+	},
+	{
+		"name": "Igreja do Evangelho Pleno",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igreja do Evangelho Pleno",
+		"count": 10863,
+		"id": "127410733993761"
+	},
+	{
+		"name": "Loja de móveis",
+		"has_children": false,
+		"parent_ids": [
+			"657099944438695"
+		],
+		"plural_name": "Lojas de móveis",
+		"count": 645995,
+		"id": "162845797101278"
+	},
+	{
+		"name": "Posto de gasolina",
+		"has_children": false,
+		"parent_ids": [
+			"1223524174334504"
+		],
+		"plural_name": "Postos de combustíveis",
+		"count": 1513649,
+		"id": "139272729470823"
+	},
+	{
+		"name": "Gastrobar",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Gastrobares",
+		"count": 315940,
+		"id": "164049010316507"
+	},
+	{
+		"name": "Bar GLS",
+		"has_children": false,
+		"parent_ids": [
+			"110290705711626"
+		],
+		"plural_name": "Bares gays",
+		"count": 62789,
+		"id": "128470943900600"
+	},
+	{
+		"name": "Restaurante alemão",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante bávaro",
+			"Restaurante suábio",
+			"Restaurante de Baden"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes alemães",
+		"count": 80265,
+		"id": "150217168372274"
+	},
+	{
+		"name": "Loja de presentes",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Lojas de presentes",
+		"count": 993114,
+		"id": "191647907538150"
+	},
+	{
+		"name": "Restaurante sem glúten",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes com comida sem glúten",
+		"count": 10284,
+		"id": "155358844524028"
+	},
+	{
+		"name": "Pista de kart",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Kart",
+		"count": 24434,
+		"id": "235437449807086"
+	},
+	{
+		"name": "Campo de golfe e Country Club",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Campos de golfe",
+		"count": 475631,
+		"id": "176059775772759"
+	},
+	{
+		"name": "Restaurante grego",
+		"has_children": false,
+		"parent_ids": [
+			"176960322351733"
+		],
+		"plural_name": "Restaurantes gregos",
+		"count": 137563,
+		"id": "144722595590046"
+	},
+	{
+		"name": "Mercados",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Mercados",
+		"count": 27170,
+		"id": "169207329791658"
+	},
+	{
+		"name": "Clube de tiro",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Estandes de tiro",
+		"count": 78648,
+		"id": "152275908161439"
+	},
+	{
+		"name": "Restaurante halal",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes islâmicos",
+		"count": 58971,
+		"id": "193694197335994"
+	},
+	{
+		"name": "Restaurante havaiano",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes havaianos",
+		"count": 17459,
+		"id": "191876627510158"
+	},
+	{
+		"name": "Restaurante de comida saudável",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes de comidas saudáveis",
+		"count": 98433,
+		"id": "156756251046858"
+	},
+	{
+		"name": "Loja de alimentos naturais",
+		"has_children": false,
+		"parent_ids": [
+			"150108431712141"
+		],
+		"plural_name": "Lojas de alimentos naturais",
+		"count": 205593,
+		"id": "198722103478014"
+	},
+	{
+		"name": "Spa",
+		"has_children": false,
+		"parent_ids": [
+			"200814353265561"
+		],
+		"plural_name": "Spas",
+		"count": 132953,
+		"id": "211987392145473"
+	},
+	{
+		"name": "Restaurante himalaio",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes himalaios",
+		"count": 3418,
+		"id": "135660879839870"
+	},
+	{
+		"name": "Templo Hindu",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Templos hindus",
+		"count": 109603,
+		"id": "587075671302634"
+	},
+	{
+		"name": "Local histórico",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Locais históricos",
+		"count": 428382,
+		"id": "197097220301977"
+	},
+	{
+		"name": "Museu histórico",
+		"has_children": false,
+		"parent_ids": [
+			"197817313562497"
+		],
+		"plural_name": "Museus de história",
+		"count": 290267,
+		"id": "244600818962350"
+	},
+	{
+		"name": "Igreja da Santidade",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Evangélicas Holiness",
+		"count": 9678,
+		"id": "201207006556711"
+	},
+	{
+		"name": "Serviço de passeios com carruagem",
+		"has_children": false,
+		"parent_ids": [
+			"152367304818850"
+		],
+		"plural_name": "Charretes",
+		"count": 23374,
+		"id": "180588421978578"
+	},
+	{
+		"name": "Hospital",
+		"has_children": false,
+		"parent_ids": [
+			"228143393877753"
+		],
+		"plural_name": "Hospitais",
+		"count": 4122744,
+		"id": "133152263416981"
+	},
+	{
+		"name": "Serviço hospitalar",
+		"has_children": false,
+		"parent_ids": [
+			"1728747447366202"
+		],
+		"plural_name": "Serviços de hospitalidade",
+		"count": 73610,
+		"id": "180699075298665"
+	},
+	{
+		"name": "Albergue",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Albergues",
+		"count": 181365,
+		"id": "150438461681329"
+	},
+	{
+		"name": "Agência de balonismo",
+		"has_children": false,
+		"parent_ids": [
+			"124861974254366"
+		],
+		"plural_name": "Balões de ar quente",
+		"count": 10488,
+		"id": "177756732269376"
+	},
+	{
+		"name": "Cachorro-quente",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Lanchonetes de cachorro-quente",
+		"count": 123723,
+		"id": "212285478786733"
+	},
+	{
+		"name": "Carrinho de cachorro quente",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Barracas de cachorros-quentes",
+		"count": 66,
+		"id": "207101895984270"
+	},
+	{
+		"name": "Empresa de serviços hoteleiros",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Hotel Supply Services",
+		"count": 25134,
+		"id": "199788206699825"
+	},
+	{
+		"name": "Restaurante húngaro",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes húngaros",
+		"count": 7557,
+		"id": "185368671504202"
+	},
+	{
+		"name": "Sorveteria",
+		"has_children": false,
+		"parent_ids": [
+			"187153754656815"
+		],
+		"plural_name": "Sorveterias",
+		"count": 802830,
+		"id": "200863816597800"
+	},
+	{
+		"name": "Igreja independente",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Independentes",
+		"count": 9489,
+		"id": "188625341157848"
+	},
+	{
+		"name": "Restaurante indiano",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante do Sul da Índia",
+			"Restaurante da Índia do Norte",
+			"Restaurante chinês indiano"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes indianos",
+		"count": 662342,
+		"id": "129539913784760"
+	},
+	{
+		"name": "Restaurante indonésio",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante javanês",
+			"Restaurante balinês",
+			"Restaurante sundanês"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes indonésios",
+		"count": 1176535,
+		"id": "167749593275424"
+	},
+	{
+		"name": "Pousada",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Pousadas",
+		"count": 265266,
+		"id": "181803978524025"
+	},
+	{
+		"name": "Igreja Interdenominacional",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Interdenominacional",
+		"count": 10743,
+		"id": "198883503460766"
+	},
+	{
+		"name": "Médico internista",
+		"has_children": false,
+		"parent_ids": [
+			"188234584533149"
+		],
+		"plural_name": "Medicina interna",
+		"count": 418822,
+		"id": "132227236842772"
+	},
+	{
+		"name": "Cyber café",
+		"has_children": false,
+		"parent_ids": [
+			"1758418281071392"
+		],
+		"plural_name": "Internet Cafes",
+		"count": 594983,
+		"id": "201035296584114"
+	},
+	{
+		"name": "Restaurante irlandês",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes irlandeses",
+		"count": 37274,
+		"id": "137463256320813"
+	},
+	{
+		"name": "Restaurante italiano",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante toscano",
+			"Restaurante siciliano",
+			"Restaurante de Abruzzo"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes italianos",
+		"count": 2094361,
+		"id": "193831710644458"
+	},
+	{
+		"name": "Restaurante japonês",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante Japonês",
+			"Restaurante especializado em ramen",
+			"Restaurante especializado em sobá"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes japoneses",
+		"count": 402951,
+		"id": "199035016778342"
+	},
+	{
+		"name": "Clube de jazz e blues",
+		"has_children": false,
+		"parent_ids": [
+			"179943432047564"
+		],
+		"plural_name": "Clubes de Jazz",
+		"count": 85185,
+		"id": "207290352633942"
+	},
+	{
+		"name": "Karaokê",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Karaoke",
+		"count": 391604,
+		"id": "187872604591327"
+	},
+	{
+		"name": "Restaurante coreano",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante de bunsik",
+			"Restaurante especializado em bossam/jokbal",
+			"Restaurante especializado em gukbap"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes coreanos",
+		"count": 197956,
+		"id": "150896171638138"
+	},
+	{
+		"name": "Restaurante kosher",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes judeus (Kosher)",
+		"count": 6090,
+		"id": "205628702786662"
+	},
+	{
+		"name": "Restaurante Latino-americano",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante mexicano",
+			"Restaurante brasileiro",
+			"Restaurante peruano"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes latino-americanos",
+		"count": 182981,
+		"id": "192242714144170"
+	},
+	{
+		"name": "Loja de vinho, cerveja e bebidas alcoólicas",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Liquor Stores",
+		"count": 488886,
+		"id": "199833073363963"
+	},
+	{
+		"name": "Restaurante de comida viva e crua",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes de comida viva e crua",
+		"count": 27582,
+		"id": "204867426208613"
+	},
+	{
+		"name": "Igreja Luterana",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Luteranas",
+		"count": 91509,
+		"id": "139462872784035"
+	},
+	{
+		"name": "Restaurante malasiano",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurante malaio",
+		"count": 53505,
+		"id": "198383150193535"
+	},
+	{
+		"name": "Mercado",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Mercados",
+		"count": 284913,
+		"id": "162813670434541"
+	},
+	{
+		"name": "Centro médico",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Hospital",
+			"Prática em medicina familiar",
+			"Asilo"
+		],
+		"parent_ids": [
+			"145118935550090"
+		],
+		"plural_name": "Centros médicos",
+		"count": 2844067,
+		"id": "228143393877753"
+	},
+	{
+		"name": "Restaurante mediterrâneo",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante grego"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes mediterrâneos",
+		"count": 81409,
+		"id": "176960322351733"
+	},
+	{
+		"name": "Igreja Menonita",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Menonitas",
+		"count": 5724,
+		"id": "192157707478469"
+	},
+	{
+		"name": "Loja de roupa masculina",
+		"has_children": false,
+		"parent_ids": [
+			"186230924744328"
+		],
+		"plural_name": "Lojas de roupas masculinas",
+		"count": 428377,
+		"id": "170241263022353"
+	},
+	{
+		"name": "Igreja Metodista",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Metodistas",
+		"count": 170894,
+		"id": "193064780713408"
+	},
+	{
+		"name": "Restaurante mexicano",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante Tex-Mex"
+		],
+		"parent_ids": [
+			"192242714144170"
+		],
+		"plural_name": "Restaurantes mexicanos",
+		"count": 2338610,
+		"id": "199377230079198"
+	},
+	{
+		"name": "Restaurante do Oriente Médio",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante Turco",
+			"Restaurante libanês",
+			"Restaurante persa/iraniano"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes do Oriente Médio",
+		"count": 246072,
+		"id": "167885889930008"
+	},
+	{
+		"name": "Minigolfe",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Campos de golfe em miniatura",
+		"count": 24558,
+		"id": "145250718867825"
+	},
+	{
+		"name": "Museu de arte moderna",
+		"has_children": false,
+		"parent_ids": [
+			"197817313562497"
+		],
+		"plural_name": "Museus de arte moderna",
+		"count": 31858,
+		"id": "378970035464823"
+	},
+	{
+		"name": "Restaurante de comida europeia moderna",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes de comida europeia moderna",
+		"count": 29157,
+		"id": "188360891207745"
+	},
+	{
+		"name": "Restaurante mongol",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes mongolianos",
+		"count": 8517,
+		"id": "151195168276371"
+	},
+	{
+		"name": "Monumento",
+		"has_children": false,
+		"parent_ids": [
+			"1080612391976317"
+		],
+		"plural_name": "Monumentos",
+		"count": 69600,
+		"id": "276651312419490"
+	},
+	{
+		"name": "Restaurante marroquino",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes marroquinos",
+		"count": 13708,
+		"id": "191073970923905"
+	},
+	{
+		"name": "Mesquita",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Mesquitas",
+		"count": 350093,
+		"id": "179905035385252"
+	},
+	{
+		"name": "Motel",
+		"has_children": false,
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Motels",
+		"count": 145982,
+		"id": "152050108191372"
+	},
+	{
+		"name": "Estúdio de cinema/TV",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278686431"
+		],
+		"plural_name": "Estúdio de cinema e televisão",
+		"count": 597867,
+		"id": "370369022981015"
+	},
+	{
+		"name": "Cinema",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Drive-in"
+		],
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Cinemas",
+		"count": 4856308,
+		"id": "192511100766680"
+	},
+	{
+		"name": "Parque nacional",
+		"has_children": false,
+		"parent_ids": [
+			"115090141929327"
+		],
+		"plural_name": "Parques nacionais",
+		"count": 331355,
+		"id": "205359639482698"
+	},
+	{
+		"name": "Igreja do Nazareno",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas do Nazareno",
+		"count": 23697,
+		"id": "149452815111438"
+	},
+	{
+		"name": "Restaurante nepalês",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes nepaleses",
+		"count": 7034,
+		"id": "186869748024304"
+	},
+	{
+		"name": "Restaurante de comida americana contemporânea",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes de comida americana contemporânea",
+		"count": 732394,
+		"id": "110107385737667"
+	},
+	{
+		"name": "Danceteria",
+		"has_children": false,
+		"parent_ids": [
+			"179943432047564"
+		],
+		"plural_name": "Boates",
+		"count": 1172730,
+		"id": "191478144212980"
+	},
+	{
+		"name": "Igreja não-confessional",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas não-confessionais",
+		"count": 77592,
+		"id": "200639493285676"
+	},
+	{
+		"name": "Outlet",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Outlet Stores",
+		"count": 120796,
+		"id": "128698093865240"
+	},
+	{
+		"name": "Centro de paintball",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Paintball",
+		"count": 36402,
+		"id": "171432846236153"
+	},
+	{
+		"name": "Restaurante paquistanês",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes paquistaneses",
+		"count": 24535,
+		"id": "207484765932960"
+	},
+	{
+		"name": "Parque",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Parque infantil",
+			"Parque nacional",
+			"Área para piquenique"
+		],
+		"parent_ids": [
+			"186982054657561"
+		],
+		"plural_name": "Parques",
+		"count": 2466860,
+		"id": "115090141929327"
+	},
+	{
+		"name": "Local para festas",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Party Centers",
+		"count": 170394,
+		"id": "189334414420898"
+	},
+	{
+		"name": "Igreja Pentecostal",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Pentecostais",
+		"count": 91194,
+		"id": "177900302253752"
+	},
+	{
+		"name": "Restaurante persa/iraniano",
+		"has_children": false,
+		"parent_ids": [
+			"167885889930008"
+		],
+		"plural_name": "Restaurantes persas",
+		"count": 9791,
+		"id": "109377152477621"
+	},
+	{
+		"name": "Restaurante peruano",
+		"has_children": false,
+		"parent_ids": [
+			"192242714144170"
+		],
+		"plural_name": "Restaurantes peruanos",
+		"count": 74408,
+		"id": "137420212991446"
+	},
+	{
+		"name": "Zoológico infantil",
+		"has_children": false,
+		"parent_ids": [
+			"1191146560918930"
+		],
+		"plural_name": "Zoológicos infantis",
+		"count": 42713,
+		"id": "186911214686518"
+	},
+	{
+		"name": "Farmácia/Drogaria",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Farmácias",
+		"count": 1646733,
+		"id": "134381433294944"
+	},
+	{
+		"name": "Restaurante de pho",
+		"has_children": false,
+		"parent_ids": [
+			"155136917876965"
+		],
+		"plural_name": "Restaurantes de pho",
+		"count": 27178,
+		"id": "211063415594061"
+	},
+	{
+		"name": "Área para piquenique",
+		"has_children": false,
+		"parent_ids": [
+			"115090141929327"
+		],
+		"plural_name": "Áreas para piqueniques",
+		"count": 250223,
+		"id": "200597389954350"
+	},
+	{
+		"name": "Pizzaria",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Pizzarias",
+		"count": 2558346,
+		"id": "180256082015845"
+	},
+	{
+		"name": "Parque infantil",
+		"has_children": false,
+		"parent_ids": [
+			"115090141929327"
+		],
+		"plural_name": "Parques infantis",
+		"count": 380137,
+		"id": "192092574152128"
+	},
+	{
+		"name": "Restaurante polonês",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes poloneses",
+		"count": 13036,
+		"id": "150805268316547"
+	},
+	{
+		"name": "Restaurante polinésio",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes polinésios",
+		"count": 2774,
+		"id": "201159503244240"
+	},
+	{
+		"name": "Bilhar",
+		"has_children": false,
+		"parent_ids": [
+			"110290705711626"
+		],
+		"plural_name": "Sinuca e Bilhar",
+		"count": 86854,
+		"id": "197750126917541"
+	},
+	{
+		"name": "Restaurante português",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes portugueses",
+		"count": 49266,
+		"id": "155167537873297"
+	},
+	{
+		"name": "Igreja Presbiteriana",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Presbiterianas",
+		"count": 86498,
+		"id": "152783908110257"
+	},
+	{
+		"name": "Pub",
+		"has_children": false,
+		"parent_ids": [
+			"110290705711626"
+		],
+		"plural_name": "Pubs",
+		"count": 1727486,
+		"id": "218693881483234"
+	},
+	{
+		"name": "Quadra de squash",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Quadras de squash",
+		"count": 7453,
+		"id": "189799921044604"
+	},
+	{
+		"name": "Restaurante especializado em ramen",
+		"has_children": false,
+		"parent_ids": [
+			"199035016778342"
+		],
+		"plural_name": "Restaurantes especializados em ramen",
+		"count": 240243,
+		"id": "218838724804749"
+	},
+	{
+		"name": "Centro recreativo",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Centros de recreação",
+		"count": 301560,
+		"id": "183013211744255"
+	},
+	{
+		"name": "Centro recreativo",
+		"has_children": false,
+		"parent_ids": [
+			"611262855707676"
+		],
+		"plural_name": "Centros de recreação",
+		"count": 14422,
+		"id": "154585851262816"
+	},
+	{
+		"name": "Resort",
+		"has_children": false,
+		"parent_ids": [
+			"164243073639257"
+		],
+		"plural_name": "Resorts",
+		"count": 351149,
+		"id": "187686707929197"
+	},
+	{
+		"name": "Restaurante Russo",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes russos",
+		"count": 10871,
+		"id": "157978694256306"
+	},
+	{
+		"name": "Serviço de primeiros socorros e segurança",
+		"has_children": false,
+		"parent_ids": [
+			"1154837367920704"
+		],
+		"plural_name": "Serviços de segurança e primeiros socorros",
+		"count": 107967,
+		"id": "181679458534697"
+	},
+	{
+		"name": "Buffet de saladas",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Buffets de saladas",
+		"count": 93371,
+		"id": "112286315572975"
+	},
+	{
+		"name": "Sanduicheria",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Sandwich Shops",
+		"count": 1315904,
+		"id": "188296324525457"
+	},
+	{
+		"name": "Restaurante Escandinavo",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes escandinavos",
+		"count": 7118,
+		"id": "191654867538088"
+	},
+	{
+		"name": "Restaurante de frutos do mar",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes de frutos do mar",
+		"count": 1499161,
+		"id": "163300367054197"
+	},
+	{
+		"name": "Igreja Adventista do Sétimo Dia",
+		"has_children": false,
+		"parent_ids": [
+			"192134360811676"
+		],
+		"plural_name": "Igrejas Adventistas do Sétimo Dia",
+		"count": 61768,
+		"id": "187333341297290"
+	},
+	{
+		"name": "Loja de calçados",
+		"has_children": false,
+		"parent_ids": [
+			"186230924744328"
+		],
+		"plural_name": "Lojas de sapatos",
+		"count": 1152707,
+		"id": "109512302457693"
+	},
+	{
+		"name": "Distrito comercial",
+		"has_children": false,
+		"parent_ids": [
+			"1874409019452971"
+		],
+		"plural_name": "Áreas comerciais",
+		"count": 293548,
+		"id": "136412456432179"
+	},
+	{
+		"name": "Shopping center",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Shoppings",
+		"count": 1617595,
+		"id": "109527622457518"
+	},
+	{
+		"name": "Serviço de compras",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Serviços de compras",
+		"count": 119779,
+		"id": "200046713342752"
+	},
+	{
+		"name": "Templo sikh",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Sikh Temples",
+		"count": 32851,
+		"id": "367259453311239"
+	},
+	{
+		"name": "Restaurante cingapuriano",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes cingapurianos",
+		"count": 6903,
+		"id": "142590562472824"
+	},
+	{
+		"name": "Estação de esqui",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Estações de esqui",
+		"count": 85099,
+		"id": "162841010432730"
+	},
+	{
+		"name": "Escola de esqui e snowboard",
+		"has_children": false,
+		"parent_ids": [
+			"144971758897076"
+		],
+		"plural_name": "Escolas de esqui e snowboard",
+		"count": 16375,
+		"id": "144087115657937"
+	},
+	{
+		"name": "Centro de skydiving",
+		"has_children": false,
+		"parent_ids": [
+			"865117100300601"
+		],
+		"plural_name": "Paraquedismos",
+		"count": 23100,
+		"id": "176803072363608"
+	},
+	{
+		"name": "Bar de smoothies e sucos",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Smoothie & Juice Bars",
+		"count": 246247,
+		"id": "219222658110242"
+	},
+	{
+		"name": "Clube social",
+		"has_children": false,
+		"parent_ids": [
+			"170968163319233"
+		],
+		"plural_name": "Clubes sociais",
+		"count": 389178,
+		"id": "215343825145859"
+	},
+	{
+		"name": "Restaurante afro-americano",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes afro-americanos",
+		"count": 60274,
+		"id": "156757354384541"
+	},
+	{
+		"name": "Restaurante de sopa",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Sopas",
+		"count": 29874,
+		"id": "135468489860087"
+	},
+	{
+		"name": "Restaurante sulista (EUA)",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes sulistas (EUA)",
+		"count": 60109,
+		"id": "203693296307954"
+	},
+	{
+		"name": "Restaurante do sudoeste (EUA)",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes sulistas",
+		"count": 48364,
+		"id": "143722605691025"
+	},
+	{
+		"name": "Spa",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Serviço de massagem",
+			"Spa",
+			"Day Spa"
+		],
+		"parent_ids": [
+			"268726176833362"
+		],
+		"plural_name": "Spas",
+		"count": 400246,
+		"id": "200814353265561"
+	},
+	{
+		"name": "Restaurante Espanhol",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes espanhois",
+		"count": 105964,
+		"id": "171485526232801"
+	},
+	{
+		"name": "Loja de artigos esportivos",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Loja de pesca",
+			"Loja de bicicletas",
+			"Loja de equipamentos para acampamento"
+		],
+		"parent_ids": [
+			"186982054657561"
+		],
+		"plural_name": "Lojas de artigos esportivos",
+		"count": 635251,
+		"id": "165823830131654"
+	},
+	{
+		"name": "Bar esportivo",
+		"has_children": false,
+		"parent_ids": [
+			"110290705711626"
+		],
+		"plural_name": "Bares de esportes",
+		"count": 396609,
+		"id": "184460441595855"
+	},
+	{
+		"name": "Centro esportivo",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Centros de esportes",
+		"count": 134,
+		"id": "192998244062607"
+	},
+	{
+		"name": "Clube poliesportivo",
+		"has_children": false,
+		"parent_ids": [
+			"964585346994407"
+		],
+		"plural_name": "Clubes de esportes",
+		"count": 659992,
+		"id": "189018581118681"
+	},
+	{
+		"name": "Estádio, ginásio e instalação esportiva",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Estádio de futebol americano",
+			"Estádio de futebol",
+			"Campo de críquete"
+		],
+		"parent_ids": [
+			"179943432047564"
+		],
+		"plural_name": "Ginásios de esportes e estádios",
+		"count": 1790872,
+		"id": "109976259083543"
+	},
+	{
+		"name": "Parque estadual",
+		"has_children": false,
+		"parent_ids": [
+			"115090141929327"
+		],
+		"plural_name": "Parques estaduais",
+		"count": 152124,
+		"id": "204506149664245"
+	},
+	{
+		"name": "Estátuas e fontes",
+		"has_children": false,
+		"parent_ids": [
+			"1080612391976317"
+		],
+		"plural_name": "Estátuas e fontes",
+		"count": 47944,
+		"id": "210857662260088"
+	},
+	{
+		"name": "Churrascaria",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Churrascarias",
+		"count": 650188,
+		"id": "198367566846946"
+	},
+	{
+		"name": "Restaurante Japonês",
+		"has_children": false,
+		"parent_ids": [
+			"199035016778342"
+		],
+		"plural_name": "Sushi",
+		"count": 811887,
+		"id": "134501539950711"
+	},
+	{
+		"name": "Sinagoga",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278701401"
+		],
+		"plural_name": "Sinagogas",
+		"count": 33133,
+		"id": "184925784880952"
+	},
+	{
+		"name": "Restaurante taiuanes",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes tailandeses",
+		"count": 47140,
+		"id": "199146280116687"
+	},
+	{
+		"name": "Tapas Bar & Restaurante",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Bares e restaurantes de Tapas",
+		"count": 188202,
+		"id": "119869574758000"
+	},
+	{
+		"name": "Serviço de táxi",
+		"has_children": false,
+		"parent_ids": [
+			"152367304818850"
+		],
+		"plural_name": "Táxis",
+		"count": 205216,
+		"id": "210561295621365"
+	},
+	{
+		"name": "Casa de chá",
+		"has_children": false,
+		"parent_ids": [
+			"197871390225897"
+		],
+		"plural_name": "Casas de chá",
+		"count": 381609,
+		"id": "203462172997785"
+	},
+	{
+		"name": "Restaurante Tex-Mex",
+		"has_children": false,
+		"parent_ids": [
+			"199377230079198"
+		],
+		"plural_name": "Restaurantes Tex-Mex",
+		"count": 25739,
+		"id": "212369748779358"
+	},
+	{
+		"name": "Restaurante Tailandês",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes tailandeses",
+		"count": 399663,
+		"id": "179167895459033"
+	},
+	{
+		"name": "Teatro",
+		"has_children": false,
+		"parent_ids": [
+			"179943432047564"
+		],
+		"plural_name": "Teatro",
+		"count": 397365,
+		"id": "173883042668223"
+	},
+	{
+		"name": "Parque temático",
+		"has_children": false,
+		"parent_ids": [
+			"833919110075422"
+		],
+		"plural_name": "Parques temáticos",
+		"count": 4375,
+		"id": "187224924655149"
+	},
+	{
+		"name": "Brechó e loja de consignação",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Thrift or Consignment Stores",
+		"count": 211964,
+		"id": "205429726142620"
+	},
+	{
+		"name": "Venda de ingressos",
+		"has_children": false,
+		"parent_ids": [
+			"369730359717478"
+		],
+		"plural_name": "Ticket Sales",
+		"count": 53745,
+		"id": "166975666684060"
+	},
+	{
+		"name": "Tabacaria",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Tabacarias",
+		"count": 451390,
+		"id": "196434697050078"
+	},
+	{
+		"name": "Aeroporto",
+		"has_children": false,
+		"parent_ids": [
+			"520917194785584"
+		],
+		"plural_name": "Aeroportos",
+		"count": 1163497,
+		"id": "128966563840349"
+	},
+	{
+		"name": "Bar",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Pub",
+			"Lounge",
+			"Bar esportivo"
+		],
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Bares",
+		"count": 8058157,
+		"id": "110290705711626"
+	},
+	{
+		"name": "Livraria",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Livrarias",
+		"count": 855510,
+		"id": "197048876974331"
+	},
+	{
+		"name": "Local para eventos e apresentações",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Estádio, ginásio e instalação esportiva",
+			"Danceteria",
+			"Teatro"
+		],
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Concert Venues",
+		"count": 1536860,
+		"id": "179943432047564"
+	},
+	{
+		"name": "Médico",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Oftalmologista",
+			"Quiroprático",
+			"Médico internista"
+		],
+		"parent_ids": [
+			"145118935550090"
+		],
+		"plural_name": "Doctors",
+		"count": 3441558,
+		"id": "188234584533149"
+	},
+	{
+		"name": "Hotel",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Resort",
+			"Resort na praia"
+		],
+		"parent_ids": [
+			"505091123022329"
+		],
+		"plural_name": "Hotéis",
+		"count": 6418575,
+		"id": "164243073639257"
+	},
+	{
+		"name": "Ilha",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278716371"
+		],
+		"plural_name": "Islands",
+		"count": 530757,
+		"id": "244600688971270"
+	},
+	{
+		"name": "Cozinha/culinária",
+		"has_children": false,
+		"parent_ids": [
+			"1605186416478696"
+		],
+		"plural_name": "Utensílios de cozinha",
+		"count": 559927,
+		"id": "132852590115660"
+	},
+	{
+		"name": "Lago",
+		"has_children": false,
+		"parent_ids": [
+			"10103602278716371"
+		],
+		"plural_name": "Lagos",
+		"count": 772437,
+		"id": "163581277042500"
+	},
+	{
+		"name": "Ponto de referência e local histórico",
+		"has_children": false,
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Landmarks",
+		"count": 5162007,
+		"id": "209889829023118"
+	},
+	{
+		"name": "Biblioteca",
+		"has_children": false,
+		"parent_ids": [
+			"147714868971098"
+		],
+		"plural_name": "Bibliotecas",
+		"count": 931148,
+		"id": "169896676390222"
+	},
+	{
+		"name": "Museu",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Museu histórico",
+			"Museu de arte",
+			"Museu de arte moderna"
+		],
+		"parent_ids": [
+			"133436743388217"
+		],
+		"plural_name": "Museus",
+		"count": 2577985,
+		"id": "197817313562497"
+	},
+	{
+		"name": "Centro de informações turísticas",
+		"has_children": false,
+		"parent_ids": [
+			"169581916792003"
+		],
+		"plural_name": "Informações turísticas",
+		"count": 400994,
+		"id": "124947834245370"
+	},
+	{
+		"name": "Estação de trem",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Estação ferroviária",
+			"Estação de metrô",
+			"Estação de trem"
+		],
+		"parent_ids": [
+			"520917194785584"
+		],
+		"plural_name": "Estações de trem",
+		"count": 1077141,
+		"id": "145887745471348"
+	},
+	{
+		"name": "Serviço de transporte",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Serviço de táxi",
+			"Serviço de limousine",
+			"Serviço de ônibus fretado"
+		],
+		"parent_ids": [
+			"128232937246338"
+		],
+		"plural_name": "Serviço de transporte",
+		"count": 1244896,
+		"id": "152367304818850"
+	},
+	{
+		"name": "Agência de viagens",
+		"has_children": false,
+		"parent_ids": [
+			"169581916792003"
+		],
+		"plural_name": "Agências de viagem",
+		"count": 817176,
+		"id": "162914327091136"
+	},
+	{
+		"name": "Restaurante Turco",
+		"has_children": false,
+		"parent_ids": [
+			"167885889930008"
+		],
+		"plural_name": "Restaurantes turcos",
+		"count": 89176,
+		"id": "205503056146172"
+	},
+	{
+		"name": "Fazenda urbana",
+		"has_children": false,
+		"parent_ids": [
+			"150815208309028"
+		],
+		"plural_name": "Fazenda urbana",
+		"count": 132647,
+		"id": "239455319478077"
+	},
+	{
+		"name": "Restaurante vegetariano/vegano",
+		"has_children": false,
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes vegetarianos e veganos",
+		"count": 94551,
+		"id": "200742186618963"
+	},
+	{
+		"name": "Videogame",
+		"has_children": false,
+		"parent_ids": [
+			"1605186416478696"
+		],
+		"plural_name": "Videogames",
+		"count": 602788,
+		"id": "211579738882707"
+	},
+	{
+		"name": "Restaurante Vietnamita",
+		"has_children": true,
+		"top_subtopic_names": [
+			"Restaurante de pho"
+		],
+		"parent_ids": [
+			"273819889375819"
+		],
+		"plural_name": "Restaurantes vietnamitas",
+		"count": 105400,
+		"id": "155136917876965"
+	},
+	{
+		"name": "Loja Vintage",
+		"has_children": false,
+		"parent_ids": [
+			"200600219953504"
+		],
+		"plural_name": "Vintage Stores",
+		"count": 95153,
+		"id": "194127957280024"
+	},
+	{
+		"name": "Parque aquático",
+		"has_children": false,
+		"parent_ids": [
+			"220626791295805"
+		],
+		"plural_name": "Parques aquáticos",
+		"count": 153675,
+		"id": "174777552574651"
+	},
+	{
+		"name": "Reserva ambiental",
+		"has_children": false,
+		"parent_ids": [
+			"1191146560918930"
+		],
+		"plural_name": "Santuários de vida selvagem",
+		"count": 246230,
+		"id": "156982297694225"
+	},
+	{
+		"name": "Adega",
+		"has_children": false,
+		"parent_ids": [
+			"110290705711626"
+		],
+		"plural_name": "Wine bars",
+		"count": 206004,
+		"id": "192661127431931"
+	},
+	{
+		"name": "Vinícola/vinhedo",
+		"has_children": false,
+		"parent_ids": [
+			"1562965077339698"
+		],
+		"plural_name": "Vinícolas e vinhedos",
+		"count": 253289,
+		"id": "209630435729071"
+	},
+	{
+		"name": "Loja de roupa feminina",
+		"has_children": false,
+		"parent_ids": [
+			"186230924744328"
+		],
+		"plural_name": "Lojas de roupas femininas",
+		"count": 1537303,
+		"id": "128753240528981"
+	}
+]

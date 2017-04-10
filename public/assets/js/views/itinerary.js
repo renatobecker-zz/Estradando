@@ -182,14 +182,47 @@ function submitForm(e) {
 	}
 }
 
+var groupCategory = function(place) {
+    var group, list;
+    if ((data) && (data.config) && (data.config.catalog_categories)) {
+        list = data.config.catalog_categories;
+    }
+    if ((list) && ((place.category_list) && (place.category_list.length > 0))) {
+        for (var i = 0; i < place.category_list.length; i++) {
+            var category_id = place.category_list[i].id;
+            group = (_.find(list, function(category) {
+                return _.contains(category.group, category_id);
+            }));   
+
+            if (group) break; 
+        }
+    }
+    return group;
+};
+
+var markerGroup = function(group) {
+    var marker = {
+        icon: (group) ? group.icon : 'fa-location-arrow',
+        color: 'blue' //(group) ? group.icon : 
+    }
+    return marker;
+}
+
 var loadPlaces = function(response) {    
     sidebar.hide();
-    _.each(response.data, function(place) {                
-        addMarker(place);
+    _.each(response.data, function(place) { 
+        var group = groupCategory(place);               
+        if (group) {
+            var marker = markerGroup(group);
+            place.marker = marker;
+            addMarker(place);    
+        } else {
+            console.log(place);
+        }                    
     });
     map.addLayer(markers);
     if (!response.paging) {  
-        console.log(response.data);
+        //console.log(response.data);
         renderHtmlPlacesResult(response.data, function(html){
             sidebar.setContent(html);
             sidebar.show();    

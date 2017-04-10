@@ -98,7 +98,7 @@ var getMarkerPopup = function(options) {
 
 var addMarker = function(options, callback) {
     var iconMarker = L.ExtraMarkers.icon({
-        icon: "fa-location-arrow", //options.marker.icon,
+        icon: options.marker.icon,
         markerColor: 'green', //options.marker.color,
         //shape: options.marker.shape,
         prefix: 'fa'
@@ -109,7 +109,7 @@ var addMarker = function(options, callback) {
     if (callback) {
         marker.on('click', callback);
     }
-    //marker.bindPopup( getMarkerPopup(options) ) ;
+    marker.bindPopup(getMarkerPopup(options));
     markers.addLayer(marker);
     //.openPopup();    
 }
