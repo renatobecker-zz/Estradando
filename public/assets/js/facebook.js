@@ -55,9 +55,9 @@ var facebookSearch = function(params, callback) {
     var center = params.geolocation.latitude + "," + params.geolocation.longitude;
     var p = {
         "distance": 5000,
-        "limit": 50000,
+        //"limit": 50000,
         "center": center,
-        "q": (params.query ? params.query : "*"),
+        "q": (params.query ? params.query : ""),
         "type": "place",                
         "fields": "id,name,location,overall_rating,overall_star_rating,price_range,rating_count,hours,about,category,category_list,cover,current_location,description,contact_address,single_line_address,parking,payment_options,phone,place_topic",//,name_with_location_descriptor,fan_count,food_styles,general_info,is_always_open,is_permanently_closed,likes,link,restaurant_services,restaurant_specialties,website,were_here_count,checkins",
         "locale": "pt_BR"

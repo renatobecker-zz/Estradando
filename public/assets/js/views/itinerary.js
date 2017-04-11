@@ -189,9 +189,9 @@ var groupCategory = function(place) {
     }
     if ((list) && ((place.category_list) && (place.category_list.length > 0))) {
         for (var i = 0; i < place.category_list.length; i++) {
-            var category_id = place.category_list[i].id;
+            var category_name = place.category_list[i].name;
             group = (_.find(list, function(category) {
-                return _.contains(category.group, category_id);
+                return _.contains(category.group, category_name);
             }));   
 
             if (group) break; 
@@ -202,8 +202,9 @@ var groupCategory = function(place) {
 
 var markerGroup = function(group) {
     var marker = {
-        icon: (group) ? group.icon : 'fa-location-arrow',
-        color: 'blue' //(group) ? group.icon : 
+        icon: (group) ? group.icon : "fa-location-arrow",
+        color: ((group) && (group.color)) ? group.color : "green",
+        iconColor: ((group) && (group.iconColor)) ? group.iconColor : "white"
     }
     return marker;
 }
@@ -216,13 +217,11 @@ var loadPlaces = function(response) {
             var marker = markerGroup(group);
             place.marker = marker;
             addMarker(place);    
-        } else {
-            console.log(place);
         }                    
     });
     map.addLayer(markers);
+    console.log(response.data);
     if (!response.paging) {  
-        //console.log(response.data);
         renderHtmlPlacesResult(response.data, function(html){
             sidebar.setContent(html);
             sidebar.show();    

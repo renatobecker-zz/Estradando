@@ -99,8 +99,9 @@ var getMarkerPopup = function(options) {
 var addMarker = function(options, callback) {
     var iconMarker = L.ExtraMarkers.icon({
         icon: options.marker.icon,
-        markerColor: 'green', //options.marker.color,
-        //shape: options.marker.shape,
+        markerColor: options.marker.color,
+        iconColor: options.marker.iconColor,
+        shape: (options.marker.shape) ? options.marker.shape : "circle",
         prefix: 'fa'
     });
     //var location = (options.type == "event") ? options.place.location : options.location;

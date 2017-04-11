@@ -32,6 +32,7 @@ class FacebookController extends Controller
     }
 
     public function categories($topic_filter=null) {
+        /*
         $config = config('facebook.graph.categories.uri');
         if ($topic_filter) {
             $config['topic_filter'] = $topic_filter;
@@ -43,13 +44,14 @@ class FacebookController extends Controller
         $results = array_values(array_sort($data, function ($value) {
             return $value['name'];
         }));
-        */
+        
 
         return Response::json(array('success'=>true,'data'=>$data)); 
-        /*        
+        */
+                
         $categories = Category::all();    
         return Response::json(array('success'=>true,'data'=>$categories));
-        */
+        
     }
     /*
     public function category($id) {
