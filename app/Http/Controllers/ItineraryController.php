@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use Illuminate\Http\Request;
+USE Input;
+use Request;
 use Response;
-//use Symfony\Component\Yaml\Yaml;
 use JavaScript;
 use Session;
+use Validator;
+use Auth;
+use App\Classes\Helpers as Helper;
 use App\Models\Config\CatalogCategory as CatalogCategory;
+use App\Models\Data\Itinerary as Itinerary;
 
 class ItineraryController extends Controller
 {
@@ -30,6 +34,56 @@ class ItineraryController extends Controller
         return view('pages.itinerary');
     }
 
+    public function load($id) {
+        
+        $itinerary = Itinerary::find($id);
+
+        if (is_null($itinerary)) {
+            abort(404);
+        }        
+
+        if ($itinerary->creator_id !== Auth::user()->_id) {
+            abort(403, 'Permissão de acesso negada.');  
+        }
+
+        $config = array(
+                'catalog_categories' => $this->get_catalog_categories(),
+                'itinerary' => $itinerary
+            );
+        JavaScript::put(['config' => $config]);
+        return view('pages.itinerary', [ 'itinerary' => $itinerary ]);
+    }
+
+    public function store() {
+
+        $rules = Itinerary::rules();        
+        $validator = Validator::make(Request::all(), $rules);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if (Request::ajax()) {  
+                return Response::json(array('success'=>false,'errors'=>$errors)); 
+            } else {
+                return redirect()->back()->withInput()->withErrors($errors);
+            }    
+        }
+        $itinerary = new Itinerary;
+        $itinerary->name       = Request::get('name');
+        $itinerary->creator_id = (Auth::check()) ? Auth::user()->_id : null;
+        $itinerary->start_date = Helper::convertToMongoDate(Request::get('start_date'));
+        $itinerary->end_date   = Helper::convertToMongoDate(Request::get('end_date'));
+        if ($itinerary->save()) {
+            return Response::json(array('success'=>true,'data'=>$itinerary)); 
+        }      
+    }
+
+    public function add_place($id, $place_id) {
+
+    }
+
+    public function invite_user($id, $user_id) {
+
+    }
+
     private function get_catalog_categories() {
         $catalog_categories = Session::get('catalog_categories');
         if ($catalog_categories) {
@@ -39,6 +93,7 @@ class ItineraryController extends Controller
         $result = $catalog_categories = CatalogCategory::all()->toArray(); 
         Session::set('catalog_categories', $catalog_categories);
         return $result;
-
     }
+
+
 }

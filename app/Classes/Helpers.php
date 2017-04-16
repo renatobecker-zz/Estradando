@@ -1,7 +1,6 @@
 <?php 
 
 namespace App\Classes;
-
 class Helpers {
 
     const ACCENT_STRINGS = 'ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËẼÌÍÎÏĨÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëẽìíîïĩðñòóôõöøùúûüýÿ';
@@ -44,6 +43,13 @@ class Helpers {
     public static function isValidMongoID($mongoID ='') {
     
         return preg_match('/^[a-f0-9]{24}$/', $mongoID);
-    }    
+    }  
+
+    public static function convertToMongoDate($strDate) {
+        if (is_null($strDate)) return;
+
+        $date = str_replace('/', '-', $strDate);                       
+        return new \MongoDB\BSON\UTCDateTime(strtotime($date));
+    }
 
 }

@@ -54,8 +54,8 @@ var facebookGraph = function(url, p, callback) {
 var facebookSearch = function(params, callback) {
     var center = params.geolocation.latitude + "," + params.geolocation.longitude;
     var p = {
-        "distance": 5000,
-        //"limit": 50000,
+        "distance": 25000,
+        "limit": 500000,
         "center": center,
         "q": (params.query ? params.query : ""),
         "type": "place",                
@@ -70,7 +70,7 @@ var facebookInviteFriends = function() {
         FB.ui({
             method: 'apprequests',
             message: 'Nova solicitação de Estradando',
-            redirect_uri: 'localhost:8000/itinerary',
+            redirect_uri: 'localhost:8000/itinerary/1234abcd', //alterar parametro id
             title: "Seleção de amigos",
             new_style_message: true
         }, requestCallback);

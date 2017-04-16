@@ -8,29 +8,32 @@
             </div>
             <div class="modal-body">
                 <div class="panel-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="form-create-itinerary">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Nome</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" placeholder="Nome do Roteiro" />
+                                <input type="text" class="form-control" name="name" id="itinerary-name" placeholder="Nome do Roteiro" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Período</label>
                             <div class="col-md-9">
                                 <div class="input-group input-daterange">
-                                    <input type="text" class="form-control" name="start-date" placeholder="Data Inicial" />
+                                    <input type="text" class="form-control" name="start-date" id="itinerary-start-date" placeholder="Data Inicial" />
                                     <span class="input-group-addon">até</span>
-                                    <input type="text" class="form-control" name="end-date" placeholder="Data Final" />
+                                    <input type="text" class="form-control" name="end-date" id="itinerary-end-date" placeholder="Data Final" />
                                 </div>
-                            </div>
-                        </form>
-                    </div>               
+                            </div>                    
+                        </div>               
+                    </form>                        
                     <!-- end panel -->
                 </div>
+                <div class="alert alert-danger m-b-5">                    
+                    <p>Você realmente deseja excluir este registro?</p>
+                </div>                    
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cancelar</a>
-                    <a href="javascript:;" class="btn btn-sm btn-success">Confirmar</a>
+                    <a href="javascript:;" class="btn btn-sm btn-success" id="ActCreateItinerary">Confirmar</a>
                 </div>
             </div>
         </div>

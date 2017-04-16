@@ -11,7 +11,9 @@ Route::auth();
 //Route::get('/home'           , 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/itinerary'      				 , 'ItineraryController@index');
+	Route::get('/home'               			 , 'ItineraryController@index');
+    Route::get('/itinerary/{id}'                 , 'ItineraryController@load');
+    Route::post('/itinerary/store'                , 'ItineraryController@store');
 	Route::get('/api/catalog_categories'		 , 'FacebookController@catalog_categories');
 	Route::get('/api/places'    		         , 'FacebookController@places');
 	//Route::get('/api/events'    		         , 'FacebookController@events');
