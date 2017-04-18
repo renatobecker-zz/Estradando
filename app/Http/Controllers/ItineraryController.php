@@ -13,10 +13,11 @@ use Auth;
 use App\Classes\Helpers as Helper;
 use App\Models\Config\CatalogCategory as CatalogCategory;
 use App\Models\Data\Itinerary as Itinerary;
+use URL;
 
 class ItineraryController extends Controller
 {
-    /**
+    /*
      * Create a new controller instance.
      *
      * @return void
@@ -36,9 +37,7 @@ class ItineraryController extends Controller
             );
         }        
 
-        $config = array(
-                'catalog_categories' => $this->get_catalog_categories()
-            );
+        $config = $this->get_default_view_params();
         JavaScript::put(['config' => $config]);
         return view('pages.itinerary');
     }
@@ -62,10 +61,8 @@ class ItineraryController extends Controller
             abort(403, 'Permissão de acesso negada.');  
         }
 
-        $config = array(
-                'catalog_categories' => $this->get_catalog_categories(),
-                'itinerary' => $itinerary
-            );
+        $config = $this->get_default_view_params();
+        $config['itinerary'] = $itinerary;
         JavaScript::put(['config' => $config]);
         return view('pages.itinerary', [ 'itinerary' => $itinerary ]);
     }
@@ -93,12 +90,20 @@ class ItineraryController extends Controller
         }      
     }
 
+
     public function add_place($id, $place_id) {
 
     }
 
     public function invite_user($id, $user_id) {
 
+    }
+
+    private function get_default_view_params() {
+        $config = [];
+        $config['catalog_categories'] = $this->get_catalog_categories();
+        $config['redirect_invite_url'] = URL::to('/') . "/itinerary/";
+        return $config;
     }
 
     private function is_user_allowed($itinerary, $user_id) {
