@@ -39,13 +39,13 @@ map.addLayer(streets);//Default
 L.control.zoom({
     position:'topleft'
 }).addTo(map);
-*/
-
-var sidebar = L.control.sidebar('sidebar', {
+/*
+var rightsidebar = L.control.sidebar('sidebar-right', {
             closeButton: true,
-            position: 'left'
-        }).addTo(map);
-
+            position: 'right'
+        });
+map.addControl(rightsidebar);
+*/
 var initMap = function(position) {
     currentPosition = position;
     map.setView([position.coords.latitude, position.coords.longitude], 13);

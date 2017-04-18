@@ -26,12 +26,28 @@ class ItineraryController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
+    public function home() {
+        $id        = Session::get('itinerary');
+        $itinerary = Itinerary::find($id);
+
+        if (!is_null($itinerary)) {
+            return redirect()->action(
+                'ItineraryController@load', ['id' => $id]
+            );
+        }        
+
         $config = array(
                 'catalog_categories' => $this->get_catalog_categories()
             );
         JavaScript::put(['config' => $config]);
         return view('pages.itinerary');
+    }
+
+    public function logout() {
+        Session::set('itinerary', null);
+        return redirect()->action(
+            'ItineraryController@home'
+        );
     }
 
     public function load($id) {
@@ -42,7 +58,7 @@ class ItineraryController extends Controller
             abort(404);
         }        
 
-        if ($itinerary->creator_id !== Auth::user()->_id) {
+        if (!$this->is_user_allowed($itinerary, Auth::user()->_id )) {
             abort(403, 'Permissão de acesso negada.');  
         }
 
@@ -66,12 +82,13 @@ class ItineraryController extends Controller
                 return redirect()->back()->withInput()->withErrors($errors);
             }    
         }
-        $itinerary = new Itinerary;
+        $itinerary             = new Itinerary;
         $itinerary->name       = Request::get('name');
         $itinerary->creator_id = (Auth::check()) ? Auth::user()->_id : null;
         $itinerary->start_date = Helper::convertToMongoDate(Request::get('start_date'));
         $itinerary->end_date   = Helper::convertToMongoDate(Request::get('end_date'));
         if ($itinerary->save()) {
+            Session::set('itinerary', $itinerary->_id);
             return Response::json(array('success'=>true,'data'=>$itinerary)); 
         }      
     }
@@ -82,6 +99,11 @@ class ItineraryController extends Controller
 
     public function invite_user($id, $user_id) {
 
+    }
+
+    private function is_user_allowed($itinerary, $user_id) {
+        //necessário tratar os usuários convidados
+        return ( $itinerary->creator_id == $user_id );
     }
 
     private function get_catalog_categories() {

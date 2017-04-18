@@ -9,11 +9,11 @@ Route::get('login/facebook/callback', 'SocialAuthController@callback');
 Route::auth();
 
 //Route::get('/home'           , 'HomeController@index');
-
+Route::get('/itinerary/logout', 'ItineraryController@logout');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/home'               			 , 'ItineraryController@index');
+	Route::get('/home'               			 , 'ItineraryController@home');
     Route::get('/itinerary/{id}'                 , 'ItineraryController@load');
-    Route::post('/itinerary/store'                , 'ItineraryController@store');
+    Route::post('/itinerary/store'               , 'ItineraryController@store');
 	Route::get('/api/catalog_categories'		 , 'FacebookController@catalog_categories');
 	Route::get('/api/places'    		         , 'FacebookController@places');
 	//Route::get('/api/events'    		         , 'FacebookController@events');

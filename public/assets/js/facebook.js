@@ -26,13 +26,6 @@ var handleInit = function(response) {
     }(document, 'script', 'facebook-jssdk'));    
 //}    
         
-var requestCallback = function(response) {
-    var ids = response["to"];
-    for (var i = 0; i < ids.length; ++i) {
-        //"ids[i]" is what you want.              
-    }
-}
-
 var facebookGraph = function(url, p, callback) {
     FB.api(
         url,
@@ -66,14 +59,14 @@ var facebookSearch = function(params, callback) {
     facebookGraph("/search", p, callback);
 }
 
-var facebookInviteFriends = function() {
+var facebookInviteFriends = function(url, callback) {
         FB.ui({
             method: 'apprequests',
             message: 'Nova solicitação de Estradando',
-            redirect_uri: 'localhost:8000/itinerary/1234abcd', //alterar parametro id
+            redirect_uri: url,
             title: "Seleção de amigos",
             new_style_message: true
-        }, requestCallback);
+        }, callback);
     }
 
 var Facebook = function () {

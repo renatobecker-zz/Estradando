@@ -28,9 +28,7 @@
                     </form>                        
                     <!-- end panel -->
                 </div>
-                <div class="alert alert-danger m-b-5">                    
-                    <p>Você realmente deseja excluir este registro?</p>
-                </div>                    
+                <div id="alert-container" class="alert alert-danger m-b-5 hide"></div>                    
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cancelar</a>
                     <a href="javascript:;" class="btn btn-sm btn-success" id="ActCreateItinerary">Confirmar</a>

@@ -1,6 +1,6 @@
 var handleItinerary = function() {
     map.on('click', function () {
-        sidebar.hide();
+        //rightsidebar.hide();
     })
 }
 
@@ -176,7 +176,7 @@ var renderHtmlPlaceDetail = function(place) {
 
 function submitForm(e) {
 	if (e.keyCode == 13) {
-        sidebar.hide();
+        //rightsidebar.hide();
         loadData(loadPlaces);
         event.preventDefault();        
     }
@@ -210,7 +210,7 @@ var markerGroup = function(group) {
 }
 
 var loadPlaces = function(response) {    
-    sidebar.hide();
+    //rightsidebar.hide();
     _.each(response.data, function(place) { 
         var group = groupCategory(place);               
         if (group) {
@@ -223,8 +223,8 @@ var loadPlaces = function(response) {
     console.log(response.data);
     if (!response.paging) {  
         renderHtmlPlacesResult(response.data, function(html){
-            sidebar.setContent(html);
-            sidebar.show();    
+            //rightsidebar.setContent(html);
+            //rightsidebar.show();    
         })
     }
 }    
@@ -239,6 +239,7 @@ var handleDateRangePicker = function() {
 };
 
 $('#modal-create-itinerary').on('hidden.bs.modal', function (e) {
+    $("#alert-container").addClass("hide");
     var form = document.getElementById("form-create-itinerary");
     form.reset();
 });
@@ -266,12 +267,42 @@ $('#modal-create-itinerary').find('.modal-footer #ActCreateItinerary').on('click
                 var urlSuccess = "itinerary/" + data.data._id;
                 window.location.href = urlSuccess;
             } else {
-
+                validateErrors(data.errors);
             }
         }
     });
     return false;
 });
+
+var validateErrors = function(errors) {
+    $( "#alert-container" ).empty();
+    for (var property in errors) {
+        if (errors.hasOwnProperty(property)) {
+            var items = errors[property];
+            if($.isArray(items)) {
+                _.each(items, function(item) {
+                    $( "#alert-container" ).append( "<p>" + item + "</p>" );
+                });    
+            }    
+        }
+    }    
+    $("#alert-container").removeClass("hide");
+}
+
+var inviteCallback = function(response) {
+    var ids = response["to"];
+    if (ids) {
+        for (var i = 0; i < ids.length; ++i) {
+            //"ids[i]" is what you want.      
+            console.log(ids[i]);        
+        }
+    }
+}
+
+var inviteItinerary = function() {
+    var url = "localhost:8000/itinerary/1234";
+    facebookInviteFriends(url, inviteCallback);
+}
 
 var Itinerary = function () {
 	"use strict";

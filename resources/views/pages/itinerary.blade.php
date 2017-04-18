@@ -57,74 +57,60 @@
 @endsection        
 @section('content')
 <!-- begin #content -->
-<div id="content" class="content p-5">
+<div id="content" class="content p-10 p-b-0">
     <!-- begin page-header -->
     <!--<h1 class="page-header">Aqui vai o nome do Itinerário <small>header small text goes here...</small></h1>-->
     <!-- end page-header -->
-    <div class="row" id="row-filter">
-        <div class="col-md-12 p-0 m-l-5 m-r-5">                    
-            <form id="form-search" class="form-inline"> 
-                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                <div class="form-group col-md-6 p-5 xs-margin">
-                    <input type="text" class="form-control control-form-full" id="input-location" placeholder="Onde ir?" />
-                </div>
-                <div class="form-group col-md-6 p-5 xs-margin control-padding-right">
-                    <input type="text" class="form-control control-form-full" id="input-term" placeholder="O que você procura?" onkeypress="return submitForm(event)"/>
-                </div>
-                        <!--
-                        <div class="form-group col-md-3 p-5 xs-margin">
-                            <select id="select-city" name="select-city" class="form-control control-form-full"></select>
-                        </div>
-                        
-                        <div class="form-group col-md-3 p-5 xs-margin">
-                            <select id="select-category" name="select-category" class="form-control control-form-full"></select>
-                        </div>     
-                        
-                        <div class="form-group col-md-2 p-5 xs-margin control-padding-right">
-                            <button type="submit" class="btn btn-primary control-form-full">Pesquisar</button>       
-                        </div>    
-                    -->
-                </form>                    
-            </div>
-            <!-- end col-12 -->
-        </div>
         <!-- end row -->
         <div class="row" id="row-map">
-            <!-- begin col-12 -->
-            <!--<div class="col-md-12">-->
-            <!-- begin panel -->
             <div id="panel-base-map" class="panel panel-inverse">
-                <div class="panel-heading">     
+                <div class="panel-heading">   
                     <div class="btn-group dropdown pull-right m-l-5">
                         <button type="button" class="btn btn-success btn-xs"><i class="fa fa-cog"></i> Opções </button>
                         <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#modal-create-itinerary" data-toggle="modal" data-token="{{ csrf_token() }}" id="BtnNewItinerary">Criar novo Roteiro</a></li>      
-                            <li><a href="#modal-list-itineraries" data-toggle="modal" data-token="{{ csrf_token() }}" id="BtnListItineraries">Visualizar meus Roteiores</a></li>                                  
-                            <!--<li class="divider"></li>-->
+                        </button>                        
+                        <ul class="dropdown-menu" role="menu">                                
+                            @if (isset($itinerary))
+                                <!-- somente se for o criador-->
+                                <li><a href='#' onclick="inviteItinerary();"><i class="fa fa-cog"></i> Convidar amigos do Facebook</a></li>    
+                                <li><a href="#" id="BtnPlaces"><i class="fa fa-cog"></i> Pontos de interesse</a></li>                                
+                                <li class="divider"></li>
+                                <li><a href="/itinerary/logout" id="BtnLogoutItinerary"> Sair</a></li>                                
+                            @else
+                                <li><a href="#modal-create-itinerary" data-toggle="modal" id="BtnCreateItinerary"> Criar Roteiro</a></li>                                  
+                                <!--somente se existirem roteiros-->
+                                <li><a href="#modal-show-itineraries" data-toggle="modal" id="BtnItineraries"> Meus Roteiros</a></li>                                
+                            @endif    
                         </ul>
                     </div>  
-
-                    <div id="group-legend" class="btn-group pull-right" data-toggle="buttons">
-                    </div>
-
-                    <h4 class="panel-title">Pesquisar locais</h4>
+                <div id="group-legend" class="btn-group pull-right" data-toggle="buttons"></div>
+                <h4 class="panel-title">Pesquisar locais</h4>
                 </div>
+                <div class="row">
+                    <div class="col-md-12 m-l-5 m-r-5">                   
+                        <form id="form-search" class="form-inline"> 
+                            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                            <div class="form-group col-md-6 p-5 xs-margin">
+                                <input type="text" class="form-control control-form-full" id="input-location" placeholder="Onde ir?" />
+                            </div>
+                            <div class="form-group col-md-6 p-5 xs-margin control-padding-right">
+                                <input type="text" class="form-control control-form-full" id="input-term" placeholder="O que você procura?" onkeypress="return submitForm(event)"/>
+                            </div>
+                        </form>                    
+                    </div>
+                </div>    
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="p-0 map-container" data-full-height="true">
                             <div id="map" class="height-full width-full" style="z-index: 7">
-                             @include('includes.sidebar-map')
                             </div>
                         </div>    
                     </div>  
                 </div>
             </div>
-            <!-- end panel -->
         </div>
-    </div>
     <!-- end row -->
 </div>
 <!-- end #content -->
@@ -153,7 +139,7 @@
         var searchBox = new google.maps.places.SearchBox(input);
 
         searchBox.addListener('places_changed', function() {
-            sidebar.hide();
+            //sidebar.hide();
             var places = searchBox.getPlaces();        
             if (places.length == 0) {
                 return;
