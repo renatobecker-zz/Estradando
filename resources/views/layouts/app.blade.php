@@ -12,7 +12,7 @@
     <meta name="keywords" content="Viagens, Passeios, Roteiros, Trip, Travel">
     <meta name="_token" content="{{ csrf_token() }}"/>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
     <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -71,7 +71,7 @@
     <!-- ================== END PAGE LEVEL JS ================== -->
 
     <!-- ================== BEGIN ESTRADANDO JS ================== -->    
-    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <script src="//connect.facebook.net/en_US/all.js"></script>
     <script src="/assets/js/facebook.js"></script>    
     <!-- ================== END ESTRADANDO JS ================== -->    
     <script>

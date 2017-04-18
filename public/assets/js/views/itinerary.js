@@ -300,8 +300,8 @@ var inviteCallback = function(response) {
 }
 
 var inviteItinerary = function() {
-    var url = "localhost:8000/itinerary/1234";
-    facebookInviteFriends(url, inviteCallback);
+    var url = data.config.redirect_invite_url + data.config.itinerary._id;
+    facebookInviteFriends(data.config.itinerary.name, url, inviteCallback);
 }
 
 var Itinerary = function () {

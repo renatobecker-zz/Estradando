@@ -59,11 +59,12 @@ var facebookSearch = function(params, callback) {
     facebookGraph("/search", p, callback);
 }
 
-var facebookInviteFriends = function(url, callback) {
+var facebookInviteFriends = function(msg, url, callback) {
         FB.ui({
             method: 'apprequests',
-            message: 'Nova solicitação de Estradando',
+            message: msg,
             redirect_uri: url,
+            data: url,
             title: "Seleção de amigos",
             new_style_message: true
         }, callback);
