@@ -10,16 +10,17 @@ Route::auth();
 
 //Route::get('/home'           , 'HomeController@index');
 Route::get('/itinerary/logout', 'ItineraryController@logout');
+//mudar para post
+Route::post('/itinerary/invite'                       , 'ItineraryController@invite_friend');
+
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home'               			 , 'ItineraryController@home');
     Route::get('/itinerary/{id}'                 , 'ItineraryController@load');
     Route::post('/itinerary/store'               , 'ItineraryController@store');
+    Route::get('/itinerary/accept_invite/{id}/{friend_id}', 'ItineraryController@accept_invite');    
 	Route::get('/api/catalog_categories'		 , 'FacebookController@catalog_categories');
-	Route::get('/api/places'    		         , 'FacebookController@places');
-	//Route::get('/api/events'    		         , 'FacebookController@events');
+	Route::get('/api/places'    		         , 'FacebookController@places');	
     Route::get('/api/categories/{topic_filter?}' , 'FacebookController@categories');
-    //Route::get('/api/parent_categories'          , 'FacebookController@parent_categories');
-    //Route::get('/api/category/{id}'	 	         , 'FacebookController@category');
     Route::get('/api/graph/{id}' 	 	         , 'FacebookController@graph');
     Route::get('/api/cities/find_by_name'        , 'CityController@findByName');
 });

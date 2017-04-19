@@ -73,7 +73,9 @@
                         <ul class="dropdown-menu" role="menu">                                
                             @if (isset($itinerary))
                                 <!-- somente se for o criador-->
-                                <li><a href='#' onclick="inviteItinerary();"><i class="fa fa-facebook"></i> Convidar amigos</a></li>    
+                                @if ($itinerary->creator_id == Auth::user()->_id)
+                                    <li><a href='#' onclick="inviteItinerary();"><i class="fa fa-facebook"></i> Convidar amigos</a></li>    
+                                @endif    
                                 <li><a href="#" id="BtnPlaces"><i class="fa fa-map-marker"></i> Pontos de interesse</a></li>                                
                                 <li class="divider"></li>
                                 <li><a href="/itinerary/logout" id="BtnLogoutItinerary"> Sair</a></li>                                

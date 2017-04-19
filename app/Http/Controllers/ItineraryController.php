@@ -10,10 +10,11 @@ use JavaScript;
 use Session;
 use Validator;
 use Auth;
+use URL;
+use App\SocialAccount;
 use App\Classes\Helpers as Helper;
 use App\Models\Config\CatalogCategory as CatalogCategory;
 use App\Models\Data\Itinerary as Itinerary;
-use URL;
 
 class ItineraryController extends Controller
 {
@@ -79,36 +80,108 @@ class ItineraryController extends Controller
                 return redirect()->back()->withInput()->withErrors($errors);
             }    
         }
+        $creator_id            = (Auth::check()) ? Auth::user()->_id : null;
         $itinerary             = new Itinerary;
         $itinerary->name       = Request::get('name');
-        $itinerary->creator_id = (Auth::check()) ? Auth::user()->_id : null;
+        $itinerary->creator_id = $creator_id;
         $itinerary->start_date = Helper::convertToMongoDate(Request::get('start_date'));
         $itinerary->end_date   = Helper::convertToMongoDate(Request::get('end_date'));
+        $itinerary->invites    = [];
+        $itinerary->members    = [$creator_id];        
         if ($itinerary->save()) {
             Session::set('itinerary', $itinerary->_id);
             return Response::json(array('success'=>true,'data'=>$itinerary)); 
         }      
     }
 
+    public function invite_friend() {
 
-    public function add_place($id, $place_id) {
+        $id        = Request::get('id');
+        $friend_id = Request::get('friend_id');        
+        
+        $itinerary = Itinerary::find($id);
 
+        if (is_null($itinerary)) {
+            return Response::json(array('success'=>false,
+                                        'message'=>'Itinerário inválido.')); 
+        }        
+
+        $invites = $itinerary->invites;
+        if (in_array($friend_id, $invites)) {
+            return Response::json(array('success'=>true,
+                                        'message'=>'Há um convite pendente para este amigo.')); 
+        } 
+            
+        array_push($invites, $friend_id);            
+        $itinerary->invites = $invites;
+        if ($itinerary->save()) {
+            return Response::json(array('success'=>true,'data'=>'Convite enviado.')); 
+        } else {
+            return Response::json(array('success'=>false,'data'=>'Erro ao enviar convite.')); 
+        }                  
+        
     }
 
-    public function invite_user($id, $user_id) {
+    public function accept_invite($id, $friend_id) {
+
+        $itinerary = Itinerary::find($id);
+        if (is_null($itinerary)) {
+            abort(404);
+        }        
+
+        $invites = $itinerary->invites;
+        if (!in_array($friend_id, $invites)) {
+            abort(404);            
+        }         
+
+        $account = SocialAccount::whereProvider('facebook')
+            ->whereProviderUserId($friend_id)
+            ->first();
+
+        if ($account) {
+            if (Auth::user()->_id !== $account->user_id) {
+                abort(404);            
+            }
+
+            $members = $itinerary->members;
+            if (!in_array($account->user_id, $members)) {
+                array_push($members, $account->user_id);            
+                $itinerary->members = $members;
+            }       
+
+            if (($key = array_search($friend_id, $invites)) !== false) {
+                unset($invites[$key]);
+                $itinerary->invites = $invites;
+            }
+
+            if ($itinerary->save()) {      
+
+                //Gerar notification (push)
+
+                return redirect()->action(
+                    'ItineraryController@load', ['id' => $id]
+                );                
+            }    
+        } else {
+            abort(404);
+        }    
+    }
+
+    public function add_place($id, $place_id, $user_id) {
 
     }
 
     private function get_default_view_params() {
         $config = [];
-        $config['catalog_categories'] = $this->get_catalog_categories();
-        $config['redirect_invite_url'] = URL::to('/') . "/itinerary/";
+        $config['catalog_categories']  = $this->get_catalog_categories();
+        $config['redirect_invite_url'] = URL::to('/') . "/itinerary/accept_invite/";
         return $config;
     }
 
     private function is_user_allowed($itinerary, $user_id) {
-        //necessário tratar os usuários convidados
-        return ( $itinerary->creator_id == $user_id );
+        $allowed = ( ($itinerary->creator_id == $user_id) ||
+                   (in_array($user_id, $itinerary->members)) );
+        return $allowed;
     }
 
     private function get_catalog_categories() {

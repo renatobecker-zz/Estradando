@@ -15,23 +15,22 @@ var renderRating = function(place) {
 }
 
 var renderCards = function(place) {
-    var cards = [];
-    
+    var cards = [];    
     if ((_.isObject(place.parking)) && 
         ((place.parking.lot == 1) || (place.parking.street == 1) || (place.parking.valet == 1))) {
         cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Parking" data-original-title="" title=""><i class="fa fa-fw fa-car"></i></a>');
-}
+    }
 
-if (_.isObject(place.payment_options)) {
-    if ((place.payment_options.amex == 1) || (place.payment_options.mastercard == 1) || (place.payment_options.visa == 1)) {
-        cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Credit Card" data-original-title="" title=""><i class="fa fa-fw fa-credit-card"></i></a>');        
-    }        
-    if (place.payment_options.cash_only == 1) {
-        cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Cash" data-original-title="" title=""><i class="fa fa-fw fa-money"></i></a>');        
-    }        
-}
+    if (_.isObject(place.payment_options)) {
+        if ((place.payment_options.amex == 1) || (place.payment_options.mastercard == 1) || (place.payment_options.visa == 1)) {
+            cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Credit Card" data-original-title="" title=""><i class="fa fa-fw fa-credit-card"></i></a>');        
+        }        
+        if (place.payment_options.cash_only == 1) {
+            cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Cash" data-original-title="" title=""><i class="fa fa-fw fa-money"></i></a>');        
+        }        
+    }
 
-return cards;
+    return cards;
 }
 
 var renderHtmlPlaceItem = function(place) {
@@ -293,10 +292,30 @@ var inviteCallback = function(response) {
     var ids = response["to"];
     if (ids) {
         for (var i = 0; i < ids.length; ++i) {
-            //"ids[i]" is what you want.      
-            console.log(ids[i]);        
+            inviteRequest(data.config.itinerary._id, ids[i]);
         }
     }
+}
+
+var inviteRequest = function(itinerary, friend) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "/itinerary/invite", 
+        data: {
+            id : itinerary,
+            friend_id: friend
+        },
+        cache: false,
+        success: function(data) {
+            console.log(data);
+        }
+    });    
 }
 
 var inviteItinerary = function() {
