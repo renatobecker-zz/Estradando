@@ -73,8 +73,8 @@
                         <ul class="dropdown-menu" role="menu">                                
                             @if (isset($itinerary))
                                 <!-- somente se for o criador-->
-                                <li><a href='#' onclick="inviteItinerary();"><i class="fa fa-cog"></i> Convidar amigos do Facebook</a></li>    
-                                <li><a href="#" id="BtnPlaces"><i class="fa fa-cog"></i> Pontos de interesse</a></li>                                
+                                <li><a href='#' onclick="inviteItinerary();"><i class="fa fa-facebook"></i> Convidar amigos</a></li>    
+                                <li><a href="#" id="BtnPlaces"><i class="fa fa-map-marker"></i> Pontos de interesse</a></li>                                
                                 <li class="divider"></li>
                                 <li><a href="/itinerary/logout" id="BtnLogoutItinerary"> Sair</a></li>                                
                             @else
