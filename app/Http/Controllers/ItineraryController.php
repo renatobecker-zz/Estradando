@@ -29,22 +29,12 @@ class ItineraryController extends Controller
     }
 
     public function home() {
-        $id        = Session::get('itinerary');
-        $itinerary = Itinerary::find($id);
-
-        if (!is_null($itinerary)) {
-            return redirect()->action(
-                'ItineraryController@load', ['id' => $id]
-            );
-        }        
-
         $config = $this->get_default_view_params();
         JavaScript::put(['config' => $config]);
         return view('pages.itinerary');
     }
 
     public function logout() {
-        Session::set('itinerary', null);
         return redirect()->action(
             'ItineraryController@home'
         );
@@ -55,7 +45,9 @@ class ItineraryController extends Controller
         $itinerary = Itinerary::find($id);
 
         if (is_null($itinerary)) {
-            abort(404);
+            return redirect()->action(
+                'ItineraryController@home'
+            );
         }        
 
         if (!$this->is_user_allowed($itinerary, Auth::user()->_id )) {
@@ -89,7 +81,6 @@ class ItineraryController extends Controller
         $itinerary->invites    = [];
         $itinerary->members    = [$creator_id];        
         if ($itinerary->save()) {
-            Session::set('itinerary', $itinerary->_id);
             return Response::json(array('success'=>true,'data'=>$itinerary)); 
         }      
     }

@@ -1,4 +1,100 @@
-<script type="text/javascript"> window.top.location.href = "https://estradando.com.br"; </script>
+<script src="//connect.facebook.net/en_US/all.js"></script>
 
+<script type="text/javascript">
+FB.init({
+    appId      : '458270001173171',
+    xfbml      : true,
+    cookie     : true,
+    status     : true,
+    version    : 'v2.8'
+});
+
+function getFacebookToken(callback) {
+	FB.getLoginStatus(function(response) {
+  		if (response.status === 'connected') {
+    		var obj = {
+    			uid: response.authResponse.userID,
+    			accessToken: response.authResponse.accessToken
+    		}
+    		if (callback) {
+				callback(obj)
+    		}    		
+  		} else if (response.status === 'not_authorized') {
+  			 if (callback) {
+  			 	callback(null);
+  			 }
+  		} else {
+  			 if (callback) {
+  			 	callback(null);
+  			 }
+  		}
+ 	});
+}
+
+function deleteRequests(list, callback) {	
+	for (var i = 0; i < list.length; i++) {
+	  	FB.api(list[i], 'delete', function(response) {
+	  		if (callback) {
+	  			callback();
+	  		}
+  		});
+	}
+}
+
+function getAllUrlParams(url) {
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+  var obj = {};
+  if (queryString) {
+    queryString = queryString.split('#')[0];
+    var arr = queryString.split('&');
+
+    for (var i=0; i<arr.length; i++) {
+      var a = arr[i].split('=');
+      var paramNum = undefined;
+      var paramName = a[0].replace(/\[\d*\]/, function(v) {
+        paramNum = v.slice(1,-1);
+        return '';
+      });
+      var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+      if (obj[paramName]) {
+        if (typeof obj[paramName] === 'string') {
+          obj[paramName] = [obj[paramName]];
+        }
+        if (typeof paramNum === 'undefined') {
+          obj[paramName].push(paramValue);
+        }
+        else {
+          obj[paramName][paramNum] = paramValue;
+        }
+      }
+      else {
+        obj[paramName] = paramValue;
+      }
+    }
+  }
+  return obj;
+}
+
+getFacebookToken(function(data){
+	if (data) {
+		var params = getAllUrlParams().request_ids;
+		var decoded = decodeURIComponent(params);
+		var list = decoded.split(',');
+		if ((list) && (list.length > 0)) {
+			var requestId = list[0];
+			FB.api('/'+requestId, function(response){ 
+				var redirect_url = response.data + '/' + response.to.id;
+				deleteRequests(list, function(){
+					if (redirect_url) {
+						window.top.location.href = redirect_url;
+					}	
+				});				
+			}); 
+		}	
+	}
+})
+
+</script>
+<!--
 <p>Se você não for redirecionado automaticamente, click no link ao lado <a target="_blank" href="https://estradando.com.br">Estradando</a></p>
-
+-->

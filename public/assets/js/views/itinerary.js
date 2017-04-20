@@ -313,13 +313,14 @@ var inviteRequest = function(itinerary, friend) {
         },
         cache: false,
         success: function(data) {
-            console.log(data);
+            //console.log(data);
         }
     });    
 }
 
 var inviteItinerary = function() {
     var url = data.config.redirect_invite_url + data.config.itinerary._id;
+    console.log(url);
     facebookInviteFriends(data.config.itinerary.name, url, inviteCallback);
 }
 
