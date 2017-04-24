@@ -76,22 +76,31 @@ function getAllUrlParams(url) {
 }
 
 getFacebookToken(function(data){
+    var default_url = 'https://estradando.com.br';
 	if (data) {
+        console.log(data);
 		var params = getAllUrlParams().request_ids;
 		var decoded = decodeURIComponent(params);
 		var list = decoded.split(',');
+        console.log(list);
 		if ((list) && (list.length > 0)) {
 			var requestId = list[0];
 			FB.api('/'+requestId, function(response){ 
-				var redirect_url = response.data + '/' + response.to.id;
-				deleteRequests(list, function(){
-					if (redirect_url) {
-						window.top.location.href = redirect_url;
-					}	
-				});				
+                if ((response) && (!response.error) && (response.to)) {
+                    console.log(response);
+                    var redirect_url = response.data + '/' + response.to.id;
+                    deleteRequests(list, function(){
+                        if (redirect_url) {
+                            console.log(redirect_url);
+                            window.top.location.href = redirect_url;
+                            return;
+                        }   
+                    });             
+                }
 			}); 
-		}	
-	}
+        }	
+    }
+    window.top.location.href = default_url;            
 })
 
 </script>
