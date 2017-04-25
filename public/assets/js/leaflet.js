@@ -1,4 +1,41 @@
-var currentPosition;
+var mapLocation = {
+    origin: {
+        latitude: 0,
+        longitude: 0
+    },
+    destination: {
+        latitude: 0,
+        longitude: 0        
+    }
+}
+
+var mapOptions = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
+
+function successLocation(position) {
+    mapLocation.origin.latitude  = position.coords.latitude;
+    mapLocation.origin.longitude = position.coords.longitude;
+    map.setView([mapLocation.origin.latitude, mapLocation.origin.longitude], 13);
+};
+
+function errorLocation(err) {
+    console.warn('ERRO(' + err.code + '): ' + err.message);
+    //Quando o erro é de permissão do usuário
+    if (err.code == 1) {
+        setLocationForm();
+    }
+}
+
+var setLocationForm = function() {
+    $("#modal-set-location").modal({
+        backdrop: 'static',
+        keyboard: false
+    }); 
+}
+
 var mapMarkers = [];
 var markers = new L.FeatureGroup();
 
@@ -45,12 +82,12 @@ var rightsidebar = L.control.sidebar('sidebar-right', {
             position: 'right'
         });
 map.addControl(rightsidebar);
-*/
+
 var initMap = function(position) {
     currentPosition = position;
     map.setView([position.coords.latitude, position.coords.longitude], 13);
 }
-
+*/
 var addLocation = function(coords) {
     var marker = L.ExtraMarkers.icon({
         icon: 'fa-location-arrow',
@@ -115,16 +152,16 @@ var addMarker = function(options, callback) {
     //.openPopup();    
 }
 
-function getLocation(callback) {
+function getLocation(/*callback*/) {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(callback);        
+        navigator.geolocation.getCurrentPosition(successLocation, errorLocation, mapOptions);        
     } else {
         alert("Geolocation is not supported by this browser.");
     }
 }
 
 function setPosition(position) {
-    currentPosition = position;
+    //currentPosition = position;
 
     map.flyTo(
         [position.coords.latitude, position.coords.longitude]
@@ -144,7 +181,7 @@ var loadData = function(callback) {
     clearMarkers();
     
     var params = {
-        geolocation: currentPosition.coords,        
+        geolocation: mapLocation.origin
     };
 
     var term = $("#input-term").val();
@@ -183,7 +220,7 @@ var handleRouting = function() {
 }
 
 var handleInit = function() {
-    getLocation(initMap);
+    getLocation();
 
     $(window).resize(function(){
         map._onResize();

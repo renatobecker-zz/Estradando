@@ -52,7 +52,12 @@
     .result-info .title {
         margin-bottom: 0 !important;
     }
-
+    /*
+    puts the google places autocomplete dropdown results above the bootstrap modal 1050 zindex.
+    */
+    .pac-container {
+        z-index: 1051 !important;
+    }
 </style>
 @endsection        
 @section('content')
@@ -117,6 +122,8 @@
 </div>
 <!-- end #content -->
 @include('modal.create-itinerary');
+@include('modal.set-location-map');
+
 @endsection        
 
 @section('javascript')  
@@ -137,11 +144,7 @@
 <script>
 
     function initAutocomplete() {
-        var input = document.getElementById('input-location');
-        var searchBox = new google.maps.places.SearchBox(input);
-
-        searchBox.addListener('places_changed', function() {
-            //sidebar.hide();
+        var handlePlaceChange = function() {
             var places = searchBox.getPlaces();        
             if (places.length == 0) {
                 return;
@@ -151,12 +154,22 @@
                 var position = places[0].geometry.location;
 
                 setPosition({coords : {
-                    latitude: position.lat(),
-                    longitude: position.lng()
-                }
-            });
+                        latitude: position.lat(),
+                        longitude: position.lng()
+                    }
+                });
             }            
-        });
+        };
+
+        var input = document.getElementById('input-location');
+        var searchBox = new google.maps.places.SearchBox(input);
+
+        searchBox.addListener('places_changed', handlePlaceChange);
+
+        var input = document.getElementById('input-map-location');
+        var searchBox = new google.maps.places.SearchBox(input);
+        searchBox.addListener('places_changed', handlePlaceChange);
+
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADvJvC_tbot0jWdVF6yKijrjXPicN3EFY&libraries=places&callback=initAutocomplete" async defer></script>
