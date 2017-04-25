@@ -2,7 +2,7 @@
         <div id="header" class="header navbar navbar-default navbar-fixed-top">
             <!-- begin container-fluid -->
             <div class="container-fluid">
-                <div class="navbar-header">
+                <div class="navbar-header hidden-xs">
                     <a href="javascript:;" class="navbar-brand"><span class="navbar-logo"></span> Estradando</a>
                 </div>
                 
@@ -82,7 +82,17 @@
                             <span class="hidden-xs">{{ Auth::user()->name }}</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu animated fadeInLeft">
-                            <li class="arrow"></li>
+                            @if (isset($itinerary))
+                                <!-- somente se for o criador-->
+                                @if ($itinerary->creator_id == Auth::user()->_id)
+                                    <li><a href='#' onclick="inviteItinerary();"><i class="fa fa-facebook"></i> Convidar amigos</a></li>    
+                                @endif    
+                            @else
+                                <li><a href="#modal-create-itinerary" data-toggle="modal" id="BtnCreateItinerary"> Criar Roteiro</a></li>                                  
+                                <!--somente se existirem roteiros-->
+                                <li><a href="#modal-show-itineraries" data-toggle="modal" id="BtnItineraries"> Meus Roteiros</a></li>                                
+                                <li><a href="#modal-set-location" data-toggle="modal"><i class="fa fa-map-marker"></i> Alterar localização</a>                                
+                            @endif    
 
                             <!--<li><a href="javascript:;">Edit Profile</a></li>
                             <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
@@ -90,7 +100,8 @@
                             <li><a href="javascript:;">Setting</a></li>
                             <li class="divider"></li>
                             -->
-                            <li><a href="#modal-set-location" data-toggle="modal"><i class="fa fa-map-marker"></i> Alterar localização</a>
+                            <li><a href="#" id="BtnPlaces"><i class="fa fa-search"></i> Pesquisar pontos de interesse</a></li>                                                                                        
+                            <li class="divider"></li>
                             <li><a href="/itinerary/logout"><i class="fa fa-sign-out"></i> Sair</a></li>
                         </ul>
                     </li>

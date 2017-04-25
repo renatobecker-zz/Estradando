@@ -30,6 +30,19 @@
     
     <!-- ================== BEGIN PAGE CSS ================== -->
     <link href="/assets/plugins/bootstrap-social/bootstrap-social.css" rel="stylesheet" />
+    <style>
+        /*Padding Top for mobile only (Navbar)*/
+        @media (max-width: 767px) {
+            .page-header-fixed {
+                padding-top: 54px;
+            }
+            .pace-progress {
+                top: 54px !important;
+            }
+            .pace-activity {
+                top: 65px !important;
+            }
+    </style>    
     <!-- ================== END PAGE CSS ================== -->
     @yield('css')    
     <!-- ================== BEGIN BASE JS ================== -->

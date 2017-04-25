@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';    
+    protected $redirectTo = '/home';    
 
     /**
      * Create a new authentication controller instance.
@@ -88,11 +88,13 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    
     public function authenticated($request,$user)
     {
         //Após autenticar, verificar se há redirect
         return redirect(session()->pull('from',$this->redirectTo));
-    }    
+    } 
+       
 }
 
 

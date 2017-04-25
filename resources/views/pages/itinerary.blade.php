@@ -17,6 +17,13 @@
     .pac-container {
         z-index: 1051 !important;
     }    
+
+    /*Padding Top for mobile only (Navbar)*/
+    @media (max-width: 767px) {
+        .map {
+            top: 54px !important;
+        }
+    }    
 </style>
 @endsection        
 @section('content')
@@ -31,8 +38,8 @@
     </div>
 </div>        
 <!-- end #content -->
-@include('modal.create-itinerary');
-@include('modal.set-location-map');
+@include('modal.create-itinerary')
+@include('modal.set-location-map')
 @endsection        
 
 @section('javascript')  
