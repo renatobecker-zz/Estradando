@@ -1,3 +1,4 @@
+/*
 var mapLocation = {
     origin: {
         latitude: 0,
@@ -8,6 +9,8 @@ var mapLocation = {
         longitude: 0        
     }
 }
+*/
+var onSearchLocation = null;
 
 var mapOptions = {
     enableHighAccuracy: true,
@@ -16,9 +19,16 @@ var mapOptions = {
 };
 
 function successLocation(position) {
-    mapLocation.origin.latitude  = position.coords.latitude;
-    mapLocation.origin.longitude = position.coords.longitude;
-    map.setView([mapLocation.origin.latitude, mapLocation.origin.longitude], 13);
+    data.config.destination = position;
+
+    map.setView([position.latitude, position.longitude], 15);
+    map.flyTo(
+        [position.latitude, position.longitude]
+    );   
+
+    if (onSearchLocation) {
+        onSearchLocation();
+    } 
 };
 
 function errorLocation(err) {
@@ -52,6 +62,13 @@ L.tileLayer(map_url, {
     id: 'mapbox.streets',
     accessToken: map_token
 }).addTo(map);
+
+/*
+map.on('moveend', function(e) {
+   var bounds = map.getBounds();
+   console.log(bounds);
+});
+*/
 /*
 var light     = L.tileLayer(map_url, {id: 'mapbox.light', accessToken: map_token}),
     streets   = L.tileLayer(map_url, {id: 'mapbox.streets', accessToken: map_token}),
@@ -82,11 +99,6 @@ var rightsidebar = L.control.sidebar('sidebar-right', {
             position: 'right'
         });
 map.addControl(rightsidebar);
-
-var initMap = function(position) {
-    currentPosition = position;
-    map.setView([position.coords.latitude, position.coords.longitude], 13);
-}
 */
 var addLocation = function(coords) {
     var marker = L.ExtraMarkers.icon({
@@ -152,20 +164,21 @@ var addMarker = function(options, callback) {
     //.openPopup();    
 }
 
-function getLocation(/*callback*/) {
+function getLocation() {
+    if (data.config.destination) {
+        successLocation(data.config.destination);
+        return;
+    }
+
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(successLocation, errorLocation, mapOptions);        
+        navigator.geolocation.getCurrentPosition(setPosition, errorLocation, mapOptions);        
     } else {
-        alert("Geolocation is not supported by this browser.");
+        alert("Geolocalização não é suportada neste browser.");
     }
 }
 
 function setPosition(position) {
-    //currentPosition = position;
-
-    map.flyTo(
-        [position.coords.latitude, position.coords.longitude]
-    );
+    successLocation(position.coords);
 }
 
 var clearMarkers = function() {
@@ -175,22 +188,6 @@ var clearMarkers = function() {
 function clickZoom(e) {
     map.flyTo(e.target.getLatLng());
 }
-
-var loadData = function(callback) {
-
-    clearMarkers();
-    
-    var params = {
-        geolocation: mapLocation.origin
-    };
-
-    var term = $("#input-term").val();
-    if (term) {
-        params['query'] = term;
-    }
-
-    facebookSearch(params, callback);
-};
 
 var handleRouting = function() {
     /*
@@ -219,7 +216,7 @@ var handleRouting = function() {
     */     
 }
 
-var handleInit = function() {
+var handleInit = function(callback) {
     getLocation();
 
     $(window).resize(function(){
@@ -236,7 +233,8 @@ var LeafletPlugin = function () {
     "use strict";
     return {
         //main function
-        init: function () {
+        init: function (onSearchLocationCallback) {
+            onSearchLocation = onSearchLocationCallback;     
             handleInit();  
             handleRouting();          
         }

@@ -90,7 +90,8 @@
                             <li><a href="javascript:;">Setting</a></li>
                             <li class="divider"></li>
                             -->
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Sair</a></li>
+                            <li><a href="#modal-set-location" data-toggle="modal"><i class="fa fa-map-marker"></i> Alterar localização</a>
+                            <li><a href="/itinerary/logout"><i class="fa fa-sign-out"></i> Sair</a></li>
                         </ul>
                     </li>
                 </ul>                

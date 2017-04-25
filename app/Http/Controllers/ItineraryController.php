@@ -35,9 +35,10 @@ class ItineraryController extends Controller
     }
 
     public function logout() {
-        return redirect()->action(
-            'ItineraryController@home'
-        );
+        Auth::logout();
+        Session::flush();
+
+        return redirect("/");
     }
 
     public function load($id) {
@@ -166,6 +167,7 @@ class ItineraryController extends Controller
         $config = [];
         $config['catalog_categories']  = $this->get_catalog_categories();
         $config['redirect_invite_url'] = URL::to('/') . "/itinerary/accept_invite/";
+        $config['destination']         = $this->get_default_location();
         return $config;
     }
 
@@ -186,5 +188,13 @@ class ItineraryController extends Controller
         return $result;
     }
 
+    private function get_default_location() {
+        return Session::get('default_location');
+    }
 
+    public function set_default_location() {
+        $default_location = Request::get('default_location');                
+        Session::set('default_location', $default_location);
+        return Response::json(array('success'=>true,'data'=>$default_location));         
+    }
 }

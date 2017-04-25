@@ -173,14 +173,6 @@ var renderHtmlPlaceDetail = function(place) {
     return html;
 }
 
-function submitForm(e) {
-	if (e.keyCode == 13) {
-        //rightsidebar.hide();
-        loadData(loadPlaces);
-        event.preventDefault();        
-    }
-}
-
 var groupCategory = function(place) {
     var group, list;
     if ((data) && (data.config) && (data.config.catalog_categories)) {
@@ -210,6 +202,7 @@ var markerGroup = function(group) {
 
 var loadPlaces = function(response) {    
     //rightsidebar.hide();
+    console.log(response);
     _.each(response.data, function(place) { 
         var group = groupCategory(place);               
         if (group) {
@@ -323,6 +316,24 @@ var inviteItinerary = function() {
     console.log(url);
     facebookInviteFriends(data.config.itinerary.name, url, inviteCallback);
 }
+
+var loadDefaultPlaces = function() {
+    loadData(loadPlaces);
+}
+
+var loadData = function(callback) {
+
+    clearMarkers();
+    var params = {
+        geolocation: data.config.destination
+    };
+    /*
+    var term = $("#input-term").val();
+    if (term) {
+        params['query'] = term;
+    }*/
+    facebookSearch(params, callback);
+};
 
 var Itinerary = function () {
 	"use strict";

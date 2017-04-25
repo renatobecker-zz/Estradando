@@ -14,6 +14,7 @@ Route::get('/itinerary/logout', 'ItineraryController@logout');
 Route::post('/itinerary/invite'                       , 'ItineraryController@invite_friend');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('/set_default_location'          , 'ItineraryController@set_default_location');
 	Route::get('/home'               			 , 'ItineraryController@home');
     Route::get('/itinerary/{id}'                 , 'ItineraryController@load');
     Route::post('/itinerary/store'               , 'ItineraryController@store');
