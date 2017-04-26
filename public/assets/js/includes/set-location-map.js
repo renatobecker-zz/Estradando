@@ -1,5 +1,7 @@
-$('#modal-set-location').find('.modal-footer #ActCancelLocation').on('click', function(){
-    window.top.location.href = "/logout";
+$('#modal-set-location').find('.modal-footer #ActCancelLocation').on('click', function() {
+    if (data.config.destination == null) {
+        window.top.location.href = "/logout";
+    }
 });
 
 $('#modal-set-location').on('hidden.bs.modal', function (e) {

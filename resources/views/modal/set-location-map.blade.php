@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal"  onsubmit="return false" id="form-set-location">
                         <div class="form-group col-md-12 xs-margin">
-                            <input type="text" class="form-control control-form-full" id="input-map-location" placeholder="Informe a localização" />
+                            <input type="text" class="form-control control-form-full" id="input-map-location" placeholder="Informe o destino desejado" />
                         </div>
                     </form>
                 </div>
