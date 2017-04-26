@@ -100,7 +100,7 @@
                             <li><a href="javascript:;">Setting</a></li>
                             <li class="divider"></li>
                             -->
-                            <li><a href="#" id="BtnPlaces"><i class="fa fa-search"></i> Pesquisar pontos de interesse</a></li>                                                                                        
+                            <li><a href="#modal-filter-places" data-toggle="modal" id="BtnPlaces"><i class="fa fa-search"></i> Pesquisar pontos de interesse</a></li>                                                                                        
                             <li class="divider"></li>
                             <li><a href="/itinerary/logout"><i class="fa fa-sign-out"></i> Sair</a></li>
                         </ul>
@@ -111,3 +111,6 @@
             <!-- end container-fluid -->
         </div>
         <!-- end #header -->
+@include('modal.create-itinerary')
+@include('modal.set-location-map')
+@include('modal.filter-places')

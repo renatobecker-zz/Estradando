@@ -321,18 +321,23 @@ var loadDefaultPlaces = function() {
     loadData(loadPlaces);
 }
 
-var loadData = function(callback) {
+var loadData = function(callback, filters) {
 
     clearMarkers();
     var params = {
         geolocation: data.config.destination
     };
-    /*
-    var term = $("#input-term").val();
-    if (term) {
-        params['query'] = term;
-    }*/
-    facebookSearch(params, callback);
+
+    if (filters) {
+        params["distance"] = filters.distance;
+        _.each(filters.term, function( term ) {
+            params["query"] = term;
+            facebookSearch(params, callback);
+        });        
+        return;
+    }
+
+    facebookSearch(params, callback);    
 };
 
 var Itinerary = function () {
