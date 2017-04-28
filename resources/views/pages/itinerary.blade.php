@@ -44,6 +44,7 @@
 @endsection        
 
 @section('javascript')  
+<script src="https://js.pusher.com/4.0/pusher.min.js"></script>
 <script src="/assets/plugins/underscore/underscore-1.8.3-min.js"></script>
 <script src="/assets/plugins/leaflet/leaflet.js"></script>
 <script src="/assets/plugins/Leaflet.ExtraMarkers-master/dist/js/leaflet.extra-markers.min.js"></script>
@@ -54,11 +55,13 @@
 <script src="/assets/js/views/itinerary.js"></script>
 <script src="/assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="/assets/plugins/select2/dist/js/i18n/pt-BR.js"></script>
-<script src="assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+<script src="/assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 <script src="/assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+<script src="/assets/plugins/moment/moment-with-locales.min.js"></script>
 <script src="/assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 <script src="/assets/js/includes/set-location-map.js"></script>
 <script src="/assets/js/includes/filter-places.js"></script>
+<script src="/assets/js/includes/chat.js"></script>
 <!--<script src="assets/plugins/leaflet-custom-searchbox-master/dist/leaflet.customsearchbox.min.js"></script>-->
 <!--<script src="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADvJvC_tbot0jWdVF6yKijrjXPicN3EFY&libraries=places&callback=initAutocomplete" async defer></script>
@@ -67,6 +70,7 @@
         Itinerary.init();  
         LeafletPlugin.init(loadDefaultPlaces);
         FilterPlaces.init();
+        ChatMessages.init();
     });
 </script>
 @endsection        

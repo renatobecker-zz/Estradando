@@ -13,7 +13,8 @@
         "sammyk/laravel-facebook-sdk": "^3.0",
         "guzzlehttp/guzzle": "^6.2",
         "symfony/yaml": "^3.2",
-        "laracasts/utilities": "~2.0"
+        "laracasts/utilities": "~2.0",
+        "vinkla/pusher": "^2.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

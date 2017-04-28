@@ -11,8 +11,10 @@ use Session;
 use Validator;
 use Auth;
 use URL;
+use App\User;
 use App\SocialAccount;
 use App\Classes\Helpers as Helper;
+use Vinkla\Pusher\Facades\Pusher;
 use App\Models\Config\CatalogCategory as CatalogCategory;
 use App\Models\Data\Itinerary as Itinerary;
 
@@ -44,6 +46,7 @@ class ItineraryController extends Controller
     public function load($id) {
         
         $itinerary = Itinerary::find($id);
+        $itinerary->members_info = $this->members_info($itinerary);
 
         if (is_null($itinerary)) {
             return redirect()->action(
@@ -147,8 +150,9 @@ class ItineraryController extends Controller
             }
 
             if ($itinerary->save()) {      
-
-                //Gerar notification (push)
+                $member = User::find($account->user_id);
+                $message_channel = "channel_" . $itinerary_id;
+                Pusher::trigger($message_channel, 'new_member', ['member' => $member]);
 
                 return redirect()->action(
                     'ItineraryController@load', ['id' => $id]
@@ -163,11 +167,26 @@ class ItineraryController extends Controller
 
     }
 
+    private function members_info($itinerary) {
+        $members_info = [];
+        foreach ($itinerary->members as $member) {
+            $members_info[] = User::find($member);
+        }
+        return $members_info;
+    }
+
     private function get_default_view_params() {
         $config = [];
+        $config['user']                = Auth::user();
         $config['catalog_categories']  = $this->get_catalog_categories();
         $config['redirect_invite_url'] = URL::to('/') . "/itinerary/accept_invite/";
         $config['destination']         = $this->get_default_location();
+        $config['pusher']              = array(
+                "app_id" => env("PUSHER_APP_ID"),
+                "app_key" => env("PUSHER_APP_KEY"),
+                "app_secret" => env("PUSHER_APP_SECRET"),
+                "app_cluster" => env("PUSHER_APP_CLUSTER")
+            );
         return $config;
     }
 

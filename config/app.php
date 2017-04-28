@@ -160,6 +160,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,   
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,    
+        Vinkla\Pusher\PusherServiceProvider::class,
     ],
 
     /*
@@ -209,6 +210,8 @@ return [
         'Moloquent' => Jenssegers\Mongodb\Eloquent\Model::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        //'LaravelPusher' => Vinkla\Pusher\PusherServiceProvider::class,
+
     ],
 
 ];

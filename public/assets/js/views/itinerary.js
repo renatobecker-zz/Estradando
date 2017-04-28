@@ -1,3 +1,6 @@
+Pusher.logToConsole = true;
+var pusher = new Pusher(data.config.pusher.app_key);
+
 var handleItinerary = function() {
     map.on('click', function () {
         //rightsidebar.hide();
@@ -340,12 +343,25 @@ var loadData = function(callback, filters) {
     facebookSearch(params, callback);    
 };
 
+var handlePusher = function() {
+    if (data.config.itinerary == null) return;    
+
+    var message_channel = "channel_" + data.config.itinerary._id;
+    var channel = pusher.subscribe(message_channel);    
+
+    channel.bind('new_member', function(data) {
+        //alert..
+    });
+
+}
+
 var Itinerary = function () {
 	"use strict";
 	return {
         //main function
         init: function () {
         	handleItinerary();
+            handlePusher();
             handleDateRangePicker();
         }
     };
