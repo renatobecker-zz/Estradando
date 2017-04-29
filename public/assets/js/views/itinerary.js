@@ -1,3 +1,6 @@
+Pusher.logToConsole = true;
+var pusher = new Pusher(data.config.pusher.app_key);
+
 var handleItinerary = function() {
     
     /*map.on('click', function () {
@@ -329,27 +332,36 @@ var loadDefaultPlaces = function() {
     loadData(loadPlaces);
 }
 
-var loadData = function(callback) {
+var loadData = function(callback, filters) {
 
     clearMarkers();
     var params = {
         geolocation: data.config.destination
     };
-    //temporário
-    _.each(data.config.default_categories, function(category) {
-        _.each(category.group, function(item) {
-            /*
-            var term = $("#input-term").val();
-            if (term) {
-                params['query'] = term;
-            }
-            */
-            params['query'] = item;
-            console.log(params);        
-            facebookSearch(params, callback);                
-        });    
-    });
+
+    if (filters) {
+        params["distance"] = filters.distance;
+        _.each(filters.term, function( term ) {
+            params["query"] = term;
+            facebookSearch(params, callback);
+        });        
+        return;
+    }
+
+    facebookSearch(params, callback);    
 };
+
+var handlePusher = function() {
+    if (data.config.itinerary == null) return;    
+
+    var message_channel = "channel_" + data.config.itinerary._id;
+    var channel = pusher.subscribe(message_channel);    
+
+    channel.bind('new_member', function(data) {
+        //alert..
+    });
+
+}
 
 var Itinerary = function () {
 	"use strict";
@@ -357,6 +369,7 @@ var Itinerary = function () {
         //main function
         init: function () {
         	handleItinerary();
+            handlePusher();
             handleDateRangePicker();
         }
     };

@@ -10,9 +10,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (isset($itinerary))
                         <li>
-                            <a href="javascript:;" class="dropdown-toggle f-s-14">
+                            <a href="#modal-chat" data-toggle="modal" id="chat-badge" class="dropdown-toggle f-s-14">
                                 <i class="fa fa-commenting-o fa-fw"></i>
-                                <span class="label">2</span>
                             </a>                    
                         </li>
                         <li class="dropdown">
@@ -100,7 +99,7 @@
                             <li><a href="javascript:;">Setting</a></li>
                             <li class="divider"></li>
                             -->
-                            <li><a href="#" id="BtnPlaces"><i class="fa fa-search"></i> Pesquisar pontos de interesse</a></li>                                                                                        
+                            <li><a href="#modal-filter-places" data-toggle="modal" id="BtnPlaces"><i class="fa fa-search"></i> Pesquisar pontos de interesse</a></li>                                                                                        
                             <li class="divider"></li>
                             <li><a href="/itinerary/logout"><i class="fa fa-sign-out"></i> Sair</a></li>
                         </ul>
@@ -111,3 +110,7 @@
             <!-- end container-fluid -->
         </div>
         <!-- end #header -->
+@include('modal.create-itinerary')
+@include('modal.set-location-map')
+@include('modal.filter-places')
+@include('modal.chat')
