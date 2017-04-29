@@ -54,7 +54,6 @@
 	},
 	{
 		"name": "Hotelaria",
-		"default": true,
 		"icon": "fa-bed",
         "color": "blue",
 		"group": [
@@ -115,7 +114,6 @@
 	},	
 	{
 		"name": "Postos de Combustíveis",
-		"default": true,		
 		"icon": "fa-random",	
         "color": "olive",	
 		"group": [
@@ -361,7 +359,6 @@
 	},	
 	{
 		"name": "Jogos",
-		"default": true,		
 		"icon": "fa-gamepad",		
 		"group": [
 			"Fliperama",
@@ -406,7 +403,6 @@
 	},		
 	{
 		"name": "Esportes",
-		"default": true,
 		"icon": "fa-futbol-o",	
         "color": "yellow",					
 		"group": [

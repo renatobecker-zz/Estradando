@@ -47,8 +47,8 @@ var facebookGraph = function(url, p, callback) {
 var facebookSearch = function(params, callback) {
     var center = params.geolocation.latitude + "," + params.geolocation.longitude;
     var p = {
-        "distance": 25000,
-        "limit": 500000,
+        "distance": 500,
+        "limit": 100,
         "center": center,
         "q": (params.query ? params.query : ""),
         "type": "place",                

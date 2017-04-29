@@ -1,7 +1,9 @@
 var handleItinerary = function() {
-    map.on('click', function () {
+    
+    /*map.on('click', function () {
         //rightsidebar.hide();
-    })
+    })*/
+    data.config.default_categories = defaultCategories();
 }
 
 var renderRating = function(place) {
@@ -173,6 +175,12 @@ var renderHtmlPlaceDetail = function(place) {
     return html;
 }
 
+var defaultCategories = function() {
+    return _.filter(data.config.catalog_categories, function(category) {
+        return category.default == true; 
+    });
+}
+
 var groupCategory = function(place) {
     var group, list;
     if ((data) && (data.config) && (data.config.catalog_categories)) {
@@ -327,12 +335,20 @@ var loadData = function(callback) {
     var params = {
         geolocation: data.config.destination
     };
-    /*
-    var term = $("#input-term").val();
-    if (term) {
-        params['query'] = term;
-    }*/
-    facebookSearch(params, callback);
+    //temporário
+    _.each(data.config.default_categories, function(category) {
+        _.each(category.group, function(item) {
+            /*
+            var term = $("#input-term").val();
+            if (term) {
+                params['query'] = term;
+            }
+            */
+            params['query'] = item;
+            console.log(params);        
+            facebookSearch(params, callback);                
+        });    
+    });
 };
 
 var Itinerary = function () {
