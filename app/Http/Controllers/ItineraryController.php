@@ -16,6 +16,7 @@ use App\SocialAccount;
 use App\Classes\Helpers as Helper;
 use Vinkla\Pusher\Facades\Pusher;
 use App\Models\Config\CatalogCategory as CatalogCategory;
+use App\Models\Data\Notification as Notification;
 use App\Models\Data\Itinerary as Itinerary;
 
 class ItineraryController extends Controller
@@ -125,8 +126,9 @@ class ItineraryController extends Controller
         }        
 
         $invites = $itinerary->invites;
-        if (!in_array($friend_id, $invites)) {
-            abort(404);            
+        $invite = (string) $friend_id;
+        if (!in_array($invite, $invites)) {
+            abort(404);
         }         
 
         $account = SocialAccount::whereProvider('facebook')
@@ -135,7 +137,7 @@ class ItineraryController extends Controller
 
         if ($account) {
             if (Auth::user()->_id !== $account->user_id) {
-                abort(404);            
+                abort(404);
             }
 
             $members = $itinerary->members;
@@ -151,8 +153,21 @@ class ItineraryController extends Controller
 
             if ($itinerary->save()) {      
                 $member = User::find($account->user_id);
-                $message_channel = "channel_" . $itinerary_id;
-                Pusher::trigger($message_channel, 'new_member', ['member' => $member]);
+                $text = $member->name . " aceitou o convite para participar do roteiro.";
+
+                //Deve ser enviado antes de criar a notification
+                //Quando o client receber, irá atualizar os dados com o membro já aceito
+                $obj = $itinerary;
+                $obj->members_info = $this->members_info($itinerary);
+                $message_channel = "channel_" . $id;
+                Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
+
+                $notification = new Notification;
+                $notification->itinerary_id = $id;
+                $notification->text         = $text;
+                $notification->type         = "member_accepted";
+                $notification->data         = array("user_id" => $account->user_id);
+                $notification->save();
 
                 return redirect()->action(
                     'ItineraryController@load', ['id' => $id]

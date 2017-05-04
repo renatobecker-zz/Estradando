@@ -57,16 +57,19 @@
 <script src="/assets/plugins/select2/dist/js/i18n/pt-BR.js"></script>
 <script src="/assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 <script src="/assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+<script src="/assets/plugins/gritter/js/jquery.gritter.js"></script>
 <script src="/assets/plugins/moment/moment-with-locales.min.js"></script>
 <script src="/assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 <script src="/assets/js/includes/set-location-map.js"></script>
 <script src="/assets/js/includes/filter-places.js"></script>
 <script src="/assets/js/includes/chat.js"></script>
+<script src="/assets/js/includes/notification.js"></script>
 <!--<script src="assets/plugins/leaflet-custom-searchbox-master/dist/leaflet.customsearchbox.min.js"></script>-->
 <!--<script src="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADvJvC_tbot0jWdVF6yKijrjXPicN3EFY&libraries=places&callback=initAutocomplete" async defer></script>
 <script>
     $(document).ready(function() {        
+        Notification.init();
         Itinerary.init();  
         LeafletPlugin.init(loadDefaultPlaces);
         FilterPlaces.init();

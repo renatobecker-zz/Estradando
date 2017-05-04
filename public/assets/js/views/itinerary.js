@@ -351,16 +351,57 @@ var loadData = function(callback, filters) {
     facebookSearch(params, callback);    
 };
 
+var displayNotification = function(notification) {
+    if (notification.type == "member_accepted") {
+        var id = notification.data.user_id;
+        var members = data.config.itinerary.members_info; 
+        var user = _.find(members, function(member) {
+            return member._id == id;
+        });
+
+        if (user == null) return;
+
+        var obj = {
+            title : "Novo participante",
+            text: notification.text,
+            image: user.avatar
+        }
+        showNotificationImage(obj);
+    }
+
+    if (notification.type == "member_invited") {
+        //Somente exibido no usuário convidado
+        if (notification.data.user_id != data.config.user._id) return;
+
+        var id = notification.data.creator_id;
+        var members = data.config.itinerary.members_info; 
+        var user = _.find(members, function(member) {
+            return member._id == id;
+        });
+
+        if (user == null) return;
+
+        var obj = {
+            title : "Convite para Roteiro",
+            text: notification.text,
+            image: user.avatar
+        }
+        showNotificationImage(obj);
+    }
+
+}
+
 var handlePusher = function() {
     if (data.config.itinerary == null) return;    
 
     var message_channel = "channel_" + data.config.itinerary._id;
-    var channel = pusher.subscribe(message_channel);    
-
-    channel.bind('new_member', function(data) {
-        //alert..
+    var channel_itinerary = pusher.subscribe(message_channel);    
+    channel_itinerary.bind('notification', function(data) {
+        displayNotification(data.notification);
     });
-
+    channel_itinerary.bind('itinerary', function(obj) {
+        data.config.itinerary = obj.data;
+    });
 }
 
 var Itinerary = function () {
