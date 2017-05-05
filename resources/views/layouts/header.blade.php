@@ -14,10 +14,10 @@
                                 <i class="fa fa-commenting-o fa-fw"></i>
                             </a>                    
                         </li>
-                        <li class="dropdown">
-                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
+                        <li class="dropdown" id="dp-notications">
+                            <a href="javascript:;" data-toggle="dropdown" id="notifications-badge" class="dropdown-toggle f-s-14">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label">5</span>
+                                <!--<span class="label">5</span>-->
                             </a>
                             <ul class="dropdown-menu media-list pull-right animated fadeInDown">
                                 <li class="dropdown-header">Notifications (5)</li>

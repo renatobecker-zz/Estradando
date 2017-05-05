@@ -4,9 +4,6 @@ $.ajaxSetup({
     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
 });
 
-var handleMoments = function() {
-	moment.locale('pt-BR');
-}
 var handleChat = function() {
 	if (data.config.itinerary == null) return;    
     var message_channel = "channel_" + data.config.itinerary._id;
@@ -136,7 +133,6 @@ var ChatMessages = function () {
     return {
         init: function () {
             handleChat();
-            handleMoments();
         }
     };
 }();

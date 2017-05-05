@@ -9,8 +9,7 @@
             <div class="modal-body">
                 <div class="panel-body bg-silver">
                     <div id="scroll-chat" data-scrollbar="true" data-height="225px">
-                        <ul class="chats" id="chat-list-message">
-                        </ul>
+                        <ul class="chats" id="chat-list-message"></ul>
                     </div>
                 </div>
                 <div class="panel-footer">
