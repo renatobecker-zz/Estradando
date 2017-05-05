@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="panel-body bg-silver">
-                    <div data-scrollbar="true" data-height="225px">
+                    <div id="scroll-chat" data-scrollbar="true" data-height="225px">
                         <ul class="chats" id="chat-list-message">
                         </ul>
                     </div>

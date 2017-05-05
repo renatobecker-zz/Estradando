@@ -38,7 +38,10 @@ class ChatController extends Controller
         }
     }
  
-    public function list_messages(Message $message) {
-        return response()->json($message->orderBy("created_at", "DESC")->take(5)->get());
+    public function list_messages() {
+        $message = new Message;
+        $itinerary_id = Request::get('itinerary_id');
+        //$page         = (int) Request::get('page');
+        return response()->json($message->whereItineraryId($itinerary_id)->orderBy("created_at", "DESC")->/*skip($page)->*/take(5)->get());
     }
 }

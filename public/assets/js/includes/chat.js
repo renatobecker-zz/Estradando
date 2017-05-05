@@ -1,9 +1,11 @@
+var currentChatPage = 1;
+
 $.ajaxSetup({
     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
 });
 
 var handleMoments = function() {
-	//moment.locale('pt-BR');
+	moment.locale('pt-BR');
 }
 var handleChat = function() {
 	if (data.config.itinerary == null) return;    
@@ -16,8 +18,22 @@ var handleChat = function() {
 	});
 }
 
+var refreshDateMessages = function() {
+    $('.date-time').each(function(i, obj) {
+        var originalValue = $(this).attr('value');
+        var newStrDate = moment(originalValue).fromNow();
+         $(this).html(newStrDate);
+    });
+}
+
+var scrollToBottom = function() {
+    $("#scroll-chat").animate({ scrollTop: $('#scroll-chat').prop("scrollHeight")}, 1000);
+}
+
 $('#modal-chat').on('shown.bs.modal', function (e) {
 	resetBadgeModal();
+    refreshDateMessages();
+    $("#input-chat-message").focus();
 });
 
 $('#modal-chat').find('.panel-footer #ActnSendMessage').on('click', function(e){
@@ -38,13 +54,14 @@ var renderMessage = function(message) {
    	if (user == null) return;
 
    	var direction = (data.config.user._id == message.user_id) ? "right" : "left";
-   	var dateTime = moment(message.created_at).format('LLL');
-   	var render = '<li class="' + direction +'"><span class="date-time">';
+   	var dateTime = moment(message.created_at).fromNow();
+   	var render = '<li class="' + direction +'"><span value="' + message.created_at + '" class="date-time">';
    	render += dateTime +'</span><a href="javascript:;" class="name">';
    	render += user.name + '</a><a href="javascript:;" class="image">';
    	render += '<img alt="" src="' + user.avatar + '"/></a>';
    	render += '<div class="message">' + message.message + '</div></li>';
    	$("#chat-list-message").append(render);
+    scrollToBottom();
 }
 
 var sendMessage = function() {
@@ -95,9 +112,24 @@ var refreshMessages = function(messages) {
 	});
 }
 
-$.get("/messages", function (messages) {
-    refreshMessages(messages)
-});
+var listMessages = function() {
+    if (data.config.itinerary == null) return;    
+
+    $.ajax({
+        type: "GET",
+        url: "/messages", 
+        data: {
+            itinerary_id: data.config.itinerary._id,
+            page: currentChatPage
+        },
+        cache: false,
+        success: function(messages) { 
+            refreshMessages(messages)           
+        }
+    }); 
+}
+
+listMessages();
 
 var ChatMessages = function () {
     "use strict";
