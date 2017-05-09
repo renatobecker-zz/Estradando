@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/messages'                       , 'ChatController@list_messages');
     Route::post('/messages'                      , 'ChatController@save_message');
+
+    Route::get('/notifications'                  , 'NotificationController@list_notifications');    
 });
 
  	

@@ -12,6 +12,7 @@ use App\Classes\Helpers as Helpers;
 
 class ChatController extends Controller
 {
+    /*
     public function getLogin()
     {
         return view("login");
@@ -21,7 +22,7 @@ class ChatController extends Controller
     {
         return view("chat");
     }
- 
+    */
     public function save_message()
     {
         if(Request::ajax()) {
