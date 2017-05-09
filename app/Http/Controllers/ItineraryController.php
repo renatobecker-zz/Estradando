@@ -47,6 +47,9 @@ class ItineraryController extends Controller
     public function load($id) {
         
         $itinerary = Itinerary::find($id);
+        if (is_null($itinerary)) {
+            abort(404); 
+        }
         $itinerary->members_info = $this->members_info($itinerary);
 
         if (is_null($itinerary)) {
