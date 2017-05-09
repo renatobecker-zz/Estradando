@@ -1,14 +1,9 @@
 <?php
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('login/facebook', 'SocialAuthController@redirect');
 Route::get('login/facebook/callback', 'SocialAuthController@callback');
 Route::auth();
 
-//Route::get('/home'           , 'HomeController@index');
+Route::get('/'                , 'HomeController@welcome');
 Route::get('/itinerary/logout', 'ItineraryController@logout');
 //mudar para post
 Route::post('/itinerary/invite'                       , 'ItineraryController@invite_friend');

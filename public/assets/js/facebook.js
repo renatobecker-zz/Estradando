@@ -60,12 +60,13 @@ var facebookSearch = function(params, callback) {
     facebookGraph("/search", p, callback);
 }
 
-var facebookInviteFriends = function(msg, url, callback) {
+var facebookInviteFriends = function(msg, url, callback, excludes) {
         FB.ui({
             method: 'apprequests',
             message: msg,
             redirect_uri: url,
             data: url,
+            exclude_ids: excludes,
             title: "Seleção de amigos",
             new_style_message: true
         }, callback);

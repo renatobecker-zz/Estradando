@@ -139,7 +139,6 @@ var loadNotifications = function(notifications) {
     });
     renderNotificationsHeader(countRender);
     renderNotificationsFooter(countRender);
-    //concluir lógica para exibição do Footer
 }
 
 var listLatestNotifications = function() {
