@@ -129,11 +129,12 @@ var renderNotificationsFooter = function(count) {
 
 var loadNotifications = function(notifications) {
     var countRender = 0;
+    $(".notification-class").remove();
     $("#dropdown-notifications-header").remove();
     $("#dropdown-notifications-footer").remove();
     notifications = _.sortBy(notifications, function(o) { return o.created_at; });
     _.each(notifications, function(notification) {
-        if ( (countRender > max_render_count) || (renderNotification(notification)) )  {
+        if ( (countRender >= max_render_count) || (renderNotification(notification)) )  {
             countRender++;
         }
     });

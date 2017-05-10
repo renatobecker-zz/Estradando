@@ -10,7 +10,9 @@ var handleChat = function() {
     var channel = pusher.subscribe(message_channel);    
 	channel.bind('message', function(data) {
     	var message = data.message;
-    	renderMessage(message);   
+    	renderMessage(message, function() {
+    		scrollToBottom();
+    	});   
     	refreshBadgeMessages();
 	});
 }
@@ -24,7 +26,8 @@ var refreshDateMessages = function() {
 }
 
 var scrollToBottom = function() {
-    $("#scroll-chat").animate({ scrollTop: $('#scroll-chat').prop("scrollHeight")}, 1000);
+    //$("#chat-list-message").animate({ scrollTop: $('#chat-list-message').prop("scrollHeight")}, 500);
+    $("#scroll-chat").animate({scrollTop: $('ul#chat-list-message li:last').offset().top - 30}, 250);
 }
 
 $('#modal-chat').on('shown.bs.modal', function (e) {
@@ -43,7 +46,7 @@ $("#input-chat-message").keypress(function(event) {
     }
 });
 
-var renderMessage = function(message) {
+var renderMessage = function(message, callback) {
    	var user = _.find(data.config.itinerary.members_info, function(member) {
 		return member._id == message.user_id;
    	});
@@ -58,7 +61,10 @@ var renderMessage = function(message) {
    	render += '<img alt="" src="' + user.avatar + '"/></a>';
    	render += '<div class="message">' + message.message + '</div></li>';
    	$("#chat-list-message").append(render);
-    scrollToBottom();
+   	if (callback) {
+   		callback();
+   	}    
+   	console.log('renderMessage');
 }
 
 var sendMessage = function() {
@@ -107,6 +113,7 @@ var refreshMessages = function(messages) {
 	_.each(messages, function(message) {
 		renderMessage(message);
 	});
+	scrollToBottom();
 }
 
 var listMessages = function() {

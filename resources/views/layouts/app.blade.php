@@ -11,6 +11,7 @@
     <meta name="author" content="Renato Becker"  />
     <meta name="keywords" content="Viagens, Passeios, Roteiros, Trip, Travel">
     <meta name="_token" content="{{ csrf_token() }}"/>
+    @yield('css_before')  
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />

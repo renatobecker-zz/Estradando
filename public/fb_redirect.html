@@ -78,11 +78,9 @@ function getAllUrlParams(url) {
 getFacebookToken(function(data){
   var default_url = 'https://estradando.com.br';
 	if (data) {
-        console.log(data);
 		var params = getAllUrlParams().request_ids;
 		var decoded = decodeURIComponent(params);
 		var list = decoded.split(',');
-        console.log(list);
 		if ((list) && (list.length > 0)) {
 			var requestId = list[0];
 			FB.api('/'+requestId, function(response){ 

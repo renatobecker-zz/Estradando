@@ -93,12 +93,6 @@ map.addLayer(streets);//Default
 L.control.zoom({
     position:'topleft'
 }).addTo(map);
-/*
-var rightsidebar = L.control.sidebar('sidebar-right', {
-            closeButton: true,
-            position: 'right'
-        });
-map.addControl(rightsidebar);
 */
 var addLocation = function(coords) {
     var marker = L.ExtraMarkers.icon({
@@ -117,18 +111,6 @@ var getMarkerPopup = function(options) {
     var content = "";
     content += '<strong>' + options.name + '</strong><br>';        
     /*
-    content += '<strong>Grupo</strong>: ' + ((cliente.cliente_codigo_grupo > 0) ? cliente.cliente_codigo_grupo + ' - ' + cliente.cliente_nome_grupo : '') + '<br>';   
-    content += '<strong>Bairro</strong>: ' + ((cliente.cliente_bairro) ? cliente.cliente_bairro : '') + '<br>';                                                 
-    content += '<strong>Cidade/Estado</strong>: ' + cliente.cliente_cidade_nome + "/" + cliente.cliente_cidade_uf + '<br>';
-    content += '<strong>Endereço</strong>: ' + cliente.cliente_endereco + '<br>';                      
-    content += '<strong>Telefone</strong>: ' + cliente.cliente_telefone + '<br>';                      
-    content += '<strong>Segmento</strong>: ' + cliente.cliente_segmento + '<br>';                              
-    content += '<strong>Status Loja</strong>: ' + cliente.cliente_status_loja + '<br>';                              
-    content += '<strong>Status Contato</strong>: ' + cliente.cliente_status_contato + '<br>';                                      
-    content += '<strong>Dias Atraso</strong>: ' + $.number( cliente.cobranca_dias_atraso, 0, ",", "." )  + '<br>';              
-    content += '<strong>Valor Atraso</strong>: R$ ' + $.number( cliente.cobranca_valor_atraso, 2, ",", "." )  + '<br>';      
-    content += '<strong>Limite Crédito</strong>: R$ ' + $.number( cliente.cliente_limite_credito, 2, ",", "." )  + '<br>';              
-    */                
     if ((options.cover) && (options.cover.source)) {
         var slideshowContent = '<br><div class="image active">' +
         '<img src="' + options.cover.source + '"/>' +
@@ -139,9 +121,8 @@ var getMarkerPopup = function(options) {
         slideshowContent +
         '</div>' +
         '</div>';    
-
     }   
-    
+    */
     return content;                    
 }
 
@@ -154,7 +135,7 @@ var addMarker = function(options, callback) {
         prefix: 'fa'
     });
     //var location = (options.type == "event") ? options.place.location : options.location;
-    var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker});
+    var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker, data: options});
     marker.on('click', clickZoom);
     if (callback) {
         marker.on('click', callback);

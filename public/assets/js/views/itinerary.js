@@ -1,5 +1,6 @@
 Pusher.logToConsole = true;
 var pusher = new Pusher(data.config.pusher.app_key);
+var leftSidebar;
 
 var handleMoments = function() {
     moment.locale('pt-BR');
@@ -7,9 +8,15 @@ var handleMoments = function() {
 
 var handleItinerary = function() {
     
-    /*map.on('click', function () {
-        //rightsidebar.hide();
-    })*/
+    leftSidebar = L.control.sidebar('sidebar-place-detail', {
+            closeButton: true,
+            position: 'left'
+        });
+    map.addControl(leftSidebar);
+    
+    map.on('click', function () {
+        leftSidebar.hide();
+    })
     data.config.default_categories = defaultCategories();
 }
 
@@ -215,24 +222,32 @@ var markerGroup = function(group) {
     return marker;
 }
 
+var markerDetailClick = function(data) {
+    //leftSidebar.toggle();    
+    console.log(data.target.options);
+    var html = renderHtmlPlaceDetail(data.target.options);
+    //leftSidebar.setContent(html);
+    leftSidebar.show();    
+}
+
 var loadPlaces = function(response) {    
-    //rightsidebar.hide();
     console.log(response);
     _.each(response.data, function(place) { 
         var group = groupCategory(place);               
         if (group) {
             var marker = markerGroup(group);
             place.marker = marker;
-            addMarker(place);    
+            addMarker(place, markerDetailClick);    
         }                    
     });
     map.addLayer(markers);
     console.log(response.data);
     if (!response.paging) {  
+        /*
         renderHtmlPlacesResult(response.data, function(html){
-            //rightsidebar.setContent(html);
-            //rightsidebar.show();    
-        })
+            leftSidebar.setContent(html);
+            leftSidebar.show();    
+        })*/
     }
 }    
 
@@ -341,7 +356,7 @@ var loadDefaultPlaces = function() {
 }
 
 var loadData = function(callback, filters) {
-
+    leftSidebar.hide();
     clearMarkers();
     var params = {
         geolocation: data.config.destination

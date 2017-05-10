@@ -1,11 +1,12 @@
 @extends('layouts.app')
+
 @section('css')  
 <link href="/assets/plugins/leaflet/leaflet.css" rel='stylesheet' />
+<link href="/assets/plugins/leaflet-sidebar/src/L.Control.Sidebar.css" rel="stylesheet"/>
 <link href="/assets/plugins/Leaflet.ExtraMarkers-master/dist/css/leaflet.extra-markers.min.css" rel="stylesheet" />
 <link href="/assets/plugins/leaflet-locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet"/>
 <link href="/assets/css/views/leaflet-custom-popup.css" rel="stylesheet"/>
 <link href="/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
-<link href="/assets/plugins/leaflet-sidebar/src/L.Control.Sidebar.css" rel="stylesheet"/>
 <link href="/assets/plugins/ionRangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
 <link href="/assets/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css" rel="stylesheet"/>
 
@@ -27,6 +28,11 @@
             top: 54px !important;
         }
     }    
+
+    .leaflet-container  {
+        font:unset;
+    }    
+
 </style>
 @endsection        
 @section('content')
@@ -42,6 +48,8 @@
 </div>        
 <!-- end #content -->
 @endsection        
+
+@include('includes.sidebar-place-detail')
 
 @section('javascript')  
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
