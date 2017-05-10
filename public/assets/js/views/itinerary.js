@@ -326,10 +326,14 @@ var inviteRequest = function(itinerary, friend) {
     });    
 }
 
+var excludeIds = function() {
+    return _.pluck(data.config.itinerary.members_info, "provider_user_id");
+}
+
 var inviteItinerary = function() {
     var url = data.config.redirect_invite_url + data.config.itinerary._id;
-    console.log(url);
-    facebookInviteFriends(data.config.itinerary.name, url, inviteCallback);
+    var exclude_ids = excludeIds();
+    facebookInviteFriends(data.config.itinerary.name, url, inviteCallback, exclude_ids);
 }
 
 var loadDefaultPlaces = function() {

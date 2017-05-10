@@ -82,16 +82,15 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         //Armazena possível página anterior para redirect após login
-        if(!session()->has('from')){
-            session()->put('from', url()->previous());
+        if(!session()->has('redirect_back')){
+            session()->put('redirect_back', url()->previous());
         }
         return redirect('/');
     }
 
     
     public function authenticated($request,$user)
-    {
-        //Após autenticar, verificar se há redirect
+    {        
         return redirect(session()->pull('from',$this->redirectTo));
     } 
        

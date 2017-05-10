@@ -47,6 +47,9 @@ class ItineraryController extends Controller
     public function load($id) {
         
         $itinerary = Itinerary::find($id);
+        if (is_null($itinerary)) {
+            abort(404); 
+        }
         $itinerary->members_info = $this->members_info($itinerary);
 
         if (is_null($itinerary)) {
@@ -178,14 +181,21 @@ class ItineraryController extends Controller
         }    
     }
 
-    public function add_place($id, $place_id, $user_id) {
+    public function add_place($itinerary, $place_id, $user_id) {
 
     }
 
     private function members_info($itinerary) {
         $members_info = [];
         foreach ($itinerary->members as $member) {
-            $members_info[] = User::find($member);
+            $user = User::find($member);
+            $account = SocialAccount::whereProvider('facebook')
+            ->whereUserId($member)
+            ->first();
+            if ($account) {
+                $user->provider_user_id = $account->provider_user_id;
+            }
+            $members_info[] = $user;
         }
         return $members_info;
     }
