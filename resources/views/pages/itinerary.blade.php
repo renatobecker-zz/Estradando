@@ -72,6 +72,7 @@
 <script src="/assets/js/includes/filter-places.js"></script>
 <script src="/assets/js/includes/chat.js"></script>
 <script src="/assets/js/includes/notification.js"></script>
+<script src="/assets/js/includes/place-detail.js"></script>
 <!--<script src="assets/plugins/leaflet-custom-searchbox-master/dist/leaflet.customsearchbox.min.js"></script>-->
 <!--<script src="assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADvJvC_tbot0jWdVF6yKijrjXPicN3EFY&libraries=places&callback=initAutocomplete" async defer></script>
