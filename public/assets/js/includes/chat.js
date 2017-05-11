@@ -27,7 +27,10 @@ var refreshDateMessages = function() {
 
 var scrollToBottom = function() {
     //$("#chat-list-message").animate({ scrollTop: $('#chat-list-message').prop("scrollHeight")}, 500);
-    $("#scroll-chat").animate({scrollTop: $('ul#chat-list-message li:last').offset().top - 30}, 250);
+    var lastItem = $('ul#chat-list-message li:last');
+    if (lastItem.offset()) {
+      $("#scroll-chat").animate({scrollTop: lastItem.offset().top - 30}, 250);
+    }
 }
 
 $('#modal-chat').on('shown.bs.modal', function (e) {

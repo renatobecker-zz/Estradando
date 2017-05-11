@@ -228,7 +228,12 @@ var renderFacebookInfo = function(place) {
 
 var renderPanelHeader = function() {
     var html = '<div class="panel-heading">';
-    html += '<div class="pull-right header-place"><a href="#" onclick="closePlace()" class="btn btn-white btn-sm"><i class="fa fa-times"></i></a></div>';
+    html += '<div class="pull-right header-place">';
+    if (data.config.itinerary) {        
+        html += '<a id="btn-add-place" href="#modal-show-itineraries" data-toggle="modal" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';
+    }
+    html += '<a href="#" onclick="closePlace()" class="btn btn-white btn-sm p-l-15 p-r-15"><i class="fa fa-times"></i></a>';
+    html += '</div>';
     html += '<h4 class="panel-title">Informações</h4>';
     html += '</div>';
     return html;

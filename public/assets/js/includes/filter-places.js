@@ -8,7 +8,7 @@ var handleIonRangeSlider = function() {
     $('#range-filter-max-distance').ionRangeSlider({
         min: 0,
         max: 50,
-        from: 5,
+        from: 1,
         //type: 'single',
         prefix: "Distância ",
         postfix: " KM",

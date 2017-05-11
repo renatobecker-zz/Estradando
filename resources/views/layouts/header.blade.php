@@ -16,8 +16,7 @@
                         </li>
                         <li class="dropdown" id="dropdown-notications">
                             <a href="javascript:;" data-toggle="dropdown" id="notifications-badge" class="dropdown-toggle f-s-14">
-                                <i class="fa fa-bell-o"></i>
-                                <!--<span class="label">5</span>-->
+                                <i class="fa fa-bell-o"></i>                                
                             </a>
                             <ul id="notifications-list" class="dropdown-menu media-list pull-right animated fadeInDown">
                             </ul>
@@ -27,29 +26,10 @@
                     <li class="dropdown navbar-user">        
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <img src=" {{ Auth::user()->avatar }} " alt="" /> 
-                            <span class="hidden-xs">{{ Auth::user()->name }}</span> <b class="caret"></b>
+                            <span class="">{{ Auth::user()->name }}</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu animated fadeInLeft">
-                            @if (isset($itinerary))
-                                <!-- somente se for o criador-->
-                                @if ($itinerary->creator_id == Auth::user()->_id)
-                                    <li><a href='#' onclick="inviteItinerary();"><i class="fa fa-facebook"></i> Convidar amigos</a></li>    
-                                @endif    
-                            @else
-                                <li><a href="#modal-create-itinerary" data-toggle="modal" id="BtnCreateItinerary"> Criar Roteiro</a></li>                                  
-                                <!--somente se existirem roteiros-->
-                                <li><a href="#modal-show-itineraries" data-toggle="modal" id="BtnItineraries"> Meus Roteiros</a></li>                                
-                                <li><a href="#modal-set-location" data-toggle="modal"><i class="fa fa-map-marker"></i> Alterar localização</a>                                
-                            @endif    
-
-                            <!--<li><a href="javascript:;">Edit Profile</a></li>
-                            <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-                            <li><a href="javascript:;">Calendar</a></li>
-                            <li><a href="javascript:;">Setting</a></li>
-                            <li class="divider"></li>
-                            -->
-                            <li><a href="#modal-filter-places" data-toggle="modal" id="BtnPlaces"><i class="fa fa-search"></i> Pesquisar pontos de interesse</a></li>                                                                                        
-                            <li class="divider"></li>
+                            <!--li class="divider"></li>-->
                             <li><a href="/itinerary/logout"><i class="fa fa-sign-out"></i> Sair</a></li>
                         </ul>
                     </li>
@@ -59,7 +39,4 @@
             <!-- end container-fluid -->
         </div>
         <!-- end #header -->
-@include('modal.create-itinerary')
-@include('modal.set-location-map')
-@include('modal.filter-places')
 @include('modal.chat')

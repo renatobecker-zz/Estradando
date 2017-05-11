@@ -18,12 +18,12 @@ var mapOptions = {
     maximumAge: 0
 };
 
-function successLocation(position) {
-    data.config.destination = position;
-
-    map.setView([position.latitude, position.longitude], 15);
+function successLocation(location) {
+    data.config.destination = location;
+    console.log(location);
+    map.setView([location.latitude, location.longitude], 15);
     map.flyTo(
-        [position.latitude, position.longitude]
+        [location.latitude, location.longitude]
     );   
 
     if (onSearchLocation) {

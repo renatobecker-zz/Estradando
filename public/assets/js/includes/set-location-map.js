@@ -10,8 +10,14 @@ $('#modal-set-location').on('hidden.bs.modal', function (e) {
     form.reset();
 });
 
-var set_default_location = function(position) {
-    
+var set_default_location = function(place) {
+    var location = {
+        name: place.name,
+        address : place.formatted_address,
+        latitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng()
+    };
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -22,18 +28,12 @@ var set_default_location = function(position) {
         type: "POST",
         url: "/set_default_location", 
         data: {
-            default_location: {
-                latitude: position.lat(),
-                longitude: position.lng()                                
-            }
-        },
+            default_location : location
+        },    
         cache: false,
-        success: function(data) {            
-            if (data.success) {  
-                successLocation({ 
-                    latitude: position.lat(),
-                    longitude: position.lng()                
-                });
+        success: function(obj) {            
+            if (obj.success) {  
+                successLocation(obj.data);
                 $("#modal-set-location").modal('hide'); 
             }
         }
@@ -50,11 +50,8 @@ var initAutocomplete = function() {
         if (places.length == 0) {
             return;
         }
-
         if (places.length == 1) {
-            console.log(places[0]);
-            var position = places[0].geometry.location;
-            set_default_location(position);
+            set_default_location(places[0]);
         }            
     });
 }    

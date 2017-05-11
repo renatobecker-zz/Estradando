@@ -29,9 +29,13 @@
         }
     }    
 
-    .leaflet-container  {
+    .leaflet-container {
         font:unset;
     }    
+
+    .wrapper-controls {
+        padding: 10px !important;
+    }
 
 </style>
 @endsection        
@@ -42,7 +46,12 @@
     <!--<h1 id="current-location-description" class="page-header">Porto Alegre, RS</h1> <!-- <small>header small text goes here...</small></h1>-->
     <!-- end page-header -->
     <!-- begin map content -->
-    <div class="map">                
+    <div class="map">         
+        @if (isset($itinerary))
+            @include('includes.itinerary-menu')
+        @else
+            @include('includes.wrapper-menu')        
+        @endif    
         <div id="map" class="height-full width-full"></div>
     </div>
 </div>        
@@ -50,6 +59,9 @@
 @endsection        
 
 @include('includes.sidebar-place-detail')
+@include('modal.create-itinerary')
+@include('modal.set-location-map')
+@include('modal.filter-places')
 
 @section('javascript')  
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
