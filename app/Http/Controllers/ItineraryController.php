@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-USE Input;
+//use Input;
 use Request;
 use Response;
 use JavaScript;
@@ -15,6 +15,7 @@ use App\User;
 use App\SocialAccount;
 use App\Classes\Helpers as Helper;
 use Vinkla\Pusher\Facades\Pusher;
+use Illuminate\Support\Facades\Input;
 use App\Models\Config\CatalogCategory as CatalogCategory;
 use App\Models\Data\Notification as Notification;
 use App\Models\Data\Itinerary as Itinerary;
@@ -87,6 +88,7 @@ class ItineraryController extends Controller
         $itinerary->start_date = Helper::convertToMongoDate(Request::get('start_date'));
         $itinerary->end_date   = Helper::convertToMongoDate(Request::get('end_date'));
         $itinerary->invites    = [];
+        $itinerary->places     = [];
         $itinerary->members    = [$creator_id];        
         if ($itinerary->save()) {
             return Response::json(array('success'=>true,'data'=>$itinerary)); 
@@ -181,8 +183,60 @@ class ItineraryController extends Controller
         }    
     }
 
-    public function add_place($itinerary, $place_id, $user_id) {
+    public function add_place() {
 
+        if(Request::ajax()) {
+            $data = Input::all();
+            $itinerary_id = $data["itinerary_id"];
+            $user_id      = $data["user_id"];
+            $place_id     = $data["place_id"];
+
+            $itinerary = Itinerary::find($itinerary_id);
+            if (is_null($itinerary)) {
+                return Response::json(array('success'=>false,'message'=>'Roteiro inexistente.'));                 
+            }        
+
+            $places = [];
+            if ($itinerary->places) {
+                $places = $itinerary->places;
+                foreach ($places as $place) {
+                    if ($place["place_id"] == $place_id) {
+                        return Response::json(array('success'=>false,'message'=>'Local já existente no Roteiro.')  );                 
+                    }
+                }
+            }
+
+            $new_place = array(
+                'place_id' => $place_id,
+                'user_id' => $user_id            
+            );
+
+            array_push($places, $new_place);
+            $itinerary->places = $places;
+            if ($itinerary->save()) {              
+                $member = User::find($user_id);
+                $text = $member->name . " adicionou um novo local ao roteiro.";
+
+                $message_channel = "channel_" . $itinerary_id;
+                $obj = $itinerary;
+                $obj->members_info = $this->members_info($itinerary);
+
+                Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
+
+                $notification = new Notification;
+                $notification->itinerary_id = $itinerary_id;
+                $notification->text         = $text;
+                $notification->type         = "place_added";
+                $notification->data         = array("place_id" => $place_id,"user_id" => $member->_id);
+                $notification->save();
+
+                return Response::json(array('success' => true,'data' => $new_place));                 
+            }
+        }        
+    }
+
+    public function remove_place($itinerary_id, $place_id, $user_id) {
+        
     }
 
     private function members_info($itinerary) {

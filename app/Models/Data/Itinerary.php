@@ -15,5 +15,5 @@ class Itinerary extends Moloquent {
                  ]; 
 
         return $rules;           
-    }     
+    }
 }       

@@ -1,4 +1,16 @@
 var max_render_count = 5;
+var users_notifications = [
+    {
+        type: "member_accepted",
+        text: "Novo participante" 
+    },
+    {
+        type: "place_added",
+        text: "Novo local adicionado" 
+    }
+]
+
+
 
 var handleNotification = function() {
     if (data.config.itinerary == null) return;    
@@ -6,8 +18,6 @@ var handleNotification = function() {
     var channel_itinerary = pusher.subscribe(message_channel);    
     channel_itinerary.bind('notification', function(data) {
         displayNotification(data.notification);
-        refreshBadgeNotifications();
-        listLatestNotifications();
     });    
 };
 
@@ -54,17 +64,21 @@ var showNotificationImage = function(data) {
 }
 
 var displayNotification = function(notification) {
-    if (notification.type == "member_accepted") {
+    var user_notification = _.find(users_notifications, function(item) {
+        return item.type == notification.type;
+    });
+
+    if (user_notification != null) {
         var id = notification.data.user_id;
         var members = data.config.itinerary.members_info; 
         var user = _.find(members, function(member) {
             return member._id == id;
         });
 
-        if (user == null) return;
+        if ((user == null) || (user._id == data.config.user._id)) return;
 
         var obj = {
-            title : "Novo participante",
+            title : user_notification.text,
             text: notification.text,
             image: user.avatar
         }
@@ -90,29 +104,37 @@ var displayNotification = function(notification) {
         }
         showNotificationImage(obj);
     }
+
+    refreshBadgeNotifications();
+    listLatestNotifications();
 }
 
 var renderNotification = function(notification) {
     if (data.config.itinerary == null) false;    
 
-    if (notification.type == "member_accepted") {
-        var id = notification.data.user_id;
-        var members = data.config.itinerary.members_info; 
-        var user = _.find(members, function(member) {
-            return member._id == id;
-        });
-        //Notificações não são exibidas no usuário origem
-        if ( (user == null) || (data.config.user._id == user._id) ) return false;
-        var dateTime = moment(notification.created_at).fromNow();
+    var user_notification = _.find(users_notifications, function(item) {
+        return item.type == notification.type;
+    });
 
-        var render = '<li class="media notification-class"><a href="javascript:;">';
-        render     +='<div class="media-left"><img src="' + user.avatar + '" class="media-object" alt="" /></div>';
-        render     +='<div class="media-body"><h6 class="media-heading">' + user.name + '</h6>';
-        render     +='<p>' + notification.text + '</p><div value="' + notification.created_at + '" class="text-muted f-s-11 date-time">';
-        render     += dateTime + '</div></div></a></li>';
-        $("#notifications-list").prepend(render); //adiciona no início da lista
-        return true;
-    }    
+    if (user_notification == null) return;
+
+
+    var id = notification.data.user_id;
+    var members = data.config.itinerary.members_info; 
+    var user = _.find(members, function(member) {
+        return member._id == id;
+    });
+    //Notificações não são exibidas no usuário origem
+    if ( (user == null) || (data.config.user._id == user._id) ) return false;
+    var dateTime = moment(notification.created_at).fromNow();
+
+    var render = '<li class="media notification-class"><a href="javascript:;">';
+    render     +='<div class="media-left"><img src="' + user.avatar + '" class="media-object" alt="" /></div>';
+    render     +='<div class="media-body"><h6 class="media-heading">' + user.name + '</h6>';
+    render     +='<p>' + notification.text + '</p><div value="' + notification.created_at + '" class="text-muted f-s-11 date-time">';
+    render     += dateTime + '</div></div></a></li>';
+    $("#notifications-list").prepend(render); //adiciona no início da lista
+    return true;
 }
 
 var renderNotificationsHeader = function(count) {

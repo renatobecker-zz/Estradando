@@ -226,11 +226,11 @@ var renderFacebookInfo = function(place) {
     return html;  
 }
 
-var renderPanelHeader = function() {
+var renderPanelHeader = function(place) {
     var html = '<div class="panel-heading">';
     html += '<div class="pull-right header-place">';
     if (data.config.itinerary) {        
-        html += '<a id="btn-add-place" href="#modal-show-itineraries" data-toggle="modal" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';
+        html += '<a href="#" onclick="addPlace(' + place.id + ')" id="btn-add-place" data-toggle="modal" data-id="' + place.id + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';
     }
     html += '<a href="#" onclick="closePlace()" class="btn btn-white btn-sm p-l-15 p-r-15"><i class="fa fa-times"></i></a>';
     html += '</div>';
@@ -243,10 +243,28 @@ function closePlace() {
     leftSidebar.hide();
 }
 
+var addPlace = function(place_id) {
+    $.ajax({
+        type: "POST",
+        url: "/itinerary/add_place", 
+        data: {
+            itinerary_id: data.config.itinerary._id,
+            user_id: data.config.user._id,
+            place_id: place_id
+        },
+        cache: false,
+        success: function(data) {            
+            if (data.success) {  
+                closePlace();
+            }
+        }
+    }); 
+}
+
 var renderPlaceDetail = function(place) {
     var imgCover = (_.isObject(place.cover)) ? place.cover.source : null;
     var category = ((place.category_list) && (place.category_list.length > 0)) ? place.category_list[0].name : '';  
-    var html = renderPanelHeader();    
+    var html = renderPanelHeader(place);    
     html += '<div class="panel-body p-t-5">';
     if (imgCover) {
         html += renderPlaceCover(imgCover);
