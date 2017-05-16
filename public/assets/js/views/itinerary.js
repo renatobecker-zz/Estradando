@@ -7,23 +7,49 @@ var handleMoments = function() {
 }
 
 var handleItinerary = function() {
-    
+
     leftSidebar = L.control.sidebar('sidebar-place-detail', {
-            closeButton: true,
-            position: 'left'
-        });
+        closeButton: true,
+        position: 'left'
+    });
     map.addControl(leftSidebar);
     
     map.on('click', function () {
         leftSidebar.hide();
     })
     data.config.default_categories = defaultCategories();
+    generatePlacesInfo();
 }
 
 var defaultCategories = function() {
     return _.filter(data.config.catalog_categories, function(category) {
         return category.default == true; 
     });
+}
+
+var generatePlacesInfo = function() {
+    clearRoute();
+    clearMarkers();
+    addRoute(data.config.destination.latitude, data.config.destination.longitude);    
+    data.config.itinerary.places_info = [];
+    if (data.config.itinerary.places) {
+        _.each(data.config.itinerary.places, function(place) { 
+            facebookPlace(place.place_id, function(response) {
+                data.config.itinerary.places_info.push(response);
+                if (response.location) {
+                    var place_info = response;
+                    var group = groupCategory(place_info);               
+                    if (group) {
+                        var marker = markerGroup(group);
+                        place_info.marker = marker;
+                        addMarker(place_info, markerDetailClick);    
+                    }                    
+                    addRoute(response.location.latitude, response.location.longitude);    
+                }                
+            });    
+        }); 
+        map.addLayer(markers);   
+    }
 }
 
 var groupCategory = function(place) {
@@ -99,7 +125,7 @@ $('#modal-create-itinerary').on('hidden.bs.modal', function (e) {
 });
 
 $('#modal-create-itinerary').find('.modal-footer #ActCreateItinerary').on('click', function(){
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -174,7 +200,9 @@ var inviteRequest = function(itinerary, friend) {
 }
 
 var excludeIds = function() {
-    return _.pluck(data.config.itinerary.members_info, "provider_user_id");
+    var excludes = _.pluck(data.config.itinerary.members_info, "provider_user_id");
+    console.log(excludes);
+    return excludes;
 }
 
 var inviteItinerary = function() {
@@ -211,6 +239,7 @@ var handlePusher = function() {
     var channel_itinerary = pusher.subscribe(message_channel);    
     channel_itinerary.bind('itinerary', function(obj) {
         data.config.itinerary = obj.data;
+        generatePlacesInfo();
     });
 }
 

@@ -121,11 +121,23 @@ var renderPlaceHeader = function(place) {
 
 var renderPlaceAddress = function(place) {
     var category = ((place.category_list) && (place.category_list.length > 0)) ? place.category_list[0].name : place.category;  
+    var distanceKm;
+    if (place.location) {
+            var lat1  = data.config.destination.latitude;    
+            var lng1  = data.config.destination.longitude;
+            var lat2  = place.location.latitude;
+            var lng2  = place.location.longitude;
+            var long2 = data.config.destination.longitude;
+            distanceKm = getDistanceBetweenLocations(lat1, lng1, lat2, lng2) + ' Km';
+    }    
     var html = '<div class="media">';
     html    += '<address>';
     html    += '<strong>' + category + '</strong><br />';
-    html    += '<i class="fa fa-map-marker"></i> ' + renderText(place.location.street) + ' - ' + renderText(place.location.zip)  + '<br />';
+    html    += renderText(place.location.street) + ' - ' + renderText(place.location.zip)  + '<br />';
     html    += renderText(place.location.city) + ' - ' + renderText(place.location.state)  + '<br />';    
+    if (distanceKm != null) {
+        html += '<i class="fa fa-map-marker"></i> ' + distanceKm;
+    }    
     html    += '</address>';
     html += '</div>';
     return html;

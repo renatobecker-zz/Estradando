@@ -1,17 +1,6 @@
-/*
-var mapLocation = {
-    origin: {
-        latitude: 0,
-        longitude: 0
-    },
-    destination: {
-        latitude: 0,
-        longitude: 0        
-    }
-}
-*/
+var currentLocationMarker;
 var onSearchLocation = null;
-
+var pulsingIcon = L.icon.pulse({iconSize:[12,12],color:'green'});
 var mapOptions = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -20,12 +9,14 @@ var mapOptions = {
 
 function successLocation(location) {
     data.config.destination = location;
+
     console.log(location);
     map.setView([location.latitude, location.longitude], 15);
+    setPositionControl(location.latitude, location.longitude, location.address);
     map.flyTo(
         [location.latitude, location.longitude]
     );   
-
+    
     if (onSearchLocation) {
         onSearchLocation();
     } 
@@ -53,15 +44,14 @@ var map = L.map('map', {
     zoomControl: false    
 });
 
-var map_url   = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
-var map_token = 'pk.eyJ1IjoicmVuYXRvYmVja2VyIiwiYSI6ImNqMGJybnpjYTAzcDMyd296MzlnMzF6ajgifQ.11dY0tWRA3eIup5D3tLxKw';
-
-L.tileLayer(map_url, {
+L.tileLayer(data.config.mapbox.url, {
     //attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox.streets',
-    accessToken: map_token
+    accessToken: data.config.mapbox.token
 }).addTo(map);
+
+//map.locate({setView: true, maxZoom: 16});
 
 /*
 map.on('moveend', function(e) {
@@ -93,7 +83,7 @@ map.addLayer(streets);//Default
 L.control.zoom({
     position:'topleft'
 }).addTo(map);
-*/
+
 var addLocation = function(coords) {
     var marker = L.ExtraMarkers.icon({
         icon: 'fa-location-arrow',
@@ -106,6 +96,28 @@ var addLocation = function(coords) {
     .addTo(map)
     .bindPopup("Sua localização atual");  
 }
+*/
+
+var setPositionControl = function(lat, lng, desc) {
+    if (currentLocationMarker) {
+        map.removeLayer(currentLocationMarker);
+    }
+    currentLocationMarker = L.marker([lat, lng],{icon: pulsingIcon});
+    map.addLayer(currentLocationMarker);
+    currentLocationMarker.bindPopup(desc || "Sua posição atual");
+    //.openPopup();        
+}
+
+function onLocationFound(e) {
+    /*
+    var radius = e.accuracy / 2;
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("Sua localização atual").openPopup();         
+    L.circle(e.latlng, radius).addTo(map);
+    */
+    setPositionControl(e.latitude, e.longitude);
+}
+map.on('locationfound', onLocationFound);
 
 var getMarkerPopup = function(options) {        
     var content = "";
@@ -168,33 +180,6 @@ var clearMarkers = function() {
 
 function clickZoom(e) {
     map.flyTo(e.target.getLatLng());
-}
-
-var handleRouting = function() {
-    /*
-    var routing = new L.Routing.control({
-        position: 'bottomleft',
-        router: L.Routing.mapbox(map_token),
-        createMarker: function() { return null; },
-        draggableWaypoints: false,
-        showAlternatives: true,
-        language: 'pt',
-        waypoints: [],
-    });
-
-    map.addControl(routing);
-
-    routing.on('routeselected', function(e) {
-        var coord = e.route.coordinates;
-        var instr = e.route.instructions;
-        var instruction = getInstrGeoJson(instr,coord);
-        route_object = instruction;
-    });        
-
-    routing.on('routesfound', function(e) {
-        routes_info = e.routes;
-    });   
-    */     
 }
 
 var handleInit = function(callback) {

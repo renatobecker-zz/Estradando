@@ -299,6 +299,14 @@ class ItineraryController extends Controller
                 "app_secret" => env("PUSHER_APP_SECRET"),
                 "app_cluster" => env("PUSHER_APP_CLUSTER")
             );
+        $config['facebook'] = array(
+                "user_token" => Session::get('user_token')
+            );
+        $config['mapbox']   = array(
+                "id" => env("MAPBOX_ID"),
+                "url" => env("MAPBOX_URL"),
+                "token" => env("MAPBOX_TOKEN")
+            );    
         return $config;
     }
 
