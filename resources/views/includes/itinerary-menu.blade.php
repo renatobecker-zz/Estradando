@@ -6,7 +6,7 @@
 	</div>
 	-->
 	<div class="btn-group m-r-5">
-		<a href="#modal-filter-places" data-toggle="modal" class="btn btn-white btn-sm p-l-15 p-r-15" title="Pesquisar locais"><i class="fa fa-filter"></i></a>
+		<a href="#modal-filter-places" data-toggle="modal" class="btn btn-white btn-sm p-l-15 p-r-15" title="Pesquisar locais"><i class="fa fa-search"></i></a>
 	</div>
 	<div class="pull-right">
 		<div class="btn-group btn-toolbar">
@@ -17,7 +17,7 @@
 			<a href="#" class="btn btn-white btn-sm p-l-15 p-r-15" title="Configurações"><i class="fa fa-gear"></i></a>
 		</div>
 		<div class="btn-group m-l-5">
-			<a href="/home" class="btn btn-white  btn-sm" title="Sair do Roteiro"><i class="fa fa-times"></i></a>
+			<a href="/home" class="btn btn-white  btn-sm" title="Fechar Roteiro"><i class="fa fa-times"></i></a>
 		</div>
 	</div>
 </div>

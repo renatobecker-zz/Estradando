@@ -20,71 +20,65 @@ var renderPlaceRating = function(place) {
         html +='<span class="star' + activeClass + '"></span>';            
     }
     html += '</div>';
+    if (place.were_here_count) {
+        var html_were_here = (place.were_here_count > 1) ? " pessoas estiveram aqui" : " pessoa esteve aqui";
+        html += '<small>' + place.were_here_count + html_were_here + '</small>';
+    }
     html += '</div>';
     html += '</div>';
     return html;
 }
 
-var renderPlaceCards = function(place) {
-    var cards = [];    
-    if ((_.isObject(place.parking)) && 
-        ((place.parking.lot == 1) || (place.parking.street == 1) || (place.parking.valet == 1))) {
-        cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Parking" data-original-title="" title=""><i class="fa fa-fw fa-car"></i></a>');
+var renderPlaceParking = function(place) {
+    var html = '<div class="media">';
+    html    += '<address>';
+    html    += '<strong><i class="fa fa-fw fa-car"></i> Estacionamento</strong><br />';
+    var html_parking = "";
+    if (_.isObject(place.parking)) {
+        if (place.parking.lot == 1) {
+            html_parking += "Privativo<br />";
+        }
+
+        if (place.parking.street == 1) {
+            html_parking += "Via Pública<br />";
+        } 
+
+        if (place.parking.valet == 1) {
+            html_parking += "Manobrista<br />";
+        }    
     }
+    if (html_parking == "") return;
+    html += html_parking;
+    html += '</address>';
+    html += '</div>';
+    return  html;
+}
+
+var renderPlacePayments = function(place) {
+    var cards = [];    
 
     if (_.isObject(place.payment_options)) {
         if ((place.payment_options.amex == 1) || (place.payment_options.mastercard == 1) || (place.payment_options.visa == 1)) {
-            cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Credit Card" data-original-title="" title=""><i class="fa fa-fw fa-credit-card"></i></a>');        
+            cards.push('<i class="fa fa-fw fa-credit-card"></i> Cartão de Crédito<br />');        
         }        
         if (place.payment_options.cash_only == 1) {
-            cards.push('<a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Cash" data-original-title="" title=""><i class="fa fa-fw fa-money"></i></a>');        
+            cards.push('<i class="fa fa-fw fa-money"></i> Dinheiro<br />');        
         }        
     }
 
-    return cards;
-}
-/*
-var renderHtmlPlaceItem = function(place) {
-    var src      = (_.isObject(place.cover)) ? place.cover.source : null;    
-    var html ='<li>';
-    html +='<div class="gallery">';
-    html +='<div class="image-info">';
-    html +='<div class="result-info">';
-    html +='<h3 class="title">' + place.name + '</h3>';
-    if (place.about) {
-        html +='<p class="desc">' + place.about + '</p>';
-    }
-    if (place.price_range) {
-        //html += '<div class="pull-right"><a href="javascript:;">' + place.price_range + '</a></div>';        
-    }
-    html += renderRating(parseInt(place));    
-    html +='<p class="location"><i class="fa fa-map-marker"></i> ' + place.location.city + '</p>';
+    if (cards.length == 0) return;
 
-    var cardsList = renderCards(place);
-    if ((cardsList) && (cardsList.length > 0)) {
-        html +='<div class="btn-row">';    
-        _.each(cardsList, function(card) {                
-            html += card;
-        });    
-        html +='</div>';    
-    }
+    var html = '<div class="media">';
+    //html    += '<address>';
+    html    += '<strong>Formas de Pagamento</strong><br />';
 
-    html +='</div>';
-    html +='</div>';
-    html +='</div>';
-    /*
-	html +='	<!--';
-	html +='	<div class="result-price">';
-	html +='		$102,232 <small>PER MONTH</small>';
-	html +='		<a href="javascript:;" class="btn btn-inverse btn-block">View Details</a>';
-	html +='	</div>';
-	html +='	-->';
-    
-    html +='</li>';
+    _.each(cards, function(card) {                
+        html += card;
+    });    
     return html;
 }
 
-
+/*
 var renderHtmlPlacesResult = function(places, callback) {
 	var html ='<div class="row">';
    html +='<div class="result-container">';
@@ -101,6 +95,7 @@ var renderHtmlPlacesResult = function(places, callback) {
 return html;
 }
 */
+
 var renderPlaceCover = function(img) {
     var html = '<div class="media">';
     html    += '<div class="media media-lg">';
@@ -216,21 +211,28 @@ var renderPlaceRestaurantSpecialties = function(restaurant_specialties) {
     return html;    
 };
 
-var renderFacebookInfo = function(place) {
-    var html = '<div class="media">';
-    html += '<strong><i class="fa fa-facebook"></i>Facebook</strong>';
-    if (place.were_here_count) {
+var renderPlaceButton = function(place) {
+    if (data.config.itinerary == null) return;
 
+    placeObj = (_.find(data.config.itinerary.places, function(item) {
+        return item.place_id == place.id;
+    }));
+
+    var html;
+    if (placeObj == null) {
+        html = '<a href="#" onclick="addPlace(' + place.id + ')" id="btn-add-place" data-id="' + place.id + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';        
+    } else if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
+        html = '<a href="#" onclick="removePlace(' + place.id + ')" id="btn-remove-place" data-id="' + place.id + '" class="btn btn-danger btn-xs p-l-15 p-r-15 m-r-5">Remover Local</i></a>';        
     }
-
-    return html;  
+    return html;
 }
 
 var renderPanelHeader = function(place) {
     var html = '<div class="panel-heading">';
     html += '<div class="pull-right header-place">';
-    if (data.config.itinerary) {        
-        html += '<a href="#" onclick="addPlace(' + place.id + ')" id="btn-add-place" data-toggle="modal" data-id="' + place.id + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';
+    var htmlButton = renderPlaceButton(place);
+    if (htmlButton) {
+        html += htmlButton;
     }
     html += '<a href="#" onclick="closePlace()" class="btn btn-white btn-sm p-l-15 p-r-15"><i class="fa fa-times"></i></a>';
     html += '</div>';
@@ -247,6 +249,24 @@ var addPlace = function(place_id) {
     $.ajax({
         type: "POST",
         url: "/itinerary/add_place", 
+        data: {
+            itinerary_id: data.config.itinerary._id,
+            user_id: data.config.user._id,
+            place_id: place_id
+        },
+        cache: false,
+        success: function(data) {            
+            if (data.success) {  
+                closePlace();
+            }
+        }
+    }); 
+}
+
+var removePlace = function(place_id) {
+    $.ajax({
+        type: "POST",
+        url: "/itinerary/remove_place", 
         data: {
             itinerary_id: data.config.itinerary._id,
             user_id: data.config.user._id,
@@ -292,6 +312,16 @@ var renderPlaceDetail = function(place) {
         html += renderPlaceContact(place);
     }   
 
+    var html_payment = renderPlacePayments(place);
+    if (html_payment != null) {
+        html += html_payment;
+    }
+
+    var html_parking = renderPlaceParking(place);
+    if (html_parking != null) {
+        html += html_parking;
+    }
+    
     if (place.hours) {
         html += renderPlaceHours(place);        
     }

@@ -7,10 +7,12 @@ var users_notifications = [
     {
         type: "place_added",
         text: "Novo local adicionado" 
+    },
+    {
+        type: "place_removed",
+        text: "Local removido" 
     }
 ]
-
-
 
 var handleNotification = function() {
     if (data.config.itinerary == null) return;    

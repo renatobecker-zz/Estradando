@@ -235,8 +235,41 @@ class ItineraryController extends Controller
         }        
     }
 
-    public function remove_place($itinerary_id, $place_id, $user_id) {
-        
+    public function remove_place() {
+
+        if(Request::ajax()) {
+            $data = Input::all();
+            $itinerary_id = $data["itinerary_id"];
+            $user_id      = $data["user_id"];
+            $place_id     = $data["place_id"];
+
+            $itinerary = Itinerary::find($itinerary_id);
+            if (is_null($itinerary)) {
+                return Response::json(array('success'=>false,'message'=>'Roteiro inexistente.'));                 
+            }        
+
+            $places = [];
+            if ($itinerary->places) {
+                $places = $itinerary->places;
+                foreach ($places as $key => $place) {
+                    if ($place["place_id"] == $place_id) {
+                        if ( ( $itinerary->creator_id != $user_id ) || ( $place["user_id"] != $user_id ) ) {
+                            return Response::json(array('success'=>false,'message'=>'Ação não permitida para este usuário.'));                 
+                        }
+                        unset($places[$key]);
+                    }    
+                }                
+            }
+            $itinerary->places = $places;
+            if ($itinerary->save()) {              
+                $message_channel = "channel_" . $itinerary_id;
+                $obj = $itinerary;
+                $obj->members_info = $this->members_info($itinerary);
+
+                Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
+                return Response::json(array('success' => true,'message' => 'Local removido.'));                 
+            }
+        }                
     }
 
     private function members_info($itinerary) {

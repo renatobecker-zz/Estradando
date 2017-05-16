@@ -14,6 +14,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/itinerary/{id}'                 , 'ItineraryController@load');
     Route::post('/itinerary/store'               , 'ItineraryController@store');
     Route::post('/itinerary/add_place'           , 'ItineraryController@add_place');
+    Route::post('/itinerary/remove_place'        , 'ItineraryController@remove_place');    
     Route::get('/itinerary/accept_invite/{id}/{friend_id}', 'ItineraryController@accept_invite');    
 	Route::get('/api/catalog_categories'		 , 'FacebookController@catalog_categories');
 	Route::get('/api/places'    		         , 'FacebookController@places');	
