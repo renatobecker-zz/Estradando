@@ -4,7 +4,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[12,12],color:'green'});
 var mapOptions = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 0 //75000
 };
 
 function successLocation(location) {
@@ -25,9 +25,9 @@ function successLocation(location) {
 function errorLocation(err) {
     console.warn('ERRO(' + err.code + '): ' + err.message);
     //Quando o erro é de permissão do usuário
-    if (err.code == 1) {
+    //if (err.code == 1) {
         setLocationForm();
-    }
+    //}
 }
 
 var setLocationForm = function() {
@@ -139,10 +139,16 @@ var getMarkerPopup = function(options) {
 }
 
 var addMarker = function(options, callback) {
+    var icon = (options.marker.icon) ? options.marker.icon : "fa-location-arrow";
+    if (options.marker.number) {
+        icon = "fa-number";
+    }
+
     var iconMarker = L.ExtraMarkers.icon({
-        icon: options.marker.icon,
+        icon: icon,
         markerColor: options.marker.color,
         iconColor: options.marker.iconColor,
+        number: (options.marker.number) ? options.marker.number : null, 
         shape: (options.marker.shape) ? options.marker.shape : "circle",
         prefix: 'fa'
     });
@@ -158,11 +164,12 @@ var addMarker = function(options, callback) {
 }
 
 function getLocation() {
+    
     if (data.config.destination) {
         successLocation(data.config.destination);
         return;
     }
-
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(setPosition, errorLocation, mapOptions);        
     } else {
@@ -202,7 +209,6 @@ var LeafletPlugin = function () {
         init: function (onSearchLocationCallback) {
             onSearchLocation = onSearchLocationCallback;     
             handleInit();  
-            handleRouting();          
         }
     };
 }();

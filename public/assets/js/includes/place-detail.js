@@ -232,7 +232,9 @@ var renderPlaceButton = function(place) {
 
     var html;
     if (placeObj == null) {
-        html = '<a href="#" onclick="addPlace(' + place.id + ')" id="btn-add-place" data-id="' + place.id + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';        
+        var latitude  = (place.location) ? place.location.latitude : 0;
+        var longitude = (place.location) ? place.location.longitude : 0;
+        html = '<a href="#" onclick="addPlace()" id="btn-add-place" data-id="' + place.id + '" data-location-lat="' + latitude + '" data-location-lng="' + longitude + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';        
     } else if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
         html = '<a href="#" onclick="removePlace(' + place.id + ')" id="btn-remove-place" data-id="' + place.id + '" class="btn btn-danger btn-xs p-l-15 p-r-15 m-r-5">Remover Local</i></a>';        
     }
@@ -257,14 +259,22 @@ function closePlace() {
     leftSidebar.hide();
 }
 
-var addPlace = function(place_id) {
+var addPlace = function() {
+    var element = $("#btn-add-place");
+    var id  = element.data("id");
+    var lat = element.data("location-lat");
+    var lng = element.data("location-lng");    
     $.ajax({
         type: "POST",
         url: "/itinerary/add_place", 
         data: {
             itinerary_id: data.config.itinerary._id,
             user_id: data.config.user._id,
-            place_id: place_id
+            place_id: id,
+            location: {
+                latitude: lat,
+                longitude: lng
+            }
         },
         cache: false,
         success: function(data) {            

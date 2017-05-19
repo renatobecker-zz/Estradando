@@ -1,6 +1,7 @@
 Pusher.logToConsole = true;
 var pusher = new Pusher(data.config.pusher.app_key);
 var leftSidebar;
+var routePoints = [];
 
 var handleMoments = function() {
     moment.locale('pt-BR');
@@ -18,7 +19,10 @@ var handleItinerary = function() {
         leftSidebar.hide();
     })
     data.config.default_categories = defaultCategories();
-    generatePlacesInfo();
+    if ( (data.config.itinerary) && (data.config.itinerary.destination) ) {
+        successLocation(data.config.itinerary.destination);
+    }
+    loadItineraryPlaces();
 }
 
 var defaultCategories = function() {
@@ -27,28 +31,39 @@ var defaultCategories = function() {
     });
 }
 
-var generatePlacesInfo = function() {
+var addItineraryPlace = function(place) {
+    facebookPlace(place.place_id, function(response) {        
+        data.config.itinerary.places_info.push(response);
+        //place_index++;
+        if (response.location) {
+            var place_info  = response;
+            var marker = markerPoint(1);
+            place_info.marker = marker;
+            place_info.in_route = true;
+            addMarker(place_info, markerDetailClick);    
+        }                
+    });  
+    if (place.location) {
+        addRoute(place.location.latitude, place.location.longitude);
+        //routes.push(L.latLng(place.location.latitude, place.location.longitude));
+    }  
+}
+
+var loadItineraryPlaces = function() {
+    if (data.config.itinerary == null) return;
     clearRoute();
     clearMarkers();
-    addRoute(data.config.destination.latitude, data.config.destination.longitude);    
+    if (data.config.destination) {
+        addRoute(data.config.destination.latitude, data.config.destination.longitude);
+    }   
+
     data.config.itinerary.places_info = [];
     if (data.config.itinerary.places) {
+        var place_index = 0;
         _.each(data.config.itinerary.places, function(place) { 
-            facebookPlace(place.place_id, function(response) {
-                data.config.itinerary.places_info.push(response);
-                if (response.location) {
-                    var place_info = response;
-                    var group = groupCategory(place_info);               
-                    if (group) {
-                        var marker = markerGroup(group);
-                        place_info.marker = marker;
-                        addMarker(place_info, markerDetailClick);    
-                    }                    
-                    addRoute(response.location.latitude, response.location.longitude);    
-                }                
-            });    
+            addItineraryPlace(place);
         }); 
-        map.addLayer(markers);   
+        map.addLayer(markers);        
     }
 }
 
@@ -79,6 +94,16 @@ var markerGroup = function(group) {
     return marker;
 }
 
+var markerPoint = function(pointNumber) {
+    var marker = {
+        number: pointNumber,
+        color: "violet",
+        iconColor: "white",
+        shape: "square"
+    }
+    return marker;
+}
+
 var markerDetailClick = function(data) {
     //leftSidebar.toggle();    
     var html = renderPlaceDetail(data.target.options.data);
@@ -88,18 +113,27 @@ var markerDetailClick = function(data) {
     leftSidebar.show();    
 }
 
-var loadPlaces = function(response) {    
-    console.log(response);
+var addItineraryPoints = function(points) {
+
+}
+
+var loadPlaces = function(response) {   
+    var itineraryPoints = (data.config.itinerary) ? data.config.itinerary.places : [];
+    var placeFound;
     _.each(response.data, function(place) { 
-        var group = groupCategory(place);               
-        if (group) {
-            var marker = markerGroup(group);
-            place.marker = marker;
-            addMarker(place, markerDetailClick);    
-        }                    
+        placeFound = (_.find(itineraryPoints, function(point) {
+            return point.place_id == place.id;
+        }));   
+        if (placeFound == null) {
+            var group = groupCategory(place);               
+            if (group) {
+                var marker = markerGroup(group);
+                place.marker = marker;
+                addMarker(place, markerDetailClick);    
+            }                    
+        }
     });
     map.addLayer(markers);
-    console.log(response.data);
     if (!response.paging) {  
         /*
         renderHtmlPlacesResult(response.data, function(html){
@@ -138,7 +172,8 @@ $('#modal-create-itinerary').find('.modal-footer #ActCreateItinerary').on('click
         data: {
             name : $('#itinerary-name').val(),
             start_date : $('#itinerary-start-date').val(),
-            end_date : $('#itinerary-end-date').val()
+            end_date : $('#itinerary-end-date').val(),
+            destination : data.config.destination
         },
         cache: false,
         success: function(data) {
@@ -217,7 +252,7 @@ var loadDefaultPlaces = function() {
 
 var loadData = function(callback, filters) {
     leftSidebar.hide();
-    clearMarkers();
+    //clearMarkers();
     var params = {
         geolocation: data.config.destination
     };
@@ -239,8 +274,13 @@ var handlePusher = function() {
     var channel_itinerary = pusher.subscribe(message_channel);    
     channel_itinerary.bind('itinerary', function(obj) {
         data.config.itinerary = obj.data;
-        generatePlacesInfo();
+        loadItineraryPlaces();
     });
+    channel_itinerary.bind('notification', function(obj) {
+        if (obj.notification.type == "place_added") {
+            addItineraryPlace(obj.notification.data);
+        }
+    });        
 }
 
 var Itinerary = function () {

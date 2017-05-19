@@ -6,7 +6,7 @@
 	</div>
 	<div class="pull-right">
 		<div class="btn-group btn-toolbar">
-			<a href="#modal-show-itineraries" data-toggle="modal" class="btn btn-white btn-sm" title="Meus Roteiros"><i class="fa fa-list-alt"></i></a>
+			<a href="#modal-itineraries-list" data-toggle="modal" class="btn btn-white btn-sm" title="Meus Roteiros"><i class="fa fa-list-alt"></i></a>
 		</div>
 		<div class="btn-group m-l-5">
 			<a href="#modal-create-itinerary" data-toggle="modal" class="btn btn-success btn-xs"> Criar Roteiro</a>

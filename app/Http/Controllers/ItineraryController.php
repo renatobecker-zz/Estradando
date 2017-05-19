@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Input;
 use App\Models\Config\CatalogCategory as CatalogCategory;
 use App\Models\Data\Notification as Notification;
 use App\Models\Data\Itinerary as Itinerary;
+use MongoDB\BSON\ObjectID;
 
 class ItineraryController extends Controller
 {
@@ -81,15 +82,16 @@ class ItineraryController extends Controller
                 return redirect()->back()->withInput()->withErrors($errors);
             }    
         }
-        $creator_id            = (Auth::check()) ? Auth::user()->_id : null;
-        $itinerary             = new Itinerary;
-        $itinerary->name       = Request::get('name');
-        $itinerary->creator_id = $creator_id;
-        $itinerary->start_date = Helper::convertToMongoDate(Request::get('start_date'));
-        $itinerary->end_date   = Helper::convertToMongoDate(Request::get('end_date'));
-        $itinerary->invites    = [];
-        $itinerary->places     = [];
-        $itinerary->members    = [$creator_id];        
+        $creator_id             = (Auth::check()) ? Auth::user()->_id : null;
+        $itinerary              = new Itinerary;
+        $itinerary->name        = Request::get('name');
+        $itinerary->creator_id  = $creator_id;
+        $itinerary->destination = Request::get('destination');        
+        $itinerary->start_date  = Helper::convertToMongoDate(Request::get('start_date'));
+        $itinerary->end_date    = Helper::convertToMongoDate(Request::get('end_date'));
+        $itinerary->invites     = [];
+        $itinerary->places      = [];
+        $itinerary->members     = [$creator_id];        
         if ($itinerary->save()) {
             return Response::json(array('success'=>true,'data'=>$itinerary)); 
         }      
@@ -190,6 +192,7 @@ class ItineraryController extends Controller
             $itinerary_id = $data["itinerary_id"];
             $user_id      = $data["user_id"];
             $place_id     = $data["place_id"];
+            $location     = $data["location"];
 
             $itinerary = Itinerary::find($itinerary_id);
             if (is_null($itinerary)) {
@@ -208,7 +211,8 @@ class ItineraryController extends Controller
 
             $new_place = array(
                 'place_id' => $place_id,
-                'user_id' => $user_id            
+                'user_id' => $user_id,
+                'location' => $location,
             );
 
             array_push($places, $new_place);
@@ -221,13 +225,13 @@ class ItineraryController extends Controller
                 $obj = $itinerary;
                 $obj->members_info = $this->members_info($itinerary);
 
-                Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
+                //Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
 
                 $notification = new Notification;
                 $notification->itinerary_id = $itinerary_id;
                 $notification->text         = $text;
                 $notification->type         = "place_added";
-                $notification->data         = array("place_id" => $place_id,"user_id" => $member->_id);
+                $notification->data         = array("place_id" => $place_id,"user_id" => $member->_id, "location" => $location);
                 $notification->save();
 
                 return Response::json(array('success' => true,'data' => $new_place));                 
@@ -272,6 +276,21 @@ class ItineraryController extends Controller
         }                
     }
 
+    private function itineraries() {
+        $user_id = (string) new ObjectID(Auth::user()->_id) ;         
+        $account = SocialAccount::whereProvider('facebook')
+            ->whereUserId($user_id)
+            ->first();
+        $provider_id = $account->provider_user_id;    
+
+        $itineraries = Itinerary::whereCreatorId($user_id)->
+                        orWhereIn('invites', [$provider_id])->
+                        orWhereIn('members', [$user_id])->
+                        get(['_id', 'creator_id', 'name', 'members', 'invites', 'start_date', 'end_date'])->
+                        toArray();
+        return $itineraries;
+    }
+
     private function members_info($itinerary) {
         $members_info = [];
         foreach ($itinerary->members as $member) {
@@ -288,8 +307,17 @@ class ItineraryController extends Controller
     }
 
     private function get_default_view_params() {
+        $user = Auth::user();
+        $account = SocialAccount::whereProvider('facebook')
+        ->whereUserId($user->id)
+        ->first();
+        if ($account) {
+            $user->provider_user_id = $account->provider_user_id;
+        }
+
         $config = [];
-        $config['user']                = Auth::user();
+        $config['user']                = $user;
+        $config['itineraries']         = $this->itineraries();
         $config['catalog_categories']  = $this->get_catalog_categories();
         $config['redirect_invite_url'] = URL::to('/') . "/itinerary/accept_invite/";
         $config['destination']         = $this->get_default_location();

@@ -7,6 +7,8 @@ var handleRouting = function() {
     //Routes plugin
     if (routing) return;
 
+    if (data.config.itinerary == null) return;
+
     routing = new L.Routing.control({
         //position: 'bottomleft',
         router: L.Routing.mapbox(data.config.mapbox.token),
@@ -40,7 +42,19 @@ var clearRoute = function() {
     //routing.removeFrom(map);
     routing.setWaypoints(array_routes);
     map.closePopup();
+    console.log('limpou rota');
     }
+
+var routeExist = function(latlng) {
+        var index = -1;
+        for(var i = 0, len = array_routes.length; i < len; i++) {
+            if ((array_routes[i].lat === latlng.lat) && (array_routes[i].lng === latlng.lng) ) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }        
 
 var addRoute = function(latitude, longitude) {
     if (!routing) return;    
@@ -50,9 +64,15 @@ var addRoute = function(latitude, longitude) {
     map.closePopup();
 }
 
+var addRoutes = function(routes) {    
+    if (!routing) return;    
+    routing.setWaypoints(routes);
+    map.closePopup();
+}
+
 var removeRoute = function(latlng) {
     if (!routing) return;
-    var index = route_exist(latlng);
+    var index = routeExist(latlng);
     if (index > -1) {
         (array_routes.length > 2) ? array_routes.splice(index,1) : array_routes = [];            
         routing.setWaypoints(array_routes);
