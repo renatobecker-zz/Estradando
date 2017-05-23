@@ -31,8 +31,15 @@ var defaultCategories = function() {
     });
 }
 
-var addItineraryPlace = function(place) {
-    facebookPlace(place.place_id, function(response) {        
+var removeItineraryPlace = function(place_id) {
+    var marker = findPlaceMarker(place_id);
+    if (marker) {
+        removeMarker(marker._leaflet_id);
+    }
+}
+
+var addItineraryPlace = function(place, bounce) {
+    facebookPlace(place.place_id, function(response) {   
         data.config.itinerary.places_info.push(response);
         //place_index++;
         if (response.location) {
@@ -40,12 +47,11 @@ var addItineraryPlace = function(place) {
             var marker = markerPoint(1);
             place_info.marker = marker;
             place_info.in_route = true;
-            addMarker(place_info, markerDetailClick);    
+            addMarker(place_info, markerDetailClick, bounce);    
         }                
     });  
     if (place.location) {
         addRoute(place.location.latitude, place.location.longitude);
-        //routes.push(L.latLng(place.location.latitude, place.location.longitude));
     }  
 }
 
@@ -105,12 +111,12 @@ var markerPoint = function(pointNumber) {
 }
 
 var markerDetailClick = function(data) {
-    //leftSidebar.toggle();    
-    var html = renderPlaceDetail(data.target.options.data);
+    //leftSidebar.toggle(); 
+    var html = renderPlaceDetail(data.target.options.data, data.target._leaflet_id);
     leftSidebar.setContent(html);
     leftSidebar.scrollTop;
     $('#sidebar-place-detail').scrollTop(0);
-    leftSidebar.show();    
+    leftSidebar.show(); 
 }
 
 var addItineraryPoints = function(points) {
@@ -278,7 +284,16 @@ var handlePusher = function() {
     });
     channel_itinerary.bind('notification', function(obj) {
         if (obj.notification.type == "place_added") {
-            addItineraryPlace(obj.notification.data);
+            data.config.itinerary.places.push(obj.notification.data);
+            removeItineraryPlace(obj.notification.data.place_id);
+            addItineraryPlace(obj.notification.data, true);
+        }
+    });        
+    channel_itinerary.bind('notification', function(obj) {
+        if (obj.notification.type == "place_removed") {
+            if (obj.notification.user_id != data.config.user._id) {
+                removeItineraryPlace(obj.notification.data.place_id);
+            }
         }
     });        
 }

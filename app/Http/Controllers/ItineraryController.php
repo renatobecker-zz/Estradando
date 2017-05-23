@@ -220,13 +220,13 @@ class ItineraryController extends Controller
             if ($itinerary->save()) {              
                 $member = User::find($user_id);
                 $text = $member->name . " adicionou um novo local ao roteiro.";
-
+                /*
                 $message_channel = "channel_" . $itinerary_id;
                 $obj = $itinerary;
                 $obj->members_info = $this->members_info($itinerary);
 
-                //Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
-
+                Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
+                */
                 $notification = new Notification;
                 $notification->itinerary_id = $itinerary_id;
                 $notification->text         = $text;
@@ -257,7 +257,7 @@ class ItineraryController extends Controller
                 $places = $itinerary->places;
                 foreach ($places as $key => $place) {
                     if ($place["place_id"] == $place_id) {
-                        if ( ( $itinerary->creator_id != $user_id ) || ( $place["user_id"] != $user_id ) ) {
+                        if ( ( $itinerary->creator_id != $user_id ) && ( $place["user_id"] != $user_id ) ) {
                             return Response::json(array('success'=>false,'message'=>'Ação não permitida para este usuário.'));                 
                         }
                         unset($places[$key]);
@@ -265,13 +265,26 @@ class ItineraryController extends Controller
                 }                
             }
             $itinerary->places = $places;
-            if ($itinerary->save()) {              
+            if ($itinerary->save()) {
+                /*         
                 $message_channel = "channel_" . $itinerary_id;
                 $obj = $itinerary;
                 $obj->members_info = $this->members_info($itinerary);
 
                 Pusher::trigger($message_channel, 'itinerary', ['data' => $obj->toArray()]);
-                return Response::json(array('success' => true,'message' => 'Local removido.'));                 
+                */
+                $member = User::find($user_id);
+                $text = $member->name . " removeu um local do roteiro.";
+
+                $notification = new Notification;
+                $notification->itinerary_id = $itinerary_id;
+                $notification->text         = $text;
+                $notification->type         = "place_removed";
+                $notification->data         = array("place_id" => $place_id);
+                $notification->save();
+
+                return Response::json(array('success' => true,'message' => 'Local removido.', 'data' => $place_id,
+                    'user_id' => $user_id));
             }
         }                
     }

@@ -223,7 +223,7 @@ var renderPlaceRestaurantSpecialties = function(restaurant_specialties) {
     return html;    
 };
 
-var renderPlaceButton = function(place) {
+var renderPlaceButton = function(place, marker_id) {
     if (data.config.itinerary == null) return;
 
     placeObj = (_.find(data.config.itinerary.places, function(item) {
@@ -236,15 +236,19 @@ var renderPlaceButton = function(place) {
         var longitude = (place.location) ? place.location.longitude : 0;
         html = '<a href="#" onclick="addPlace()" id="btn-add-place" data-id="' + place.id + '" data-location-lat="' + latitude + '" data-location-lng="' + longitude + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';        
     } else if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
-        html = '<a href="#" onclick="removePlace(' + place.id + ')" id="btn-remove-place" data-id="' + place.id + '" class="btn btn-danger btn-xs p-l-15 p-r-15 m-r-5">Remover Local</i></a>';        
+        html = '<a href="#" onclick="removePlace(' + place.id + ',' + marker_id + ')" id="btn-remove-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-danger btn-xs p-l-15 p-r-15 m-r-5">Remover Local</i></a>';                
     }
     return html;
 }
 
-var renderPanelHeader = function(place) {
+$("#sidebar-place-detail").find('#btn-remove-place').on('click', function(e){
+    console.log(e);
+});
+
+var renderPanelHeader = function(place, marker_id) {
     var html = '<div class="panel-heading">';
     html += '<div class="pull-right header-place">';
-    var htmlButton = renderPlaceButton(place);
+    var htmlButton = renderPlaceButton(place, marker_id);
     if (htmlButton) {
         html += htmlButton;
     }
@@ -285,7 +289,7 @@ var addPlace = function() {
     }); 
 }
 
-var removePlace = function(place_id) {
+var removePlace = function(place_id, marker_id) {
     $.ajax({
         type: "POST",
         url: "/itinerary/remove_place", 
@@ -295,18 +299,20 @@ var removePlace = function(place_id) {
             place_id: place_id
         },
         cache: false,
-        success: function(data) {            
+        success: function(data) { 
+            console.log(data);           
             if (data.success) {  
                 closePlace();
+                removeMarker(marker_id);
             }
         }
     }); 
 }
 
-var renderPlaceDetail = function(place) {
+var renderPlaceDetail = function(place, marker_id) {
     var imgCover = (_.isObject(place.cover)) ? place.cover.source : null;
     var category = ((place.category_list) && (place.category_list.length > 0)) ? place.category_list[0].name : '';  
-    var html = renderPanelHeader(place);    
+    var html = renderPanelHeader(place, marker_id);    
     html += '<div class="panel-body p-t-5">';
     if (imgCover) {
         html += renderPlaceCover(imgCover);

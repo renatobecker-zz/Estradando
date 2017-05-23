@@ -138,7 +138,26 @@ var getMarkerPopup = function(options) {
     return content;                    
 }
 
-var addMarker = function(options, callback) {
+var findPlaceMarker = function(place_id) {
+    var marker;
+    for (var propLayer in markers._layers) {
+        if ( markers._layers[propLayer].options.data.id == place_id ) {
+            marker = markers._layers[propLayer];
+            break;
+        }
+    }
+    return marker;
+}
+
+var removeMarker = function(marker_id) {
+    var layer = markers.getLayer(marker_id);
+    if (layer) {
+        removeRoute(layer._latlng);           
+        markers.removeLayer(layer);
+    }    
+}
+
+var addMarker = function(options, callback, bounce) {
     var icon = (options.marker.icon) ? options.marker.icon : "fa-location-arrow";
     if (options.marker.number) {
         icon = "fa-number";
@@ -153,7 +172,7 @@ var addMarker = function(options, callback) {
         prefix: 'fa'
     });
     //var location = (options.type == "event") ? options.place.location : options.location;
-    var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker, data: options});
+    var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker, data: options, bounceOnAdd: bounce});
     marker.on('click', clickZoom);
     if (callback) {
         marker.on('click', callback);

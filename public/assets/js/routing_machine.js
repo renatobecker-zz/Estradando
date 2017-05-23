@@ -16,6 +16,8 @@ var handleRouting = function() {
         draggableWaypoints: false,
         showAlternatives: true,
         language: 'pt',
+        show: false,
+        collapsible: true,
         waypoints: [],
     });
         
