@@ -67,7 +67,6 @@ var renderMessage = function(message, callback) {
    	if (callback) {
    		callback();
    	}    
-   	console.log('renderMessage');
 }
 
 var sendMessage = function() {
