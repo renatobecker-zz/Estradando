@@ -88,6 +88,7 @@
 <script src="/assets/plugins/moment/moment-with-locales.min.js"></script>
 <script src="/assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 <script src="/assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+<script src="http://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
 <script src="/assets/js/includes/set-location-map.js"></script>
 <script src="/assets/js/includes/filter-places.js"></script>
 <script src="/assets/js/includes/chat.js"></script>
