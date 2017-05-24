@@ -111,6 +111,7 @@ $('#modal-filter-places').find('.modal-footer #ActFilterPlaces').on('click', fun
     $( "#alert-filter-container" ).empty();
     var category_name = $("#select-filter-category").val();
     console.log(category_name);
+    console.log("necessário trocar o texto de pesquisa para o valor vindo do facebook");
     if ( (category_name == "") || (category_name == null) ) {
         $("#alert-filter-container").append( "<p>Selecione uma Categoria para pesquisa.</p>" );
         $("#alert-filter-container").removeClass("hide");

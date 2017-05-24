@@ -44,8 +44,7 @@ var clearRoute = function() {
     //routing.removeFrom(map);
     routing.setWaypoints(array_routes);
     map.closePopup();
-    console.log('limpou rota');
-    }
+}
 
 var routeExist = function(latlng) {
         var index = -1;

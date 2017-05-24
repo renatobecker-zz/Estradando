@@ -159,17 +159,20 @@ var removeMarker = function(marker_id) {
 
 var addMarker = function(options, callback, bounce) {
     var icon = (options.marker.icon) ? options.marker.icon : "fa-location-arrow";
+    var innerHTML = (options.marker.innerHTML) ? options.marker.innerHTML : "";
+    /*
     if (options.marker.number) {
         icon = "fa-number";
     }
-
+    */
     var iconMarker = L.ExtraMarkers.icon({
         icon: icon,
         markerColor: options.marker.color,
         iconColor: options.marker.iconColor,
-        number: (options.marker.number) ? options.marker.number : null, 
+        //number: (options.marker.number) ? options.marker.number : null, 
         shape: (options.marker.shape) ? options.marker.shape : "circle",
-        prefix: 'fa'
+        prefix: 'fa',
+        innerHTML: innerHTML
     });
     //var location = (options.type == "event") ? options.place.location : options.location;
     var marker = L.marker([options.location.latitude, options.location.longitude], {icon: iconMarker, data: options, bounceOnAdd: bounce});

@@ -44,7 +44,13 @@ var addItineraryPlace = function(place, bounce) {
         //place_index++;
         if (response.location) {
             var place_info  = response;
-            var marker = markerPoint(1);
+            var user = _.find(data.config.itinerary.members_info, function(member) {
+                return member._id == place.user_id;
+            });
+            if (user) {
+                place_info.user_image = user.avatar;
+            }
+            var marker = markerPoint(response);
             place_info.marker = marker;
             place_info.in_route = true;
             addMarker(place_info, markerDetailClick, bounce);    
@@ -100,12 +106,13 @@ var markerGroup = function(group) {
     return marker;
 }
 
-var markerPoint = function(pointNumber) {
+var markerPoint = function(options) {    
     var marker = {
-        number: pointNumber,
+        //number: pointNumber,
         color: "violet",
         iconColor: "white",
-        shape: "square"
+        shape: "square",
+        innerHTML: options.user_image ? '<img class="circular-image-marker" src="' + options.user_image + '">' : '',
     }
     return marker;
 }

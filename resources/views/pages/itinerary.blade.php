@@ -41,6 +41,12 @@
     .fa {
         font-family: FontAwesome;    
     }    
+    
+    .circular-image-marker {
+        border-radius:  50px;
+        width: 25px;
+        height: 25px;
+    }    
 
 </style>
 @endsection        
