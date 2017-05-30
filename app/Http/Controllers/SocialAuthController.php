@@ -17,12 +17,7 @@ class SocialAuthController extends Controller
     {        
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
         auth()->login($user);
-        //Verifica existência de necessidade de redirect após login
-        $redirect_back = session()->get('redirect_back');
-        if ($redirect_back) {
-            session()->forget('redirect_back');   
-            return redirect()->to($redirect_back);        
-        }
-        return redirect()->to('/home');        
+        //return redirect()->to('/home');    
+        return redirect()->intended();    
     }    
 }

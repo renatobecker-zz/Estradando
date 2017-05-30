@@ -69,12 +69,6 @@
 <!-- end #content -->
 @endsection        
 
-@include('includes.sidebar-place-detail')
-@include('modal.create-itinerary')
-@include('modal.set-location-map')
-@include('modal.filter-places')
-@include('modal.itineraries-list')
-
 @section('javascript')  
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
 <script src="/assets/plugins/underscore/underscore-1.8.3-min.js"></script>
@@ -119,3 +113,9 @@ leaflet.bouncemarker-master
     });
 </script>
 @endsection        
+
+@include('includes.sidebar-place-detail')
+@include('modal.create-itinerary')
+@include('modal.set-location-map')
+@include('modal.filter-places')
+@include('modal.itineraries-list')

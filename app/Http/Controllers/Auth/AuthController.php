@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';    
+    //protected $redirectTo = '/home';    
 
     /**
      * Create a new authentication controller instance.
@@ -81,19 +81,15 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        //Armazena possível página anterior para redirect após login
-        if(!session()->has('redirect_back')){
-            session()->put('redirect_back', url()->previous());
-        }
         return redirect('/');
     }
 
-    
+    /*
     public function authenticated($request,$user)
     {        
         return redirect(session()->pull('from',$this->redirectTo));
     } 
-       
+    */   
 }
 
 
