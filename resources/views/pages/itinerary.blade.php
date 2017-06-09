@@ -28,6 +28,11 @@
         .map {
             top: 54px !important;
         }
+
+        .dropdown-menu-left {
+            left: 0 !important;
+            right: auto !important;
+        }  
     }    
 
     .leaflet-container {
@@ -46,7 +51,7 @@
         border-radius:  50px;
         width: 25px;
         height: 25px;
-    }    
+    }  
 
 </style>
 @endsection        
@@ -119,4 +124,3 @@ leaflet.bouncemarker-master
 @include('modal.set-location-map')
 @include('modal.filter-places')
 @include('modal.itineraries-list')
-@include('modal.itinerary-users')

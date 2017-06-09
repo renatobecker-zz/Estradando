@@ -9,18 +9,25 @@
                 <!-- begin header navigation right -->
                 <ul class="nav navbar-nav navbar-right">
                     @if (isset($itinerary))
-                        <li>
-                            <a href="#modal-chat" data-toggle="modal" id="chat-badge" class="dropdown-toggle f-s-14">
-                                <i class="fa fa-commenting-o fa-fw"></i>
-                            </a>                    
-                        </li>
-                        <li class="dropdown" id="dropdown-notications">
-                            <a href="javascript:;" data-toggle="dropdown" id="notifications-badge" class="dropdown-toggle f-s-14">
-                                <i class="fa fa-bell-o"></i>                                
-                            </a>
-                            <ul id="notifications-list" class="dropdown-menu media-list pull-right animated fadeInDown">
-                            </ul>
-                        </li>                                        
+                    <li class="dropdown" id="dropdown-users">
+                        <a href="javascript:;" data-toggle="dropdown" id="users-badge" class="dropdown-toggle f-s-14">
+                            <i class="fa fa-group"></i>                                
+                        </a>
+                        <ul id="users-list" class="dropdown-menu media-list dropdown-menu-left animated fadeInDown">
+                        </ul>
+                    </li>                                        
+                    <li>
+                        <a href="#modal-chat" data-toggle="modal" id="chat-badge" class="dropdown-toggle f-s-14">
+                            <i class="fa fa-commenting-o fa-fw"></i>
+                        </a>                    
+                    </li>
+                    <li class="dropdown" id="dropdown-notications">
+                        <a href="javascript:;" data-toggle="dropdown" id="notifications-badge" class="dropdown-toggle f-s-14">
+                            <i class="fa fa-bell-o"></i>                                
+                        </a>
+                        <ul id="notifications-list" class="dropdown-menu media-list dropdown-menu-left animated fadeInDown">
+                        </ul>
+                    </li>                                        
                     @endif    
 
                     <li class="dropdown navbar-user">        
@@ -39,4 +46,4 @@
             <!-- end container-fluid -->
         </div>
         <!-- end #header -->
-@include('modal.chat')
+        @include('modal.chat')

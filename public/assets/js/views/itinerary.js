@@ -23,6 +23,7 @@ var handleItinerary = function() {
         successLocation(data.config.itinerary.destination);
     }
     loadItineraryPlaces();
+    listMembers();
 }
 
 var defaultCategories = function() {
@@ -302,8 +303,40 @@ var handlePusher = function() {
                 removeItineraryPlace(obj.notification.data.place_id);
             }
         }
+
+        if (obj.notification.type == "member_accepted") {
+            listMembers();
+        }
+
     });        
 }
+
+var renderMember = function(member) {
+    if (data.config.itinerary == null) return;   
+
+    var isCreator = (member._id == data.config.itinerary.creator_id);
+
+    var render = '<li class="media"><a href="javascript:;">';
+    render     +='<div class="media-left"><img src="' + member.avatar + '" class="media-object" alt="" /></div>';
+    render     +='<div class="media-body"><h6 class="media-heading">' + member.name + '</h6>';
+    render     +='<p>' + (isCreator ? 'Criador' : 'Convidado')  + '</p>';
+    render     += '</div></a></li>';
+    $("#users-list").append(render);
+
+}
+
+var listMembers = function() {
+    if (data.config.itinerary == null) return;    
+    $("#users-list").empty();
+    var members = _.sortBy(data.config.itinerary.members_info, function(o) { return o.name; });
+    var render = '<li id="dropdown-users" class="dropdown-header">Participantes (' + members.length + ')</li>';
+    $("#users-list").append(render);
+
+    _.each(members, function(member) {
+        renderMember(member);
+    });
+}
+
 
 var Itinerary = function () {
 	"use strict";
