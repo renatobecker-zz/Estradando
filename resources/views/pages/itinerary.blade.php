@@ -119,3 +119,4 @@ leaflet.bouncemarker-master
 @include('modal.set-location-map')
 @include('modal.filter-places')
 @include('modal.itineraries-list')
+@include('modal.itinerary-users')
