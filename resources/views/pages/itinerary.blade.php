@@ -73,7 +73,6 @@
 </div>        
 <!-- end #content -->
 @endsection        
-
 @section('javascript')  
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
 <script src="/assets/plugins/underscore/underscore-1.8.3-min.js"></script>

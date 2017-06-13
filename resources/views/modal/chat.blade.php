@@ -7,9 +7,11 @@
                 <h4 class="modal-title">Mensagens</h4>
             </div>
             <div class="modal-body">
-                <div class="panel-body bg-silver">
+                <div id="body-chat" class="panel-body bg-silver">                    
                     <div id="scroll-chat" data-scrollbar="true" data-height="225px">
-                        <ul class="chats" id="chat-list-message"></ul>
+                        <ul class="chats" id="chat-list-message">
+                            <p id="empty-chat" class="text-center">Ainda não há mensagens</p>
+                        </ul>                        
                     </div>
                 </div>
                 <div class="panel-footer">

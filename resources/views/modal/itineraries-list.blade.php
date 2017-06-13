@@ -8,15 +8,7 @@
             </div>
             <div class="modal-body" id="itineraries-body">
                 <div class="height-sm" data-scrollbar="true">
-                    <table class="table" id="itineraries-list-table">
-                        <thead>
-                            <tr>
-                                <th>Período</th>
-                                <th>Nome</th>
-                            </tr>
-                        </thead>
-                        <tbody id="itineraries-list-body"></tbody>
-                    </table>
+                    <ul id="itineraries-list" class="list-group list-group-lg no-radius list-email"></ul>
                 </div>
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Fechar</a>

@@ -64,6 +64,11 @@ var addItineraryPlace = function(place, bounce) {
 
 var loadItineraryPlaces = function() {
     if (data.config.itinerary == null) return;
+
+    if(data.config.itinerary.hasOwnProperty("places") == false) {
+        data.config.itinerary["places"] = [];
+    }
+
     clearRoute();
     clearMarkers();
     if (data.config.destination) {
@@ -317,7 +322,7 @@ var renderMember = function(member) {
     var isCreator = (member._id == data.config.itinerary.creator_id);
 
     var render = '<li class="media"><a href="javascript:;">';
-    render     +='<div class="media-left"><img src="' + member.avatar + '" class="media-object" alt="" /></div>';
+    render     +='<div class="media-left"><img src="' + member.avatar + '" class="media-object" alt="" /></div>';    
     render     +='<div class="media-body"><h6 class="media-heading">' + member.name + '</h6>';
     render     +='<p>' + (isCreator ? 'Criador' : 'Convidado')  + '</p>';
     render     += '</div></a></li>';

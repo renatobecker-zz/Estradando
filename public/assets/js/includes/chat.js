@@ -56,6 +56,7 @@ var renderMessage = function(message, callback) {
 
    	if (user == null) return;
 
+    removeEmptyMessage();
    	var direction = (data.config.user._id == message.user_id) ? "right" : "left";
    	var dateTime = moment(message.created_at).fromNow();
    	var render = '<li class="' + direction +'"><span value="' + message.created_at + '" class="date-time">';
@@ -110,8 +111,13 @@ var refreshBadgeMessages = function() {
 	}
 }
 
+var removeEmptyMessage = function() {
+    $( "#empty-chat" ).remove();
+}
+
 var refreshMessages = function(messages) {
 	messages = _.sortBy(messages, function(o) { return o.created_at; });
+
 	_.each(messages, function(message) {
 		renderMessage(message);
 	});

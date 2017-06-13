@@ -299,7 +299,8 @@ class ItineraryController extends Controller
         $itineraries = Itinerary::whereCreatorId($user_id)->
                         orWhereIn('invites', [$provider_id])->
                         orWhereIn('members', [$user_id])->
-                        get(['_id', 'creator_id', 'name', 'members', 'invites', 'start_date', 'end_date'])->
+                        orderBy('created_at', 'desc')->
+                        get(['_id', 'creator_id', 'name', 'members', 'invites', 'start_date', 'end_date', 'destination', 'created_at'])->
                         toArray();
         return $itineraries;
     }

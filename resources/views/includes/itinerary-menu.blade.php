@@ -18,8 +18,8 @@
 		</div>
 
 		<div class="btn-group m-l-5">
-			<a href="/home" class="btn btn-white  btn-sm" title="Fechar Roteiro"><i class="fa fa-times"></i></a>
+			<a href="/home" class="btn btn-white btn-sm" title="Fechar Roteiro"><i class="fa fa-times"></i></a>
 		</div>
-	</div>
+    </div>
 </div>
 <!-- end wrapper -->

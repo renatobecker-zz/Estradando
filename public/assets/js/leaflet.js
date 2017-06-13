@@ -185,8 +185,7 @@ var addMarker = function(options, callback, bounce) {
     //.openPopup();    
 }
 
-function getLocation() {
-    
+function getLocation() {  
     if (data.config.destination) {
         successLocation(data.config.destination);
         return;
@@ -200,6 +199,7 @@ function getLocation() {
 }
 
 function setPosition(position) {
+    console.log(position);
     successLocation(position.coords);
 }
 
@@ -221,7 +221,6 @@ var handleInit = function(callback) {
     $(document).ready(function() {
         map._onResize();
     });
-
 };
 
 var LeafletPlugin = function () {
