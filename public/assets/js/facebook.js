@@ -1,5 +1,5 @@
 FB.init({
-    appId      : '458270001173171',
+    appId      : '1998894127063898',
     xfbml      : true,
     cookie     : true,
     status     : true,
@@ -11,7 +11,7 @@ var searchFieldsDefault = "id,name,location,overall_star_rating,price_range,rati
 var handleInit = function(response) {
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : '458270001173171',
+            appId      : '1998894127063898',
             xfbml      : true,
             cookie     : true,
              status     : true,

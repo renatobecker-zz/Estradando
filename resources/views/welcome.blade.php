@@ -126,10 +126,10 @@
                     <!-- begin col-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="service service-vertical">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-code"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-group"></i></div>
                             <div class="info">
-                                <h4 class="title">Re-usable Code</h4>
-                                <p class="desc">Aenean et elementum dui. Aenean massa enim, suscipit ut molestie quis, pretium sed orci. Ut faucibus egestas mattis.</p>
+                                <h4 class="title">Planejamento Colaborativo</h4>
+                                <p class="desc">Convide amigos para participar da elaboração e planejamento do roteiro, criando uma experiência mais divertida e colaborativa.</p>
                             </div>
                         </div>
                     </div>
@@ -137,10 +137,10 @@
                     <!-- begin col-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="service service-vertical">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-paint-brush"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-search"></i></div>
                             <div class="info">
-                                <h4 class="title">Clean & Careful Design</h4>
-                                <p class="desc">Etiam nulla turpis, gravida et orci ac, viverra commodo ipsum. Donec nec mauris faucibus, congue nisi sit amet, lobortis arcu.</p>
+                                <h4 class="title">Busca de lugares e eventos</h4>
+                                <p class="desc">Encontre lugares de interesse conforme critérios de busca, como localização, categorias, preços, horários, etc.</p>
                             </div>
                         </div>
                     </div>
@@ -148,10 +148,10 @@
                     <!-- begin col-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="service service-vertical">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-file"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-refresh"></i></div>
                             <div class="info">
-                                <h4 class="title">Well Documented</h4>
-                                <p class="desc">Ut vel laoreet tortor. Donec venenatis ex velit, eget bibendum purus accumsan cursus. Curabitur pulvinar iaculis diam.</p>
+                                <h4 class="title">Atualizações em tempo real</h4>
+                                <p class="desc">Visualize as alterações e novas informações dos outros participantes em tempo real, sem necessidade de atualização de página.</p>
                             </div>
                         </div>
                     </div>
@@ -159,10 +159,10 @@
                     <!-- begin col-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="service service-vertical">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-code"></i></div>
+                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-comment-o"></i></div>
                             <div class="info">
-                                <h4 class="title">Re-usable Code</h4>
-                                <p class="desc">Aenean et elementum dui. Aenean massa enim, suscipit ut molestie quis, pretium sed orci. Ut faucibus egestas mattis.</p>
+                                <h4 class="title">Comunicação</h4>
+                                <p class="desc">Disponibilidade de canal de comunicação privado entre todos os participantes do roteiro, sem necessidade de uso de ferramentas ou aplicativos externos.</p>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>Estradando | Convite</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="/front/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/front/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/front/css/animate.min.css" rel="stylesheet" />
+    <link href="/front/css/style.min.css" rel="stylesheet" />
+    <link href="/front/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="/front/css/theme/default.css" id="theme" rel="stylesheet" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="/front/plugins/pace/pace.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body data-spy="scroll" data-target="#header-navbar" data-offset="51">
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade">        
+        <!-- begin #home -->
+        <div id="home" class="content has-bg home">
+            <!-- begin content-bg -->
+            <div class="content-bg">
+                <img src="front/img/map-location-pin.jpg" alt="Home" />
+            </div>
+            <!-- end content-bg -->
+            <!-- begin container -->
+            <div class="container home-content">
+                <h1>Bem-vindo ao Estradando</h1>
+                <h3>Você foi convidado para participar do roteiro: <strong name="itinerary-name"></strong></h3>
+                <a name="btn-accept-invite" id="btn-accept-invite" href="javascript:;" target="_blank" class="btn btn-theme">Aceitar</a> 
+                <!--<a href="#" class="btn btn-outline">Purchase Now</a><br />-->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end #home -->        
+    </div>
+    <!-- end #page-container -->
+    
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="/front/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="/front/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="/front/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="assets/crossbrowserjs/html5shiv.js"></script>
+        <script src="assets/crossbrowserjs/respond.min.js"></script>
+        <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="/front/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <script src="/front/plugins/scrollMonitor/scrollMonitor.js"></script>
+    <script src="/front/js/apps.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN CANVAS JS ================== -->    
+    <script src="//connect.facebook.net/en_US/all.js"></script>
+    <script src="/front/js/canvas/redirect.js"></script>    
+    <!-- ================== END ESTRADANDO JS ================== -->        
+    <script>    
+        $(document).ready(function() {
+            App.init();
+        });
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[12,12],color:'green'});
 var mapOptions = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0 //75000
+    maximumAge: 75000
 };
 
 function successLocation(location) {

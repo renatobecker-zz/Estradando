@@ -5,6 +5,7 @@ var loadItineraries = function() {
         var date = moment.unix(item.start_date.$date.$numberLong);
         var strDate = moment(date).format('DD/MM/YYYY');
         var itineraryDate = moment(item.created_at).fromNow();
+        var destinationAddress = (item.destination.address) ?  ' - ' + (item.destination.address) : '';
         var render = '<li class="list-group-item">';
         render +=  '<div class="email-info">';
         render +=  '<span value="' + item.created_at + '" class="email-time">' + itineraryDate + '</span>';
@@ -12,7 +13,8 @@ var loadItineraries = function() {
         render +=  item.name;
         render +=  '</h5>';
         render +=  '<p class="email-desc">';
-        render +=  '(' + strDate + ') - ' + item.destination.address;
+
+        render +=  strDate + destinationAddress;
         render +=  '</p>';
         render +=  '</div>';
         render +=  '</li>';

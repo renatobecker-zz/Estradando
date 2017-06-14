@@ -1,13 +1,18 @@
-<script src="//connect.facebook.net/en_US/all.js"></script>
-
-<script type="text/javascript">
 FB.init({
-    appId      : '458270001173171',
+    appId      : '1998894127063898',
     xfbml      : true,
     cookie     : true,
     status     : true,
     version    : 'v2.8'
 });
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));    
 
 function getFacebookToken(callback) {
 	FB.getLoginStatus(function(response) {
@@ -85,12 +90,18 @@ getFacebookToken(function(data){
 			var requestId = list[0];
 			FB.api('/'+requestId, function(response){ 
                 if ((response) && (!response.error) && (response.to)) {
-                    console.log(response);
                     var redirect_url = response.data + '/' + response.to.id;
+                    var redirect_message = response.message;
                     deleteRequests(list, function(){
                         if (redirect_url) {
-                            console.log(redirect_url);
-                            window.top.location.href = redirect_url;
+                            var btn = document.getElementsByName("btn-accept-invite");                            
+                            if ((btn) && (btn.length > 0)) {
+                              btn[0].href = redirect_url;
+                            }
+                            var msgText = document.getElementsByName("itinerary-name");                            
+                            if ((msgText) && (msgText.length > 0)) {
+                              msgText[0].textContent = redirect_message;
+                            }
                             return;
                         }   
                     });             
@@ -98,10 +109,4 @@ getFacebookToken(function(data){
 			}); 
         }	
     }
-    window.top.location.href = default_url;            
 })
-
-</script>
-<!--
-<p>Se você não for redirecionado automaticamente, click no link ao lado <a target="_blank" href="https://estradando.com.br">Estradando</a></p>
--->
