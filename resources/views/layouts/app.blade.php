@@ -5,7 +5,15 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>Estradando | Início</title>
+    <title>
+        Estradando | 
+        @if (isset($itinerary))
+            - {{ $itinerary->name }}
+        @else
+            Início      
+        @endif
+    </title>
+
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta name="description" content="Criação e planejamento de Roteiros e Viagens" />
     <meta name="author" content="Renato Becker"  />

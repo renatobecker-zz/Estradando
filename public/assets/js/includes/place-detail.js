@@ -240,11 +240,11 @@ var renderPlaceButton = function(place, marker_id) {
     }
     return html;
 }
-
+/*
 $("#sidebar-place-detail").find('#btn-remove-place').on('click', function(e){
     console.log(e);
 });
-
+*/
 var renderPanelHeader = function(place, marker_id) {
     var html = '<div class="panel-heading">';
     html += '<div class="pull-right header-place">';
@@ -281,8 +281,12 @@ var addPlace = function() {
             }
         },
         cache: false,
-        success: function(data) {            
-            if (data.success) {  
+        success: function(obj) {            
+            if (obj.success) {  
+                //remove o marker default
+                removeItineraryPlace(obj.data.place_id);                      
+                data.config.itinerary.places.push(obj.data);                  
+                addItineraryPlace(obj.data, true);
                 closePlace();
             }
         }
@@ -304,6 +308,7 @@ var removePlace = function(place_id, marker_id) {
             if (data.success) {  
                 closePlace();
                 removeMarker(marker_id);
+                removeItineraryPlace(place_id);
             }
         }
     }); 

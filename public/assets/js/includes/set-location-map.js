@@ -54,4 +54,22 @@ var initAutocomplete = function() {
             set_default_location(places[0]);
         }            
     });
+}
+
+function geocodeLatLng(latitude, longitude, callback) {
+    var latlng = {lat: latitude, lng: longitude};
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+                if (callback) {
+                    callback(results[0]);
+                } else {
+                    return results[0];
+                }
+            }
+        }  
+        
+        return null;  
+    });
 }    

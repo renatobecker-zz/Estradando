@@ -1,5 +1,12 @@
 var loadItineraries = function() {
-    $("#itineraries-list").empty();
+    if ( (data.config.itineraries == null) || 
+         (data.config.itineraries.length == 0) ) {
+        $("#itineraries-list").removeClass("list-group list-group-lg no-radius list-email").empty();
+        $("#itineraries-list").append( '<p id="empty-itinerary" class="text-center">Nenhum roteiro disponível.</p>' );     
+        return;        
+    }
+    var html = '';
+    $("#itineraries-list").addClass("list-group list-group-lg no-radius list-email").empty();
     var html = '';
     _.each(data.config.itineraries, function(item) { 
         var date = moment.unix(item.start_date.$date.$numberLong);
@@ -26,7 +33,8 @@ var loadItineraries = function() {
 }
 
 $('#modal-itineraries-list').on('shown.bs.modal', function (e) {
-    refreshDateMessages();
+    loadItineraries();
+    //refreshDateMessages();
 });
 
 
@@ -37,13 +45,3 @@ var refreshDateMessages = function() {
          $(this).html(newStrDate);
     });
 }
-
-var ItinerariesList = function () {
-    "use strict";
-    return {
-        //main function
-        init: function () {
-            loadItineraries();
-        }
-    };
-}();

@@ -37,6 +37,8 @@ var removeItineraryPlace = function(place_id) {
     if (marker) {
         removeMarker(marker._leaflet_id);
     }
+    data.config.itinerary.places_info = _.reject(data.config.itinerary.places_info, function(obj) { return obj.id === place_id; });
+    data.config.itinerary.places = _.reject(data.config.itinerary.places, function(obj) { return obj.place_id === place_id; });
 }
 
 var addItineraryPlace = function(place, bounce) {
@@ -49,7 +51,7 @@ var addItineraryPlace = function(place, bounce) {
                 return member._id == place.user_id;
             });
             if (user) {
-                place_info.user_image = user.avatar;
+                place_info.user = user;
             }
             var marker = markerPoint(response);
             place_info.marker = marker;
@@ -118,7 +120,7 @@ var markerPoint = function(options) {
         color: "violet",
         iconColor: "white",
         shape: "square",
-        innerHTML: options.user_image ? '<img class="circular-image-marker" src="' + options.user_image + '">' : '',
+        innerHTML: options.user ? '<img class="circular-image-marker" src="' + options.user.avatar + '">' : '',
     }
     return marker;
 }
@@ -297,9 +299,13 @@ var handlePusher = function() {
     });
     channel_itinerary.bind('notification', function(obj) {
         if (obj.notification.type == "place_added") {
-            data.config.itinerary.places.push(obj.notification.data);
-            removeItineraryPlace(obj.notification.data.place_id);
-            addItineraryPlace(obj.notification.data, true);
+            if (obj.notification.data.user_id != data.config.user._id) {            
+                //remove o marker default
+                removeItineraryPlace(obj.notification.data.place_id);
+                //adicionar o marker do usuário
+                data.config.itinerary.places.push(obj.notification.data);                                  
+                addItineraryPlace(obj.notification.data, true);
+            }    
         }
     });        
     channel_itinerary.bind('notification', function(obj) {

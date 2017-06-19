@@ -4,7 +4,7 @@ var pulsingIcon = L.icon.pulse({iconSize:[12,12],color:'green'});
 var mapOptions = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 75000
+    maximumAge: 600000
 };
 
 function successLocation(location) {
@@ -199,8 +199,17 @@ function getLocation() {
 }
 
 function setPosition(position) {
-    console.log(position);
-    successLocation(position.coords);
+    var dataPos;
+    geocodeLatLng(position.coords.latitude, position.coords.longitude, function(data) {
+        var location = {
+            name: data.name,
+            address : data.formatted_address,
+            latitude: data.geometry.location.lat(),
+            longitude: data.geometry.location.lng()
+        };
+        console.log(location);
+        successLocation(location);
+    });
 }
 
 var clearMarkers = function() {

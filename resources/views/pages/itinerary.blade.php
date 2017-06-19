@@ -92,7 +92,7 @@
 <script src="/assets/plugins/moment/moment-with-locales.min.js"></script>
 <script src="/assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 <script src="/assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
-<script src="http://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
 <script src="/assets/js/includes/set-location-map.js"></script>
 <script src="/assets/js/includes/filter-places.js"></script>
 <script src="/assets/js/includes/chat.js"></script>
@@ -100,6 +100,7 @@
 <script src="/assets/js/includes/place-detail.js"></script>
 <script src="/assets/js/routing_machine.js"></script>
 <script src="/assets/js/includes/itineraries-list.js"></script>
+<script src="/assets/js/includes/timeline.js"></script>
 <!--<script src="assets/plugins/leaflet-custom-searchbox-master/dist/leaflet.customsearchbox.min.js"></script>-->
 <script src="/assets/plugins/leaflet.bouncemarker-master/bouncemarker.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADvJvC_tbot0jWdVF6yKijrjXPicN3EFY&libraries=places,geometry&callback=initAutocomplete" async defer></script>
@@ -113,7 +114,6 @@ leaflet.bouncemarker-master
         LeafletPlugin.init(loadDefaultPlaces);
         FilterPlaces.init();
         ChatMessages.init();
-        ItinerariesList.init();
     });
 </script>
 @endsection        
@@ -123,3 +123,4 @@ leaflet.bouncemarker-master
 @include('modal.set-location-map')
 @include('modal.filter-places')
 @include('modal.itineraries-list')
+@include('modal.timeline')

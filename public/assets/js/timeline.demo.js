@@ -20,8 +20,7 @@ var handleGoogleMapSetting = function() {
 		mapDefault = new google.maps.Map(document.getElementById('google-map'), mapOptions);
         mapDefault.setOptions({styles: cobaltStyles});
 	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-	
+	google.maps.event.addDomListener(window, 'load', initialize);	
 };
 
 var Timeline = function () {
