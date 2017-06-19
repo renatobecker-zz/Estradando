@@ -9,14 +9,16 @@ var loadItineraries = function() {
         var render = '<li class="list-group-item">';
         render +=  '<div class="email-info">';
         render +=  '<span value="' + item.created_at + '" class="email-time">' + itineraryDate + '</span>';
+        render +=  '</p>';
         render +=  '<h5 class="email-title">';
         render +=  item.name;
         render +=  '</h5>';
+        render +=  '<div class="pull-right">'
+        render +=  '<a href="/itinerary/' + item._id + '" class="btn btn-inverse btn-xs">Visualisar</a>';
+        render +=  '</div>';
         render +=  '<p class="email-desc">';
 
         render +=  strDate + destinationAddress;
-        render +=  '</p>';
-        render +=  '</div>';
         render +=  '</li>';
 
         $("#itineraries-list").append( render );     
