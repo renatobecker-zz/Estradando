@@ -15,7 +15,7 @@
                 </div>
                 <div id="alert-location-container" class="alert alert-danger m-b-5 hide"></div>                    
                 <div class="modal-footer">
-                    <a href="javascript:;" class="btn btn-sm btn-white" id="ActCancelLocation" data-dismiss="modal">Cancelar</a>
+                    <a href="javascript:;" class="btn btn-sm btn-success" id="ActCancelLocation" data-dismiss="modal">Cancelar</a>
                     <!--<a href="javascript:;" class="btn btn-sm btn-success" id="ActSetLocation">Confirmar</a>-->
                 </div>
             </div>

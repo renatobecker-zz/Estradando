@@ -3,7 +3,14 @@
             <!-- begin container-fluid -->
             <div class="container-fluid">
                 <div class="navbar-header hidden-xs">
-                    <a href="javascript:;" class="navbar-brand"><span class="navbar-logo"></span> Estradando</a>
+                    <a href="javascript:;" class="navbar-brand">
+                        <span class="navbar-logo"></span> 
+                        @if (isset($itinerary))
+                            Estradando - {{ $itinerary->name }}
+                        @else
+                            Estradando      
+                        @endif
+                    </a>
                 </div>
                 
                 <!-- begin header navigation right -->

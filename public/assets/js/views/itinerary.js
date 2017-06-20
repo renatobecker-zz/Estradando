@@ -2,6 +2,7 @@ Pusher.logToConsole = true;
 var pusher = new Pusher(data.config.pusher.app_key);
 var leftSidebar;
 var routePoints = [];
+var currentSideBarPlaceID = null;
 
 var handleMoments = function() {
     moment.locale('pt-BR');
@@ -13,11 +14,17 @@ var handleItinerary = function() {
         closeButton: true,
         position: 'left'
     });
+
+    leftSidebar.on('hidden', function () {
+        currentSideBarPlaceID = null;
+    });    
+
     map.addControl(leftSidebar);
     
     map.on('click', function () {
         leftSidebar.hide();
-    })
+    });
+
     data.config.default_categories = defaultCategories();
     if ( (data.config.itinerary) && (data.config.itinerary.destination) ) {
         successLocation(data.config.itinerary.destination);
@@ -39,6 +46,10 @@ var removeItineraryPlace = function(place_id) {
     }
     data.config.itinerary.places_info = _.reject(data.config.itinerary.places_info, function(obj) { return obj.id === place_id; });
     data.config.itinerary.places = _.reject(data.config.itinerary.places, function(obj) { return obj.place_id === place_id; });
+
+    if (place_id == currentSideBarPlaceID) {
+        leftSidebar.hide();
+    }
 }
 
 var addItineraryPlace = function(place, bounce) {
@@ -65,6 +76,7 @@ var addItineraryPlace = function(place, bounce) {
 }
 
 var loadItineraryPlaces = function() {
+    clearMarkers();
     if (data.config.itinerary == null) return;
 
     if(data.config.itinerary.hasOwnProperty("places") == false) {
@@ -72,7 +84,6 @@ var loadItineraryPlaces = function() {
     }
 
     clearRoute();
-    clearMarkers();
     if (data.config.destination) {
         addRoute(data.config.destination.latitude, data.config.destination.longitude);
     }   
@@ -131,6 +142,7 @@ var markerDetailClick = function(data) {
     leftSidebar.setContent(html);
     leftSidebar.scrollTop;
     $('#sidebar-place-detail').scrollTop(0);
+    currentSideBarPlaceID = data.target.options.data.id;
     leftSidebar.show(); 
 }
 
@@ -273,7 +285,8 @@ var loadDefaultPlaces = function() {
 
 var loadData = function(callback, filters) {
     leftSidebar.hide();
-    //clearMarkers();
+    loadItineraryPlaces();
+
     var params = {
         geolocation: data.config.destination
     };

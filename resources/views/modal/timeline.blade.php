@@ -15,7 +15,7 @@
                     <!-- end timeline -->
                 </div>
                 <div class="modal-footer">
-                    <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Fechar</a>
+                    <a href="javascript:;" class="btn btn-sm btn-success" data-dismiss="modal">Fechar</a>
                 </div>                
             </div>
         </div>

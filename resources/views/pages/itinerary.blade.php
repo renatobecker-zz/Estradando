@@ -53,6 +53,10 @@
         height: 25px;
     }  
 
+    .navbar-brand {
+        width: auto !important;
+    }
+
 </style>
 @endsection        
 @section('content')
