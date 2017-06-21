@@ -28,7 +28,7 @@ var handleIonRangeSlider = function() {
     });    
 };
 
-var loadFilters = function() {
+var loadFilters = function(callback) {
     var distance_mts = $("#range-filter-max-distance").val() * 1000;
     var filters = {
         term: [],
@@ -38,7 +38,9 @@ var loadFilters = function() {
     var sub_category_name = $("#select-filter-sub-category").val();
     if (sub_category_name !== "") {
         filters["term"] = [sub_category_name];
-        return filters;
+        if (callback) {
+            callback(filters);
+        }
     }
     
     var category_name = $("#select-filter-category").val();
@@ -50,7 +52,20 @@ var loadFilters = function() {
         filters['term'] = obj.group;
     };
 
-    return filters;
+    $.ajax({
+        type: "GET",
+        url: "/api/original_category", 
+        data: {
+            term: filters['term']
+        },
+        cache: false,
+        success: function(obj) {
+            filters['term'] = obj.data; 
+            if (callback) {
+                callback(filters);
+            }
+        }
+    }); 
 }
 
 var loadSelectCategories = function() {
@@ -110,8 +125,6 @@ $('#modal-filter-places').find('.modal-footer #ActFilterPlaces').on('click', fun
     $("#ActFilterPlaces").addClass("disabled"); 
     $( "#alert-filter-container" ).empty();
     var category_name = $("#select-filter-category").val();
-    console.log(category_name);
-    console.log("necessário trocar o texto de pesquisa para o valor vindo do facebook");
     if ( (category_name == "") || (category_name == null) ) {
         $("#alert-filter-container").append( "<p>Selecione uma Categoria para pesquisa.</p>" );
         $("#alert-filter-container").removeClass("hide");
@@ -119,10 +132,10 @@ $('#modal-filter-places').find('.modal-footer #ActFilterPlaces').on('click', fun
         return;
     }
     $("#alert-filter-container").addClass("hide");
-
-    var filters = loadFilters();
-    loadData(loadPlaces, filters);
-    $('#modal-filter-places').modal('hide');
+    loadFilters(function(filters) {
+        loadData(loadPlaces, filters);
+        $('#modal-filter-places').modal('hide');
+    });
 });
 
 var FilterPlaces = function () {

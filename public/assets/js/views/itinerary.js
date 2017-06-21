@@ -290,7 +290,6 @@ var loadData = function(callback, filters) {
     var params = {
         geolocation: data.config.destination
     };
-
     if (filters) {
         params["distance"] = filters.distance;
         _.each(filters.term, function( term ) {

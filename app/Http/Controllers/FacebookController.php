@@ -10,6 +10,7 @@ use Facebook;
 use Response;
 use App;
 use App\Models\Config\CatalogCategory as CatalogCategory;
+use App\Models\Config\OriginalCategory as OriginalCategory;
 use App\Models\Config\Category as Category;
 
 class FacebookController extends Controller
@@ -31,23 +32,21 @@ class FacebookController extends Controller
         return Response::json(array('success'=>true,'data'=>$response['data'])); 
     }
 
-    public function categories($topic_filter=null) {
-        /*
+    public function list_categories() {
+        
         $config = config('facebook.graph.categories.uri');
-        if ($topic_filter) {
-            $config['topic_filter'] = $topic_filter;
-        }
         $uri = $this->searchUrl . http_build_query($config);
         $response = Facebook::get($uri, $this->getToken())->getDecodedBody();   
         $data = $response['data'];
-        /*
+        
         $results = array_values(array_sort($data, function ($value) {
             return $value['name'];
         }));
         
+        return Response::json(array('success'=>true,'data'=>$data));        
+    }
 
-        return Response::json(array('success'=>true,'data'=>$data)); 
-        */
+    public function categories($topic_filter=null) {
                 
         $categories = Category::all();    
         return Response::json(array('success'=>true,'data'=>$categories));
@@ -173,6 +172,26 @@ class FacebookController extends Controller
             }
         }
         return $result;        
+    }
+
+    public function get_original_category_name($term=null) {
+        $searchs = ($term) ? [$term] : null;
+        if (Request::ajax()) {   
+            $param = Request::input('term');
+            $searchs = (is_array($param)) ? $param : [$param];
+        } 
+        if ($searchs) {
+            $results = [];
+            foreach ($searchs as $term) {
+                $category = Category::whereName($term)->first();
+                if ($category) {
+                    $originalTerm = OriginalCategory::whereId($category->id)->first();
+                    $results[] = $originalTerm->name; //testar com plural_name
+                }                    
+            }
+            return Response::json(array('success'=>true,'data'=>$results));         
+        }
+        return Response::json(array('success'=>false,'data'=>null));             
     }
 
     private function add_place_marker($data) {

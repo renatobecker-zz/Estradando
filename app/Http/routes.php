@@ -18,7 +18,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/itinerary/accept_invite/{id}/{friend_id}', 'ItineraryController@accept_invite');    
 	Route::get('/api/catalog_categories'		 , 'FacebookController@catalog_categories');
 	Route::get('/api/places'    		         , 'FacebookController@places');	
-    Route::get('/api/categories/{topic_filter?}' , 'FacebookController@categories');
+    Route::get('/api/categories/{topic_filter?}' , 'FacebookController@list_categories');
+    Route::get('/api/original_category/{term?}'  , 'FacebookController@get_original_category_name');
     Route::get('/api/graph/{id}' 	 	         , 'FacebookController@graph');
     Route::get('/api/cities/find_by_name'        , 'CityController@findByName');
 
