@@ -57,6 +57,15 @@
         width: auto !important;
     }
 
+    .panel-heading {
+        padding: 5px 15px !important;
+    }
+
+    .place-user-image {
+        width: 40px !important;
+        height: 40px;
+    }
+
 </style>
 @endsection        
 @section('content')
@@ -128,3 +137,4 @@ leaflet.bouncemarker-master
 @include('modal.filter-places')
 @include('modal.itineraries-list')
 @include('modal.timeline')
+@include('modal.add-place')

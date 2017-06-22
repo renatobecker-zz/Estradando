@@ -8,7 +8,7 @@ var handleIonRangeSlider = function() {
     $('#range-filter-max-distance').ionRangeSlider({
         min: 0,
         max: 50,
-        from: 1,
+        from: 5,
         //type: 'single',
         prefix: "Distância ",
         postfix: " KM",
@@ -38,9 +38,8 @@ var loadFilters = function(callback) {
     var sub_category_name = $("#select-filter-sub-category").val();
     if (sub_category_name !== "") {
         filters["term"] = [sub_category_name];
-        if (callback) {
-            callback(filters);
-        }
+        get_original_category(filters, callback);
+        return;
     }
     
     var category_name = $("#select-filter-category").val();
@@ -51,7 +50,10 @@ var loadFilters = function(callback) {
     if (obj) {
         filters['term'] = obj.group;
     };
+    get_original_category(filters, callback);
+}
 
+var get_original_category = function(filters, callback) {
     $.ajax({
         type: "GET",
         url: "/api/original_category", 
@@ -63,6 +65,8 @@ var loadFilters = function(callback) {
             filters['term'] = obj.data; 
             if (callback) {
                 callback(filters);
+            } else {
+                return filters;
             }
         }
     }); 

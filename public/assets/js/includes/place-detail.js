@@ -234,17 +234,39 @@ var renderPlaceButton = function(place, marker_id) {
     if (placeObj == null) {
         var latitude  = (place.location) ? place.location.latitude : 0;
         var longitude = (place.location) ? place.location.longitude : 0;
-        html = '<a href="#" onclick="addPlace()" id="btn-add-place" data-id="' + place.id + '" data-location-lat="' + latitude + '" data-location-lng="' + longitude + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</i></a>';        
+        html = '<a href="#" onclick="addPlace()" id="btn-add-place" data-id="' + place.id + '" data-location-lat="' + latitude + '" data-location-lng="' + longitude + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</a>';        
     } else if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
-        html = '<a href="#" onclick="removePlace(' + place.id + ',' + marker_id + ')" id="btn-remove-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-danger btn-xs p-l-15 p-r-15 m-r-5">Remover Local</i></a>';                
+        html  = '<a href="#" onclick="removePlace(' + place.id + ',' + marker_id + ')" id="btn-remove-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-danger btn-xs p-l-15 p-r-15 m-r-5">Remover</a>';                
     }
     return html;
 }
-/*
-$("#sidebar-place-detail").find('#btn-remove-place').on('click', function(e){
-    console.log(e);
-});
-*/
+
+var renderConfigPlaceInfo = function(place, marker_id) {
+    if (data.config.itinerary == null) return;
+    placeObj = (_.find(data.config.itinerary.places_info, function(item) {
+        return item.id == place.id;
+    }));
+
+    var htmlResult;
+    if (placeObj) {
+        //exibe dados do local
+        htmlResult = '<div class="underline m-b-10"></div>';
+        htmlResult += '<div class="media media-xs clearfix">';
+        htmlResult += '<a href="javascript:;" class="pull-left"><img class="media-object rounded-corner place-user-image" alt="" src="' + placeObj.user.avatar + '"></a>';
+        htmlResult += '<div class="media-body">';
+        htmlResult += '<span class="email-from text-inverse f-w-600"><i class="fa fa-clock-o fa-fw"></i>Segunda-Feira - 8: 30 AM</span>';
+        if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
+            htmlResult += '<a href="#" id="btn-config-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-inverse btn-sm m-l-5"><i class="fa fa-cog"></i></a>';                
+        }
+        htmlResult += '<br><span class="email-to">Sugerido por:</span><span class="email-from text-inverse f-w-600 m-l-5">';
+        htmlResult += placeObj.user.name;
+        htmlResult += '</span>';        
+        htmlResult += '</div><div class="underline m-b-5 p-b-15"></div></div>';        
+    }    
+
+    return htmlResult;
+}    
+
 var renderPanelHeader = function(place, marker_id) {
     var html = '<div class="panel-heading">';
     html += '<div class="pull-right header-place">';
@@ -256,6 +278,13 @@ var renderPanelHeader = function(place, marker_id) {
     html += '</div>';
     html += '<h4 class="panel-title">Informações</h4>';
     html += '</div>';
+
+    var htmlConfigPlace = renderConfigPlaceInfo(place, marker_id);
+    if (htmlConfigPlace) {
+        html += '<div class="panel-heading">';
+        html += htmlConfigPlace;
+        html += '</div>';
+    }
     return html;
 }
 

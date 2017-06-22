@@ -12,8 +12,9 @@ $('#modal-set-location').on('hidden.bs.modal', function (e) {
 
 var set_default_location = function(place) {
     var location = {
-        name: place.name,
-        address : place.formatted_address,
+        name: place.name,        
+        address: place.formatted_address,        
+        address_components: place.address_components,
         latitude: place.geometry.location.lat(),
         longitude: place.geometry.location.lng()
     };

@@ -9,14 +9,11 @@ var mapOptions = {
 
 function successLocation(location) {
     data.config.destination = location;
-
-    console.log(location);
     map.setView([location.latitude, location.longitude], 15);
     setPositionControl(location.latitude, location.longitude, location.address);
     map.flyTo(
         [location.latitude, location.longitude]
-    );   
-    
+    );     
     if (onSearchLocation) {
         onSearchLocation();
     } 
@@ -204,10 +201,10 @@ function setPosition(position) {
         var location = {
             name: data.name,
             address : data.formatted_address,
+            address_components: place.address_components,            
             latitude: data.geometry.location.lat(),
             longitude: data.geometry.location.lng()
         };
-        console.log(location);
         successLocation(location);
     });
 }

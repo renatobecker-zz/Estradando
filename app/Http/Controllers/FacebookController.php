@@ -182,14 +182,19 @@ class FacebookController extends Controller
         } 
         if ($searchs) {
             $results = [];
+            $errors  = [];
             foreach ($searchs as $term) {
                 $category = Category::whereName($term)->first();
                 if ($category) {
                     $originalTerm = OriginalCategory::whereId($category->id)->first();
-                    $results[] = $originalTerm->name; //testar com plural_name
+                    if ($originalTerm) {
+                        $results[] = $originalTerm->name; //testar com plural_name                        
+                    } else {
+                        $errors[] = $term;
+                    }    
                 }                    
             }
-            return Response::json(array('success'=>true,'data'=>$results));         
+            return Response::json(array('success'=>true,'data'=>$results,'errors'=>$errors));         
         }
         return Response::json(array('success'=>false,'data'=>null));             
     }

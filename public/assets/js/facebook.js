@@ -61,11 +61,11 @@ var facebookPlace = function(id, callback) {
 }
 
 var facebookSearch = function(params, callback) {
-    var distance = (params.distance) ? params.distance : 1000;
+    var distance = (params.distance) ? params.distance : 5000;
     var center = params.geolocation.latitude + "," + params.geolocation.longitude;
     var p = {
         "distance": distance,
-        "limit": 500,
+        //"limit": 500,
         "center": center,
         "q": (params.query ? params.query : ""),
         "type": "place",                
