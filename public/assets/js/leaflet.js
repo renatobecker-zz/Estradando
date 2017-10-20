@@ -201,7 +201,7 @@ function setPosition(position) {
         var location = {
             name: data.name,
             address : data.formatted_address,
-            address_components: place.address_components,            
+            address_components: data.address_components,            
             latitude: data.geometry.location.lat(),
             longitude: data.geometry.location.lng()
         };

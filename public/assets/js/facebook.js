@@ -83,8 +83,8 @@ var facebookInviteFriends = function(msg, url, callback, excludes) {
             redirect_uri: url,
             data: url,
             exclude_ids: excludes,
-            title: "Seleção de amigos",
-            new_style_message: true
+            title: "Seleção de participantes",
+            //new_style_message: true
         }, callback);
     }
 
