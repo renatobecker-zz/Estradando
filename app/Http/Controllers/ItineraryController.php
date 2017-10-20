@@ -97,6 +97,35 @@ class ItineraryController extends Controller
         }      
     }
 
+    public function update($id) {     
+
+        $rules = Itinerary::rules();        
+        $validator = Validator::make(Request::all(), $rules);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if (Request::ajax()) {  
+                return Response::json(array('success'=>false,'errors'=>$errors)); 
+            } else {
+                return redirect()->back()->withInput()->withErrors($errors);
+            }    
+        }    
+
+        $itinerary = Itinerary::find($id);
+
+        if (is_null($itinerary)) {
+            abort(404);
+        }
+
+        $itinerary->name        = Request::get('name');
+        $itinerary->destination = Request::get('destination');        
+        $itinerary->start_date  = Helper::convertToMongoDate(Request::get('start_date'));
+        $itinerary->end_date    = Helper::convertToMongoDate(Request::get('end_date'));
+                                        
+        if ($itinerary->save()) {
+            return Response::json(array('success'=>true,'data'=>$itinerary)); 
+        }      
+    }
+
     public function invite_friend() {
 
         $id        = Request::get('id');

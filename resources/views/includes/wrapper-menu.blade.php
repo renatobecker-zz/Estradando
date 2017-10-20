@@ -9,7 +9,7 @@
 			<a href="#modal-itineraries-list" data-toggle="modal" class="btn btn-white btn-sm" title="Meus Roteiros"><i class="fa fa-list-alt"></i></a>
 		</div>
 		<div class="btn-group m-l-5">
-			<a href="#modal-create-itinerary" data-toggle="modal" class="btn btn-success btn-xs"> Criar Roteiro</a>
+			<a href="#modal-itinerary-data" data-toggle="modal" class="btn btn-success btn-xs"> Criar Roteiro</a>
 		</div>
 	</div>
 </div>

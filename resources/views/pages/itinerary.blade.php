@@ -132,7 +132,7 @@ leaflet.bouncemarker-master
 @endsection        
 
 @include('includes.sidebar-place-detail')
-@include('modal.create-itinerary')
+@include('modal.itinerary-data')
 @include('modal.set-location-map')
 @include('modal.filter-places')
 @include('modal.itineraries-list')

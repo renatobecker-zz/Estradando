@@ -185,13 +185,13 @@ var handleDateRangePicker = function() {
     });
 };
 
-$('#modal-create-itinerary').on('hidden.bs.modal', function (e) {
+$('#modal-itinerary-data').on('hidden.bs.modal', function (e) {
     $("#alert-container").addClass("hide");
-    var form = document.getElementById("form-create-itinerary");
+    var form = document.getElementById("form-itinerary-data");
     form.reset();
 });
 
-$('#modal-create-itinerary').find('.modal-footer #ActCreateItinerary').on('click', function(){
+$('#modal-itinerary-data').find('.modal-footer #ActSaveItinerary').on('click', function(){
 
     $.ajaxSetup({
         headers: {
@@ -211,7 +211,7 @@ $('#modal-create-itinerary').find('.modal-footer #ActCreateItinerary').on('click
         cache: false,
         success: function(data) {
             if (data.success) {                
-                $("#modal-create-itinerary").modal('hide'); 
+                $("#modal-itinerary-data").modal('hide'); 
                 var urlSuccess = "itinerary/" + data.data._id;
                 window.location.href = urlSuccess;
             } else {
