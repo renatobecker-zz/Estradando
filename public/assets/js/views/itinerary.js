@@ -162,6 +162,7 @@ var loadPlaces = function(response) {
             if (group) {
                 var marker = markerGroup(group);
                 place.marker = marker;
+                console.log('asdas');
                 addMarker(place, markerDetailClick);    
             }                    
         }

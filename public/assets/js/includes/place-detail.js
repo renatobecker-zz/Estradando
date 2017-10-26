@@ -1,3 +1,5 @@
+var placeMarker;
+
 var renderText = function(text) {
     return (typeof text != 'undefined') ? text : '';
 }
@@ -254,7 +256,7 @@ var renderConfigPlaceInfo = function(place, marker_id) {
         htmlResult += '<div class="media media-xs clearfix">';
         htmlResult += '<a href="javascript:;" class="pull-left"><img class="media-object rounded-corner place-user-image" alt="" src="' + placeObj.user.avatar + '"></a>';
         htmlResult += '<div class="media-body">';
-        htmlResult += '<span class="email-from text-inverse f-w-600"><i class="fa fa-clock-o fa-fw"></i>Segunda-Feira - 8: 30 AM</span>';
+        htmlResult += '<span class="email-from text-inverse f-w-600"><i class="fa fa-clock-o fa-fw"></i>Segunda-Feira 17/09/17 - 8:30 AM</span>';
         if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
             htmlResult += '<a href="#" id="btn-config-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-inverse btn-sm m-l-5"><i class="fa fa-cog"></i></a>';                
         }
@@ -292,11 +294,12 @@ function closePlace() {
     leftSidebar.hide();
 }
 
-var addPlace = function() {
+var addPlace = function() {    
     var element = $("#btn-add-place");
     var id  = element.data("id");
     var lat = element.data("location-lat");
-    var lng = element.data("location-lng");    
+    var lng = element.data("location-lng");
+    /*    
     $.ajax({
         type: "POST",
         url: "/itinerary/add_place", 
@@ -319,7 +322,9 @@ var addPlace = function() {
                 closePlace();
             }
         }
-    }); 
+    }); */
+    closePlace();
+    openConfigPlace(placeMarker);
 }
 
 var removePlace = function(place_id, marker_id) {
@@ -344,6 +349,7 @@ var removePlace = function(place_id, marker_id) {
 }
 
 var renderPlaceDetail = function(place, marker_id) {
+    placeMarker  = place;
     var imgCover = (_.isObject(place.cover)) ? place.cover.source : null;
     var category = ((place.category_list) && (place.category_list.length > 0)) ? place.category_list[0].name : '';  
     var html = renderPanelHeader(place, marker_id);    

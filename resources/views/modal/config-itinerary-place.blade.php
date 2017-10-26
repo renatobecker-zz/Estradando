@@ -1,19 +1,26 @@
 <!-- #modal-dialog -->
-<div class="modal fade" id="modal-add-place">
+<div class="modal fade" id="config-itinerary-place">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Adicionar novo local</h4>
+                <h4 class="modal-title">Configurar local</h4>
             </div>
             <div class="modal-body">
                 <div class="panel-body">
-                    <form class="form-horizontal" id="form-create-itinerary">
+                    <form class="form-horizontal" id="form-config-itinerary-place">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Data</label>
+                            <label class="control-label col-md-3">Data e Horário</label>
                             <div class="col-md-9">
-                            </div>                    
-                        </div>               
+                                <div class="input-group date datetimepicker" id="dtp-local-date">
+                                    <input type="text" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="place-container-info"></div>    
                     </form>                        
                     <!-- end panel -->
                 </div>
