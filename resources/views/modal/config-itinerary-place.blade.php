@@ -13,7 +13,7 @@
                             <label class="control-label col-md-3">Data e Horário</label>
                             <div class="col-md-9">
                                 <div class="input-group date datetimepicker" id="dtp-local-date">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" placeholder="Informe data e local"/>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>

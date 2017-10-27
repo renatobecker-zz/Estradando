@@ -67,6 +67,8 @@ var addItineraryPlace = function(place, bounce) {
             var marker = markerPoint(response);
             place_info.marker = marker;
             place_info.in_route = true;
+            place_info.place_datetime = place.place_datetime;
+
             addMarker(place_info, markerDetailClick, bounce);    
         }                
     });  
@@ -150,7 +152,7 @@ var addItineraryPoints = function(points) {
 
 }
 
-var loadPlaces = function(response) {   
+var loadPlaces = function(response) {  
     var itineraryPoints = (data.config.itinerary) ? data.config.itinerary.places : [];
     var placeFound;
     _.each(response.data, function(place) { 
@@ -162,7 +164,6 @@ var loadPlaces = function(response) {
             if (group) {
                 var marker = markerGroup(group);
                 place.marker = marker;
-                console.log('asdas');
                 addMarker(place, markerDetailClick);    
             }                    
         }
@@ -293,10 +294,13 @@ var loadData = function(callback, filters) {
     };
     if (filters) {
         params["distance"] = filters.distance;
+        facebookSearch(params, callback);
+        /*
         _.each(filters.term, function( term ) {
             params["query"] = term;
             facebookSearch(params, callback);
         });        
+        */
         return;
     }
     facebookSearch(params, callback);    

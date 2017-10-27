@@ -17,10 +17,17 @@ var loadTimeline = function() {
         var category = ((place.category_list) && (place.category_list.length > 0)) ? place.category_list[0].name : place.category;  
         var address  = renderText(place.location.street) + ' - ' + renderText(place.location.zip)  + '<br />';
         address   += renderText(place.location.city) + ' - ' + renderText(place.location.state);
+        var place_day = '';
+        var place_time = '';
+        if (place.place_datetime) {
+            var datetime = moment.unix(place.place_datetime.$date.$numberLong);              
+            place_day = moment(datetime).calendar();
+            //place_time = moment(datetime).format('LT');
+        }
         var render = '<li>';
         render +=  '<div class="timeline-time">';
-        render +=  '<span class="date">today</span>';
-        render +=  '<span class="time">04:20</span>';        
+        render +=  '<span class="date">' + place_day + '</span>';
+        //render +=  '<span class="time">' + place_time + '</span>';        
         render +=  '</div>';
         render +=  '<div class="timeline-icon">';
         render +=  '<a href="javascript:;"><i class="fa fa-paper-plane"></i></a>';

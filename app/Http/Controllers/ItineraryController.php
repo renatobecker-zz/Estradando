@@ -218,10 +218,11 @@ class ItineraryController extends Controller
 
         if(Request::ajax()) {
             $data = Input::all();
-            $itinerary_id = $data["itinerary_id"];
-            $user_id      = $data["user_id"];
-            $place_id     = $data["place_id"];
-            $location     = $data["location"];
+            $itinerary_id   = $data["itinerary_id"];
+            $user_id        = $data["user_id"];
+            $place_id       = $data["place_id"];
+            $place_datetime = $data["place_datetime"];
+            $location       = $data["location"];
 
             $itinerary = Itinerary::find($itinerary_id);
             if (is_null($itinerary)) {
@@ -240,6 +241,7 @@ class ItineraryController extends Controller
 
             $new_place = array(
                 'place_id' => $place_id,
+                'place_datetime' => Helper::convertToMongoDate($place_datetime),
                 'user_id' => $user_id,
                 'location' => $location,
             );

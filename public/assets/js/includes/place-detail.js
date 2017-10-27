@@ -236,7 +236,7 @@ var renderPlaceButton = function(place, marker_id) {
     if (placeObj == null) {
         var latitude  = (place.location) ? place.location.latitude : 0;
         var longitude = (place.location) ? place.location.longitude : 0;
-        html = '<a href="#" onclick="addPlace()" id="btn-add-place" data-id="' + place.id + '" data-location-lat="' + latitude + '" data-location-lng="' + longitude + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</a>';        
+        html = '<a href="#" onclick="handlePlace()" id="btn-add-place" data-id="' + place.id + '" data-location-lat="' + latitude + '" data-location-lng="' + longitude + '" class="btn btn-primary btn-xs p-l-15 p-r-15 m-r-5">Adicionar Local</a>';        
     } else if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
         html  = '<a href="#" onclick="removePlace(' + place.id + ',' + marker_id + ')" id="btn-remove-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-danger btn-xs p-l-15 p-r-15 m-r-5">Remover</a>';                
     }
@@ -252,13 +252,18 @@ var renderConfigPlaceInfo = function(place, marker_id) {
     var htmlResult;
     if (placeObj) {
         //exibe dados do local
+        var place_datetime;
+        if (placeObj.place_datetime){
+            var datetime = moment.unix(placeObj.place_datetime.$date.$numberLong);            
+            var place_datetime = moment(datetime).format('llll');
+        }
         htmlResult = '<div class="underline m-b-10"></div>';
         htmlResult += '<div class="media media-xs clearfix">';
         htmlResult += '<a href="javascript:;" class="pull-left"><img class="media-object rounded-corner place-user-image" alt="" src="' + placeObj.user.avatar + '"></a>';
         htmlResult += '<div class="media-body">';
-        htmlResult += '<span class="email-from text-inverse f-w-600"><i class="fa fa-clock-o fa-fw"></i>Segunda-Feira 17/09/17 - 8:30 AM</span>';
+        htmlResult += '<span class="email-from text-inverse f-w-600"><i class="fa fa-clock-o fa-fw"></i>' + place_datetime + '</span>';
         if (( data.config.itinerary.creator_id == data.config.user._id ) || ( data.config.user._id == placeObj.user_id )) {
-            htmlResult += '<a href="#" id="btn-config-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-inverse btn-sm m-l-5"><i class="fa fa-cog"></i></a>';                
+            htmlResult += '<a href="#" onclick="handlePlace()" id="btn-config-place" data-id="' + place.id + '" data-marker-id ="' + marker_id + '" class="btn btn-inverse btn-sm m-l-5"><i class="fa fa-cog"></i></a>';                
         }
         htmlResult += '<br><span class="email-to">Sugerido por:</span><span class="email-from text-inverse f-w-600 m-l-5">';
         htmlResult += placeObj.user.name;
@@ -294,11 +299,17 @@ function closePlace() {
     leftSidebar.hide();
 }
 
-var addPlace = function() {    
+var handlePlace = function() {    
     var element = $("#btn-add-place");
-    var id  = element.data("id");
-    var lat = element.data("location-lat");
-    var lng = element.data("location-lng");
+    //var id  = element.data("id");
+    //var lat = element.data("location-lat");
+    //var lng = element.data("location-lng");
+
+    var placeInfo = {
+        id  : element.data("id"),
+        lat : element.data("location-lat"),
+        lng : element.data("location-lng")        
+    }
     /*    
     $.ajax({
         type: "POST",
@@ -324,7 +335,7 @@ var addPlace = function() {
         }
     }); */
     closePlace();
-    openConfigPlace(placeMarker);
+    openConfigPlace(placeMarker, placeInfo);
 }
 
 var removePlace = function(place_id, marker_id) {

@@ -1,5 +1,18 @@
+var id;
+var lat;
+var lng;
+var place;
+
 var handleComponents = function() {
-    $('.datetimepicker').datetimepicker();
+    $('.datetimepicker').datetimepicker({
+//       dateFormat : "dd/mm/yy",
+        //format: "dd/mm/yyyy",
+        format: 'DD-MM-YYYY HH:mm',
+        showClear: true,
+        showClose: true,
+        //sideBySide: true,
+        locale: moment.locale('pt-BR')
+    });
     $('#datetimepicker2').datetimepicker({
         format: 'LT'
     });
@@ -75,8 +88,76 @@ var renderConfigDetail = function(place) {
     return html;
 }
 
-var openConfigPlace = function(place) {
-    console.log(place);
+var addPlaceToItinerary = function(datetime, callback) {
+    
+    $.ajax({
+        type: "POST",
+        url: "/itinerary/add_place", 
+        data: {
+            itinerary_id: data.config.itinerary._id,
+            user_id: data.config.user._id,
+            place_id: this.id,
+            place_datetime: datetime,
+            location: {
+                latitude: this.lat,
+                longitude: this.lng
+            }
+        },
+        cache: false,
+        success: function(obj) {            
+            if (obj.success) {  
+                //remove o marker default
+                removeItineraryPlace(obj.data.place_id);                      
+                data.config.itinerary.places.push(obj.data);                  
+                addItineraryPlace(obj.data, true);
+
+                if (callback) {
+                    callback();
+                }
+            }
+        }
+    }); 
+}
+
+
+$('#config-itinerary-place').find('.modal-footer #ActAddPlace').on('click', function(e){
+    $("#ActAddPlace").addClass("disabled"); 
+    $( "#alert-filter-container" ).empty();
+    var local_datetime = $("#dtp-local-date").val();
+    console.log(local_datetime);
+    if ( (local_datetime == "") || (local_datetime == null) ) {
+        $("#alert-container").append( "<p>Informe data e horários válidos.</p>" );
+        $("#alert-container").removeClass("hide");
+        $("#ActAddPlace").removeClass("disabled"); 
+        return;
+    }
+    $("#alert-filter-container").addClass("hide");
+        addPlaceToItinerary(local_datetime, function() {
+            $("#ActAddPlace").removeClass("disabled");         
+            $('#config-itinerary-place').modal('hide');        
+        });
+});
+
+var openConfigPlace = function(place, info) {
+    this.place = place;
+    this.id  = info.id;
+    this.lat = info.lat;
+    this.lng = info.lng;
+
+    if (data.config.itinerary) {
+        var startDate = moment.unix(data.config.itinerary.start_date.$date.$numberLong);
+        var endDate = moment.unix(data.config.itinerary.end_date.$date.$numberLong);        
+        var datetime;
+        if (place.place_datetime) {       
+            var $dp = $('#dtp-local-date').data("DateTimePicker");     
+            $dp.date( moment.unix(place.place_datetime.$date.$numberLong) );        
+        }    
+        //$('#dtp-local-date').datepicker('setDate', datetime);
+        //$('#dtp-local-date').datepicker( "option", "minDate",  startDate);
+        //.datetimepicker( "option", "maxDate",  endDate );
+        //$('#dtp-local-date').datepicker( "option", "maxDate",  endDate );
+    }
+    
     var html = renderConfigDetail(place);
     $("#place-container-info").html(html);
     $("#config-itinerary-place").modal('show');
