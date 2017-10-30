@@ -123,11 +123,10 @@ var addPlaceToItinerary = function(datetime, callback) {
 $('#config-itinerary-place').find('.modal-footer #ActAddPlace').on('click', function(e){
     $("#ActAddPlace").addClass("disabled"); 
     $( "#alert-filter-container" ).empty();
-    var local_datetime = $("#dtp-local-date").val();
-    console.log(local_datetime);
+    var local_datetime = $("#dtp-input").val();
     if ( (local_datetime == "") || (local_datetime == null) ) {
-        $("#alert-container").append( "<p>Informe data e horários válidos.</p>" );
-        $("#alert-container").removeClass("hide");
+        $("#alert-container-place").append( "<p>Informe data e horários válidos.</p>" );
+        $("#alert-container-place").removeClass("hide");
         $("#ActAddPlace").removeClass("disabled"); 
         return;
     }

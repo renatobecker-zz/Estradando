@@ -364,6 +364,7 @@ class ItineraryController extends Controller
         $config['user']                = $user;
         $config['itineraries']         = $this->itineraries();
         $config['catalog_categories']  = $this->get_catalog_categories();
+        $config['api_categories']      = $this->get_api_categories();        
         $config['redirect_invite_url'] = URL::to('/') . "/itinerary/accept_invite/";
         $config['destination']         = $this->get_default_location();
         $config['pusher']              = array(
@@ -400,6 +401,18 @@ class ItineraryController extends Controller
         return $result;
     }
 
+    private function get_api_categories() {
+        $catalog_categories = Session::get('api_categories');
+        if ($catalog_categories) {
+            return $catalog_categories;
+        }        
+
+        $result = config('facebook.default_categories'); 
+        Session::set('api_categories', $result);
+        return $result;
+    }
+
+    
     private function get_default_location() {
         return Session::get('default_location');
     }

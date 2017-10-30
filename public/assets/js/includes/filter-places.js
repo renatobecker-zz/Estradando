@@ -1,6 +1,6 @@
 var handleSelect2 = function() {
     $(".default-select2").select2({
-        language: "pt-BR"
+        language: "pt-BR",
     });
 };
 
@@ -8,12 +8,12 @@ var handleIonRangeSlider = function() {
     $('#range-filter-max-distance').ionRangeSlider({
         min: 0,
         max: 50,
-        from: 5,
+        from: 2,
         //type: 'single',
         prefix: "Distância ",
         postfix: " KM",
         grid: true,
-        step: 0.5
+        step: 0.2
     });
 
     $("#range-filter-price").ionRangeSlider({
@@ -30,10 +30,18 @@ var handleIonRangeSlider = function() {
 
 var loadFilters = function(callback) {
     var distance_mts = $("#range-filter-max-distance").val() * 1000;
+    var price_range = $("#range-filter-price").data("ionRangeSlider");
+
     var filters = {
         term: [],
-        distance: distance_mts
+        categories: [],
+        distance: distance_mts,
+        price: {
+            min: price_range.result.from,
+            max: price_range.result.to
+        }
     };
+
     /*
     var sub_category_name = $("#select-filter-sub-category").val();
     if (sub_category_name !== "") {
@@ -53,7 +61,14 @@ var loadFilters = function(callback) {
     get_original_category(filters, callback);
     */
     var search_term = $("#search-term").val();
-    filters['term'] = search_term;
+    if (search_term !== "") {
+      filters['term'] = search_term;
+    }
+
+    var category_name = $("#select-filter-category").val();    
+    if (category_name !== "") {
+      filters['categories'] = ['"' + category_name + '"'];
+    }
     callback(filters);
 }
 
@@ -79,21 +94,31 @@ var get_original_category = function(filters, callback) {
 var loadSelectCategories = function() {
     $("#select-filter-category").html('').select2('data', {id: null, text: null});
     var selectCategoryData = [{id:"", text:""}]; //Placeholder
+    /*
     _.each( data.config.catalog_categories, function( category ) {
         selectCategoryData.push({
             id: category.name,
             text: category.name
         })
+    });*/
+    _.each(data.config.api_categories, function( category ) {
+        selectCategoryData.push({
+            id: category.original,
+            text: category.description
+        })    
     });
+        
     selectCategoryData = _.sortBy(selectCategoryData, function(o) { return o.text; });
     $("#select-filter-category").html('').select2({
-        placeholder: "Selecione uma Categoria",
+        placeholder: "Selecionar categorias",
         data: selectCategoryData
-    }).on("change", function (e) { 
-        loadSelectSubCategories();
     });
+    /*.on("change", function (e) { 
+        loadSelectSubCategories();
+    });*/
 };
 
+/*
 var loadSelectSubCategories = function() {
     var name = $("#select-filter-category").val();
     var obj = _.find(data.config.catalog_categories, function(category) {
@@ -116,10 +141,10 @@ var loadSelectSubCategories = function() {
         data: selectSubCategoryData
     });    
 };
-
+*/
 var handleSelectData = function() {
     loadSelectCategories();
-    loadSelectSubCategories();  
+//    loadSelectSubCategories();  
 }
 
 $('#modal-filter-places').on('hidden.bs.modal', function (e) {

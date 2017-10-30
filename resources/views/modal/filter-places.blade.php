@@ -19,15 +19,10 @@
                                 <select class="default-select2 form-control" id="select-filter-category" placeholder="Selecione uma Categoria" style="width:100%"></select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <select class="default-select2 form-control" id="select-filter-sub-category" placeholder="Selecione uma Sub-Categoria" style="width:100%"></select>
-                            </div>
-                        </div>
                         <!--
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="input-term" id="input-term" placeholder="Texto Livre" />
+                                <select class="default-select2 form-control" id="select-filter-sub-category" placeholder="Selecione uma Sub-Categoria" style="width:100%"></select>
                             </div>
                         </div>
                         -->
@@ -36,13 +31,13 @@
                                 <input type="text" id="range-filter-max-distance" name="max-distance" value="" />
                             </div>
                         </div>
-                        <!-- //será usado nos filtros adicionais
+                        
                         <div class="form-group">
                             <div class="col-md-12">
                                 <input type="text" id="range-filter-price" name="price" value="" />
                             </div>
                         </div>
-                        -->
+                        
                         <!--
                         <div class="form-group">                            
                             <div class="col-md-12">

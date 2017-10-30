@@ -17,7 +17,7 @@ var handleItinerary = function() {
 
     leftSidebar.on('hidden', function () {
         currentSideBarPlaceID = null;
-    });    
+    });     
 
     map.addControl(leftSidebar);
     
@@ -25,7 +25,7 @@ var handleItinerary = function() {
         leftSidebar.hide();
     });
 
-    data.config.default_categories = defaultCategories();
+    data.config.default_api_categories = defaultApiCategories();
     if ( (data.config.itinerary) && (data.config.itinerary.destination) ) {
         successLocation(data.config.itinerary.destination);
     }
@@ -33,8 +33,8 @@ var handleItinerary = function() {
     listMembers();
 }
 
-var defaultCategories = function() {
-    return _.filter(data.config.catalog_categories, function(category) {
+var defaultApiCategories = function() {
+    return _.filter(data.config.api_categories, function(category) {
         return category.default == true; 
     });
 }
@@ -152,10 +152,14 @@ var addItineraryPoints = function(points) {
 
 }
 
-var loadPlaces = function(response) {  
+var loadPlaces = function(response, params) {  
     var itineraryPoints = (data.config.itinerary) ? data.config.itinerary.places : [];
     var placeFound;
     _.each(response.data, function(place) { 
+        if ( (params)  && (params.price_range) && (place.price_range) ) {
+            var price_length = place.price_range.length;
+            if ( (price_length < params.price_range.min) || (price_length > params.price_range.max) ) return;
+        }
         placeFound = (_.find(itineraryPoints, function(point) {
             return point.place_id == place.id;
         }));   
@@ -271,7 +275,7 @@ var inviteRequest = function(itinerary, friend) {
 
 var excludeIds = function() {
     var excludes = _.pluck(data.config.itinerary.members_info, "provider_user_id");
-    console.log(excludes);
+    //console.log(excludes);
     return excludes;
 }
 
@@ -282,7 +286,18 @@ var inviteItinerary = function() {
 }
 
 var loadDefaultPlaces = function() {
-    loadData(loadPlaces);
+    var default_list = [];
+    var filters      = {};
+
+    _.each(data.config.default_api_categories, function( category ) {
+        if (category.default) {
+            default_list.push('"' + category.original + '"');
+        }
+    });
+
+    filters['categories'] = default_list;
+    filters['limit']      = 200;  
+    loadData(loadPlaces, filters);
 }
 
 var loadData = function(callback, filters) {
@@ -292,18 +307,25 @@ var loadData = function(callback, filters) {
     var params = {
         geolocation: data.config.destination
     };
+
+    params = $.extend({}, params, filters);
+
+    /*
     if (filters) {
         params["query"] = filters.term;
         params["distance"] = filters.distance;
-        facebookSearch(params, callback);
+        params["limit"] = filters.limit;
+        params["categories"] = filters.categories;
+        //facebookSearch(params, callback);
         /*
         _.each(filters.term, function( term ) {
             params["query"] = term;
             facebookSearch(params, callback);
         });        
         */
-        return;
-    }
+        //return;
+    //}
+
     facebookSearch(params, callback);    
 };
 

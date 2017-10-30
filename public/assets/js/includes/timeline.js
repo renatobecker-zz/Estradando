@@ -8,7 +8,8 @@ var loadTimeline = function() {
     }
     var html = '';
     $("#timeline-list").addClass("timeline").empty();
-    _.each(data.config.itinerary.places_info, function(place) { 
+    var places = _.sortBy(data.config.itinerary.places_info, function(o) { return o.place_datetime; });
+    _.each(places, function(place) { 
         /*var date = moment.unix(place.start_date.$date.$numberLong);
         var strDate = moment(date).format('DD/MM/YYYY');
         var itineraryDate = moment(item.created_at).fromNow();
