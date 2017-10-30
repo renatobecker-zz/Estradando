@@ -34,7 +34,7 @@ var loadFilters = function(callback) {
         term: [],
         distance: distance_mts
     };
-
+    /*
     var sub_category_name = $("#select-filter-sub-category").val();
     if (sub_category_name !== "") {
         filters["term"] = [sub_category_name];
@@ -45,12 +45,16 @@ var loadFilters = function(callback) {
     var category_name = $("#select-filter-category").val();
     var obj = _.find(data.config.catalog_categories, function(category) {
             return category.name == category_name; 
-        });
+        });        
 
     if (obj) {
         filters['term'] = obj.group;
     };
     get_original_category(filters, callback);
+    */
+    var search_term = $("#search-term").val();
+    filters['term'] = search_term;
+    callback(filters);
 }
 
 var get_original_category = function(filters, callback) {
@@ -128,9 +132,11 @@ $('#modal-filter-places').on('hidden.bs.modal', function (e) {
 $('#modal-filter-places').find('.modal-footer #ActFilterPlaces').on('click', function(e){
     $("#ActFilterPlaces").addClass("disabled"); 
     $( "#alert-filter-container" ).empty();
+    var query = $("#search-term").val();
     var category_name = $("#select-filter-category").val();
-    if ( (category_name == "") || (category_name == null) ) {
-        $("#alert-filter-container").append( "<p>Selecione uma Categoria para pesquisa.</p>" );
+    if ( ((query == "") || (query == null)) &&
+         ((category_name == "") || (category_name == null)) ) {
+        $("#alert-filter-container").append( "<p>Informe um termo ou selecione uma Categoria para pesquisa.</p>" );
         $("#alert-filter-container").removeClass("hide");
         $("#ActFilterPlaces").removeClass("disabled"); 
         return;

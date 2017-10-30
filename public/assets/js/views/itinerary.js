@@ -293,6 +293,7 @@ var loadData = function(callback, filters) {
         geolocation: data.config.destination
     };
     if (filters) {
+        params["query"] = filters.term;
         params["distance"] = filters.distance;
         facebookSearch(params, callback);
         /*

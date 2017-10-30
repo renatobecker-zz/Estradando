@@ -11,6 +11,11 @@
                     <form class="form-horizontal" id="form-filter-places">
                         <div class="form-group">
                             <div class="col-md-12">
+                                <input type="text" class="form-control" name="name" id="search-term" placeholder="Informe os termos de pesquisa" />
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <div class="col-md-12">
                                 <select class="default-select2 form-control" id="select-filter-category" placeholder="Selecione uma Categoria" style="width:100%"></select>
                             </div>
                         </div>
