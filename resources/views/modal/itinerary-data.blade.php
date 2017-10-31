@@ -25,6 +25,12 @@
                                 </div>
                             </div>                    
                         </div>               
+                        <div class="form-group  p-l-15 p-r-15 m-b-0">
+                            <div id="itinerary-location-info" class="alert alert-success m-b-0">
+                                <h4>Localização</h4>
+                                <p id="itinerary-location-desc"></p>                        
+                            </div>                                
+                        </div>    
                     </form>                        
                     <!-- end panel -->
                 </div>
