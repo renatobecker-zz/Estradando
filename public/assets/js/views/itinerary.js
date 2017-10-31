@@ -197,7 +197,28 @@ $('#modal-itinerary-data').on('hidden.bs.modal', function (e) {
     form.reset();
 });
 
+$('#modal-itinerary-data').on('shown.bs.modal', function (e) {
+    
+    if (data.config.itinerary) {
+        var startDate  = moment.unix(data.config.itinerary.start_date.$date.$numberLong);
+        var strDateIni = moment(startDate).format('DD/MM/YYYY');
+        var endDate    = moment.unix(data.config.itinerary.end_date.$date.$numberLong);
+        var strDateFim = moment(endDate).format('DD/MM/YYYY');
+
+        $("#itinerary-name").val(data.config.itinerary.name).prop('disabled', true);
+        $("#itinerary-start-date").val(strDateIni).prop('disabled', true);
+        $("#itinerary-end-date").val(strDateFim).prop('disabled', true);
+        $("#ActSaveItinerary").addClass("disabled").addClass("hide").attr("value", data.config.itinerary._id);
+    }
+});
+
 $('#modal-itinerary-data').find('.modal-footer #ActSaveItinerary').on('click', function(){
+
+    var id = $("#ActSaveItinerary").addClass("disabled").attr("value");
+    if ( id ) {
+        $("#modal-itinerary-data").modal('hide'); 
+        return;
+    };
 
     $.ajaxSetup({
         headers: {

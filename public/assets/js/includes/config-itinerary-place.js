@@ -119,18 +119,17 @@ var addPlaceToItinerary = function(datetime, callback) {
     }); 
 }
 
-
 $('#config-itinerary-place').find('.modal-footer #ActAddPlace').on('click', function(e){
     $("#ActAddPlace").addClass("disabled"); 
     $( "#alert-filter-container" ).empty();
     var local_datetime = $("#dtp-input").val();
     if ( (local_datetime == "") || (local_datetime == null) ) {
-        $("#alert-container-place").append( "<p>Informe data e horários válidos.</p>" );
+        $("#alert-container-place").append( "<p>Informe data e horário válidos.</p>" );
         $("#alert-container-place").removeClass("hide");
         $("#ActAddPlace").removeClass("disabled"); 
         return;
     }
-    $("#alert-filter-container").addClass("hide");
+    $("#alert-container-place").addClass("hide");
         addPlaceToItinerary(local_datetime, function() {
             $("#ActAddPlace").removeClass("disabled");         
             $('#config-itinerary-place').modal('hide');        
@@ -142,6 +141,7 @@ var openConfigPlace = function(place, info) {
     this.id  = info.id;
     this.lat = info.lat;
     this.lng = info.lng;
+    $('#dtp-input').val("");
 
     if (data.config.itinerary) {
         var startDate = moment.unix(data.config.itinerary.start_date.$date.$numberLong);
@@ -159,6 +159,7 @@ var openConfigPlace = function(place, info) {
     
     var html = renderConfigDetail(place);
     $("#place-container-info").html(html);
+    $("#alert-container-place").addClass("hide");
     $("#config-itinerary-place").modal('show');
 }
 
