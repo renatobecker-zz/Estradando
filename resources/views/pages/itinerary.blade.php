@@ -10,7 +10,8 @@
 <link href="/assets/plugins/ionRangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
 <link href="/assets/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css" rel="stylesheet"/>
 <link href="/assets/plugins/leaflet-icon-pulse-master/src/L.Icon.Pulse.css" rel="stylesheet"/>
-<link href="/assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.css" rel="stylesheet"/>
+<!--<link href="/assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.css" rel="stylesheet"/>-->
+<link href="/assets/plugins/leaflet-routing-machine-3.1.0/css/leaflet-routing-machine.css" rel="stylesheet" />
 <link href="/assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
 <style>
@@ -105,7 +106,8 @@
 <script src="/assets/plugins/gritter/js/jquery.gritter.js"></script>
 <script src="/assets/plugins/moment/moment-with-locales.min.js"></script>
 <script src="/assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-<script src="/assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+<!--<script src="/assets/plugins/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>-->
+<script src="/assets/plugins/leaflet-routing-machine-3.1.0/dist/leaflet-routing-machine.js"></script>
 <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
 <script src="/assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/assets/js/includes/set-location-map.js"></script>

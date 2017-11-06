@@ -11,9 +11,10 @@ function successLocation(location) {
     data.config.destination = location;
     map.setView([location.latitude, location.longitude], 15);
     setPositionControl(location.latitude, location.longitude, location.address);
+    /*
     map.flyTo(
         [location.latitude, location.longitude]
-    );     
+    );  */   
     if (onSearchLocation) {
         onSearchLocation();
     } 
@@ -214,7 +215,8 @@ var clearMarkers = function() {
 }
 
 function clickZoom(e) {
-    map.flyTo(e.target.getLatLng());
+    //map.flyTo(e.target.getLatLng());
+    map.setView(e.target.getLatLng(), 16, {animate: true});
 }
 
 var handleInit = function(callback) {

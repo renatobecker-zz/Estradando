@@ -11,7 +11,7 @@ var handleMoments = function() {
 var handleItinerary = function() {
 
     leftSidebar = L.control.sidebar('sidebar-place-detail', {
-        closeButton: true,
+        closeButton: false,
         position: 'left'
     });
 
