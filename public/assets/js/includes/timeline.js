@@ -9,13 +9,16 @@ var loadTimeline = function() {
     var startDate = moment.unix(data.config.itinerary.start_date.$date.$numberLong);
     var endDate   = moment.unix(data.config.itinerary.end_date.$date.$numberLong);
     var title = "Timeline do Roteiro - " + moment(startDate).format('DD/MM/YY');
-    if (startDate !== endDate) {
+    if (data.config.itinerary.start_date.$date.$numberLong !== 
+        data.config.itinerary.end_date.$date.$numberLong) {
         title += " até " + moment(endDate).format('DD/MM/YY');
     }
     $("#timeline-title").html(title);
     var html = '';
     $("#timeline-list").addClass("timeline").empty();
-    var places = _.sortBy(data.config.itinerary.places_info, function(o) { return o.place_datetime; });
+    var places = _.sortBy(data.config.itinerary.places_info, function(o) { 
+        return o.place_datetime ? o.place_datetime.$date.$numberLong : 0;
+    });
     _.each(places, function(place) { 
         /*var date = moment.unix(place.start_date.$date.$numberLong);
         var strDate = moment(date).format('DD/MM/YYYY');

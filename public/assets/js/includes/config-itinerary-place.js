@@ -146,15 +146,23 @@ var openConfigPlace = function(place, info) {
     if (data.config.itinerary) {
         var startDate = moment.unix(data.config.itinerary.start_date.$date.$numberLong);
         var endDate = moment.unix(data.config.itinerary.end_date.$date.$numberLong);        
-        var datetime;
+        //var datetime;
+
+        //$('#dtp-local-date').datepicker('setDate', datetime);
+        //.datetimepicker( "option", "maxDate",  endDate );
+        //$('#dtp-local-date').datepicker( "option", "maxDate",  endDate );
+
         if (place.place_datetime) {       
             var $dp = $('#dtp-local-date').data("DateTimePicker");     
             $dp.date( moment.unix(place.place_datetime.$date.$numberLong) );        
         }    
-        //$('#dtp-local-date').datepicker('setDate', datetime);
-        //$('#dtp-local-date').datepicker( "option", "minDate",  startDate);
-        //.datetimepicker( "option", "maxDate",  endDate );
-        //$('#dtp-local-date').datepicker( "option", "maxDate",  endDate );
+
+        var title = "Configurar local - " + moment(startDate).format('DD/MM/YY');
+        if (data.config.itinerary.start_date.$date.$numberLong !== 
+            data.config.itinerary.end_date.$date.$numberLong) {
+            title += " até " + moment(endDate).format('DD/MM/YY');
+        }
+        $("#config-itinerary-place-title").html(title);
     }
     
     var html = renderConfigDetail(place);

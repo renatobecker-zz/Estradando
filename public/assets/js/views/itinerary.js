@@ -130,7 +130,7 @@ var markerGroup = function(group) {
 var markerPoint = function(options) {    
     var marker = {
         //number: pointNumber,
-        color: "violet",
+        color: "black",
         iconColor: "white",
         shape: "square",
         innerHTML: options.user ? '<img class="circular-image-marker" src="' + options.user.avatar + '">' : '',
@@ -325,7 +325,6 @@ var loadDefaultPlaces = function() {
 
 var loadData = function(callback, filters) {
     leftSidebar.hide();
-    loadItineraryPlaces();
 
     var params = {
         geolocation: data.config.destination
@@ -366,7 +365,7 @@ var handlePusher = function() {
                 //remove o marker default
                 removeItineraryPlace(obj.notification.data.place_id);
                 //adicionar o marker do usuário
-                data.config.itinerary.places.push(obj.notification.data);                                  
+                data.config.itinerary.places.push(obj.notification.data);  
                 addItineraryPlace(obj.notification.data, true);
             }    
         }
