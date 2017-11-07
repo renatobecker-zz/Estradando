@@ -924,7 +924,7 @@ if (typeof module !== undefined) module.exports = polyline;
 			switch (instr.modifier) {
 			case 'Straight':
 				return 'continue';
-			case 'SlightRight':
+			case 'SlightlyRight':
 				return 'bear-right';
 			case 'Right':
 				return 'turn-right';
@@ -937,7 +937,7 @@ if (typeof module !== undefined) module.exports = polyline;
 				return 'sharp-left';
 			case 'Left':
 				return 'turn-left';
-			case 'SlightLeft':
+			case 'SlightlyLeft':
 				return 'bear-left';
 			}
 		},
@@ -1962,7 +1962,13 @@ if (typeof module !== undefined) module.exports = polyline;
 				S: 'sul',
 				SW: 'sudoeste',
 				W: 'oeste',
-				NW: 'noroeste'
+				NW: 'noroeste',
+                SlightlyRight: 'ligeiramente à direita',
+                Right: 'à direita',
+                SharpRight: 'acentuada à direita',
+                SlightlyLeft: 'ligeiramente à esquerda',
+                Left: 'à esquerda',
+                SharpLeft: 'acentuada à esquerda'                                
 			},
 			instructions: {
 				// instruction, postfix if the road is named
@@ -1971,7 +1977,7 @@ if (typeof module !== undefined) module.exports = polyline;
 				'Continue':
 					['Continue {dir}', ' na {road}'],
 				'SlightRight':
-					['Curva ligeira a direita', ' na {road}'],
+					['Curva rápida a direita', ' na {road}'],
 				'Right':
 					['Curva a direita', ' na {road}'],
 				'SharpRight':
@@ -1983,13 +1989,19 @@ if (typeof module !== undefined) module.exports = polyline;
 				'Left':
 					['Curva a esquerda', ' na {road}'],
 				'SlightLeft':
-					['Curva ligueira a esquerda', ' na {road}'],
+					['Curva rápida a esquerda', ' na {road}'],
 				'WaypointReached':
 					['Ponto de interesse atingido'],
 				'Roundabout':
 					['Pegue a {exitStr} saída na rotatória', ' na {road}'],
 				'DestinationReached':
 					['Destino atingido'],
+                'Fork': ['Na bifurcação, vire {modifier}', ' em direção {road}'],
+                'Merge': ['Mescle {modifier}', ' em direção {road}'],
+                'OnRamp': ['Vire {modifier} na rampa', ' em direção {road}'],
+                'OffRamp': ['Pegue a rampa {modifier}', ' em direção {road}'],
+                'EndOfRoad': ['Vire {modifier} no final da estrada', ' em direção {road}'],
+                'Onto': 'em direção {road}'                    
 			},
 			formatOrder: function(n) {
 				return n + 'º';

@@ -68,6 +68,15 @@
         height: 40px;
     }
 
+    .wrapper-menu-controls {
+        position: fixed;
+        overflow: hidden;
+        /*top: 0;*/
+        z-index: 100;
+        left: 0px;
+        right: 0px;
+    }
+
 </style>
 @endsection        
 @section('content')

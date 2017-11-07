@@ -1,5 +1,5 @@
 <!-- begin wrapper -->
-<div class="wrapper bg-silver-lighter clearfix wrapper-controls">
+<div class="wrapper bg-silver-lighter clearfix wrapper-controls wrapper-menu-controls">
 	<!--
 	<div class="btn-group m-r-5">
 		<a href="#" class="btn btn-white btn-sm"><i class="fa fa-reply"></i></a>
