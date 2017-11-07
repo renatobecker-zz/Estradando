@@ -407,13 +407,7 @@
 				S: 'sul',
 				SW: 'sudoeste',
 				W: 'oeste',
-				NW: 'noroeste',
-                SlightRight: 'ligeiramente à direita',
-                Right: 'direita',
-                SharpRight: 'acentuada à direita',
-                SlightLeft: 'ligeiramente à esquerda',
-                Left: 'esquerda',
-                SharpLeft: 'acentuada à esquerda'
+				NW: 'noroeste'
 			},
 			instructions: {
 				// instruction, postfix if the road is named
@@ -422,7 +416,7 @@
 				'Continue':
 					['Continue {dir}', ' na {road}'],
 				'SlightRight':
-					['Curva rápida à direita', ' na {road}'],
+					['Curva ligeira a direita', ' na {road}'],
 				'Right':
 					['Curva a direita', ' na {road}'],
 				'SharpRight':
@@ -434,19 +428,13 @@
 				'Left':
 					['Curva a esquerda', ' na {road}'],
 				'SlightLeft':
-					['Curva rápida a esquerda', ' na {road}'],
+					['Curva ligueira a esquerda', ' na {road}'],
 				'WaypointReached':
 					['Ponto de interesse atingido'],
 				'Roundabout':
 					['Pegue a {exitStr} saída na rotatória', ' na {road}'],
 				'DestinationReached':
 					['Destino atingido'],
-                'Fork': ['Na bifurcação, vire {modifier}', ' em direção {road}'],
-                'Merge': ['Merge {modifier}', ' em direção {road}'],
-                'OnRamp': ['Vire {modifier} na rampa', ' em direção {road}'],
-                'OffRamp': ['Pegue a rampa {modifier}', ' em direção {road}'],
-                'EndOfRoad': ['Vire {modifier} no final da estrada', ' em direção {road}'],
-                'Onto': 'Em direção {road}'
 			},
 			formatOrder: function(n) {
 				return n + 'º';
