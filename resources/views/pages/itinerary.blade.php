@@ -72,7 +72,7 @@
         position: fixed;
         overflow: hidden;
         /*top: 0;*/
-        z-index: 100;
+        z-index: 1000;
         left: 0px;
         right: 0px;
     }

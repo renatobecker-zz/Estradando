@@ -72,7 +72,7 @@ var handleRouting = function() {
     if (data.config.itinerary == null) return;
 
     routing = new L.Routing.control({
-        //position: 'bottomleft',
+        position: 'bottomright',
         router: L.Routing.mapbox(data.config.mapbox.token),
         createMarker: function() { return null; },
         draggableWaypoints: false,
