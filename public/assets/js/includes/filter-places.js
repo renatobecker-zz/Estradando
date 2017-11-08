@@ -168,6 +168,7 @@ $('#modal-filter-places').find('.modal-footer #ActFilterPlaces').on('click', fun
     }
     $("#alert-filter-container").addClass("hide");
     loadFilters(function(filters) {
+        loadItineraryPlaces();
         loadData(loadPlaces, filters);
         $('#modal-filter-places').modal('hide');
     });

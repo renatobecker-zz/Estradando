@@ -77,7 +77,7 @@ var facebookSearch = function(params, callback) {
         "distance": distance,
         //"limit": 100,
         "center": center,
-        "q": (params.query ? params.query : ""),
+        "q": (params.term ? params.term : ""),
         "type": "place",                
         "fields": searchFieldsDefault,
         "locale": "pt_BR"

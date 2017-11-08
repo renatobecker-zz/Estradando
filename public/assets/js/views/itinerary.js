@@ -79,13 +79,14 @@ var addItineraryPlace = function(place, bounce) {
 
 var loadItineraryPlaces = function() {
     clearMarkers();
+    clearRoute();
+
     if (data.config.itinerary == null) return;
 
     if(data.config.itinerary.hasOwnProperty("places") == false) {
         data.config.itinerary["places"] = [];
     }
 
-    clearRoute();
     if (data.config.destination) {
         addRoute(data.config.destination.latitude, data.config.destination.longitude);
     }   
@@ -94,7 +95,10 @@ var loadItineraryPlaces = function() {
     if (data.config.itinerary.places) {
         var place_index = 0;
         _.each(data.config.itinerary.places, function(place) { 
-            addItineraryPlace(place);
+            var marker = findPlaceMarker(place.place_id);
+            if (marker == null) {
+                addItineraryPlace(place);
+            }    
         }); 
         map.addLayer(markers);        
     }
@@ -347,7 +351,6 @@ var loadData = function(callback, filters) {
         */
         //return;
     //}
-
     facebookSearch(params, callback);    
 };
 
